@@ -1,2 +1,46 @@
-// Chaque entrée ajoutée à ce tableau apparaît automatiquement sur la page d'accueil.
-const entries=[{id:"VESPER_001",date:"DATE À DÉFINIR",title:"Première archive",summary:"Pourquoi conserver une trace de sa propre vie ?",location:"LOCALISATION INCONNUE",lines:[{type:"stage",text:"L'image apparaît. Ren ajuste sa cravate et regarde l'objectif."},{type:"speech",text:"Je m'appelle Kagami Ren."},{type:"stage",text:"Un silence."},{type:"speech",text:"C'est la première chose que je voudrais ne jamais oublier."}]}];
+const entries = [
+  {
+    id: "VESPER_001",
+    date: "1er septembre 2075",
+    title: "Pour mémoire",
+    summary: "Identité, souvenirs et premières traces d'une vie choisie.",
+    location: "Seattle // Localisation masquée",
+    lines: [
+      {type:"stage",text:"L'image apparaît. Ren est assis face à la caméra, impeccablement habillé. Il ajuste légèrement sa cravate, vérifie l'indicateur d'enregistrement, puis s'adosse à son fauteuil."},
+      {type:"speech",text:"Kagami Ren. Vesper, dans les Ombres."},
+      {type:"speech",text:"Je suppose qu'il faut commencer par là."},
+      {type:"speech",text:"Je suis un elfe, un adepte, et je gagne ma vie en accomplissant des tâches que les corporations préfèrent ne pas voir apparaître dans leurs comptes rendus."},
+      {type:"speech",text:"Je travaille généralement avec un Ares Predator VI. J'ai toujours trouvé qu'un argument bien présenté avait davantage de chances d'être entendu."},
+      {type:"speech",text:"Ma sœur prétend que je manque parfois de diplomatie."},
+      {type:"speech",text:"C'est une question de perspective."},
+      {type:"stage",text:"Un léger sourire."},
+      {type:"speech",text:"Ma sœur, justement. Aya. Silk, désormais."},
+      {type:"speech",text:"Nous sommes jumeaux. Nous avons grandi dans une arcologie Shiawase, au sein d'un programme qui portait un nom particulièrement charmant : Gemini Keikaku, ジェミニ計画. Projet Gemini. K2, dans leurs dossiers."},
+      {type:"speech",text:"Nous n'étions pas des enfants, à leurs yeux. Nous étions des résultats à mesurer, des capacités à développer, des expériences à documenter."},
+      {type:"speech",text:"Je me souviens des laboratoires. Des exercices. Des évaluations. Des gens qui nous observaient derrière des vitres."},
+      {type:"speech",text:"Je me souviens aussi de choses qu'Aya a oubliées."},
+      {type:"speech",text:"Je ne sais pas encore si c'est une chance."},
+      {type:"stage",text:"Ren baisse brièvement les yeux, puis reprend."},
+      {type:"speech",text:"Nous avons fini par sortir de là. Grâce à Naoko Kressler."},
+      {type:"speech",text:"Il y avait aussi Ash. Il a traversé cette histoire avec nous, et je lui dois bien davantage que quelques remerciements."},
+      {type:"speech",text:"Aujourd'hui, nous avons une vie. Une vraie."},
+      {type:"speech",text:"Aya possède un appartement dont le loyer suffirait probablement à financer une petite opération militaire. Elle a ses contacts, ses contrats et cette manière remarquable de convaincre les gens qu'ils viennent d'avoir une excellente idée."},
+      {type:"speech",text:"Quant à moi, j'ai choisi une existence un peu différente."},
+      {type:"speech",text:"Je travaille, je découvre Seattle et j'essaie de respecter un code d'honneur dans un métier où le mot honneur fait généralement sourire."},
+      {type:"speech",text:"Le Bushidō."},
+      {type:"speech",text:"Certains trouvent cela dépassé."},
+      {type:"speech",text:"Il y a des choses qui ne s'achètent pas."},
+      {type:"stage",text:"Il marque une pause, comme s'il cherchait ce qu'il souhaite ajouter."},
+      {type:"speech",text:"Naoko et Ash vont bien. C'est tout ce qu'il y a à dire à leur sujet."},
+      {type:"stage",text:"Un silence un peu plus long."},
+      {type:"speech",text:"Pourquoi enregistrer tout cela ?"},
+      {type:"speech",text:"Shiawase a passé des années à consigner ce que nous étions capables de faire."},
+      {type:"speech",text:"Je trouve assez juste de conserver, pour une fois, une trace de ce que je choisis de devenir."},
+      {type:"speech",text:"Et si un jour ma mémoire me fait défaut, j'aimerais pouvoir retrouver autre chose qu'un dossier de laboratoire."},
+      {type:"stage",text:"Ren se penche vers la caméra."},
+      {type:"speech",text:"Voilà qui règle la question."},
+      {type:"speech",text:"Fin de l'enregistrement."},
+      {type:"stage",text:"L'image s'interrompt."}
+    ]
+  }
+];
