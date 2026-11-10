@@ -8,3 +8,6 @@
 #transcript p.stage:first-child{margin-top:0}
 #transcript p.stage + p.speech{margin-top:0}
 #transcript p.speech + p.stage{margin-top:20px}
+
+/* Archives réellement chiffrées, jamais stockées en clair dans le JavaScript */
+.decrypt{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:18px 25px 0;padding:18px;border:1px solid #63373b;background:#1b1418}.decrypt label{width:100%;color:#d15b61;font:11px monospace;letter-spacing:.12em}.decrypt input{flex:1;min-width:140px;background:#0b0d11;border:1px solid #555;color:#fff;padding:12px;font:14px monospace}.decrypt button{border:1px solid #bd484e;background:#812f36;color:#fff;padding:12px 16px;font:11px monospace;cursor:pointer}.decrypt button:disabled{opacity:.5}.decrypt-status{width:100%;min-height:15px;color:#d75b60;font:11px monospace}.cipher{overflow-wrap:anywhere;word-break:break-word;color:#6f747e!important;font:12px/1.7 monospace!important;letter-spacing:.09em;opacity:.65;user-select:none}
