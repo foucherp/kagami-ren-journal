@@ -1,5 +1,90 @@
 const entries = [
   {
+  "id": "VESPER_002",
+  "date": "8 septembre 2075",
+  "title": "Une équipe, paraît-il",
+  "summary": "Deux contrats, deux fixers et les premiers contours d'une équipe.",
+  "location": "Seattle // Localisation masquée",
+  "lines": [
+    {
+      "type": "stage",
+      "text": "L'enregistrement commence. Ren est installé dans un fauteuil, une tasse à la main. Il semble particulièrement satisfait de lui."
+    },
+    {
+      "type": "speech",
+      "text": "Deux missions. Deux contrats honorés. Deux paiements reçus sans avoir à rappeler à qui que ce soit ses obligations. Je commence à penser que cette carrière a quelques avantages."
+    },
+    {
+      "type": "speech",
+      "text": "Le premier contrat nous a été confié par Cassandra, une fixer charmante, raffinée et d'un professionnalisme irréprochable. Une femme qui comprend manifestement qu'on peut exercer un métier discutable avec une certaine élégance. Le second venait de Hendrix. Tout aussi professionnel, je tiens à le préciser, mais disons que sa conception du raffinement est sensiblement différente. Je doute qu'ils fréquentent les mêmes établissements."
+    },
+    {
+      "type": "speech",
+      "text": "Dans les deux cas, les missions étaient relativement simples et particulièrement bien rémunérées. Je ne vais certainement pas m'en plaindre. Il est agréable, de temps à autre, de recevoir une somme conséquente sans avoir à risquer sa vie de manière inconsidérée."
+    },
+    {
+      "type": "stage",
+      "text": "Ren repose sa tasse et croise les jambes."
+    },
+    {
+      "type": "speech",
+      "text": "Ces contrats nous ont également permis de travailler avec ceux qui commencent à devenir les membres récurrents de notre petite équipe. Trois personnalités qui méritent quelques mots."
+    },
+    {
+      "type": "speech",
+      "text": "Plurk, d'abord. Un troll rigger, méthodique, attentif et remarquablement compétent. Il possède cette qualité rare qui consiste à anticiper les problèmes avant qu'ils ne deviennent les nôtres. Il possède également un humour assez discutable. Aya prétend qu'il ressemble au mien. Je préfère considérer cela comme un compliment."
+    },
+    {
+      "type": "speech",
+      "text": "Makoto est un orc de peu de mots. Un homme efficace, fiable, qui ne ressent visiblement aucun besoin de démontrer ses capacités avant de les employer. J'apprécie cette retenue. Quand la situation exige une intervention physique, il agit sans discours inutile. Une certaine forme de sagesse. Je soupçonne néanmoins qu'il cache un sens de l'humour plus développé qu'il ne veut bien le laisser paraître."
+    },
+    {
+      "type": "speech",
+      "text": "Et puis il y a Naphria. Une spécialiste des explosifs, mais ce serait une erreur de la réduire à cela. Elle est précise, réfléchie et parfaitement capable de faire disparaître un obstacle sans transformer le quartier en zone sinistrée. Elle considère simplement que certaines difficultés trouvent leur solution dans une quantité judicieusement calculée d'explosifs. Difficile de lui donner tort lorsque le résultat est aussi propre."
+    },
+    {
+      "type": "stage",
+      "text": "Un sourire discret apparaît sur son visage."
+    },
+    {
+      "type": "speech",
+      "text": "Nous formons un groupe assez improbable. Un troll qui prévoit les ennuis, un orc qui les règle, une experte qui peut les faire disparaître et deux jumeaux qui essaient, tant bien que mal, de maintenir une certaine élégance dans tout cela."
+    },
+    {
+      "type": "speech",
+      "text": "Pourtant, cela fonctionne. Chacun connaît son métier. Chacun sait quand intervenir et, plus important encore, quand laisser les autres travailler."
+    },
+    {
+      "type": "speech",
+      "text": "J'ignore si nous pouvons déjà parler d'une véritable équipe. Deux missions ne suffisent pas à établir une confiance absolue. Mais c'est un début prometteur."
+    },
+    {
+      "type": "speech",
+      "text": "Et j'avoue que leur compagnie ne me déplaît pas."
+    },
+    {
+      "type": "stage",
+      "text": "Ren récupère sa tasse et regarde brièvement son contenu."
+    },
+    {
+      "type": "speech",
+      "text": "Deux missions simples, une équipe compétente et des comptes en banque convenablement garnis."
+    },
+    {
+      "type": "speech",
+      "text": "Il serait presque inconvenant de demander davantage."
+    },
+    {
+      "type": "speech",
+      "text": "Fin de l'enregistrement."
+    },
+    {
+      "type": "stage",
+      "text": "L'image s'interrompt."
+    }
+  ]
+},
+  {
     id: "VESPER_001",
     date: "1er septembre 2075",
     title: "Pour mémoire",
