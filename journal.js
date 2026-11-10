@@ -1,4 +1,53 @@
 const entries = [
+  {
+  "id": "VESPER_004",
+  "date": "11 septembre 2075",
+  "title": "Don't Fear the Reaper",
+  "summary": "Deux attaques contre les Yakuza, un tireur insaisissable et une enquête qui se complique.",
+  "location": "Seattle // Localisation masquée",
+  "lines": [
+    {
+      "type": "stage",
+      "text": "L'enregistrement commence. Ren est assis devant la caméra, une tasse de thé à la main. Son expression laisse deviner une certaine lassitude."
+    },
+    {
+      "type": "speech",
+      "text": "Notre dernier employeur était moins séduisant que les précédents. Je suppose qu'on ne peut pas toujours avoir le plaisir de travailler avec Cassandra. Heureusement, il avait au moins le mérite de savoir ce qu'il voulait : identifier l'auteur d'une attaque dans un restaurant. Et rapidement, naturellement. Les clients ont cette curieuse habitude de penser que la vitesse d'une enquête dépend uniquement du montant qu'ils sont prêts à débourser."
+    },
+    {
+      "type": "speech",
+      "text": "Nous nous sommes donc rendus sur place. Un établissement fréquenté par les Yakuza, manifestement le théâtre d'un dîner qui s'était terminé de manière particulièrement désagréable. Plusieurs hommes abattus, un tireur d'une efficacité remarquable et, comme souvent dans ce genre d'affaires, une collection impressionnante de témoins qui n'avaient absolument rien vu. Les quelques éléments recueillis dressaient néanmoins un portrait assez clair : nous cherchions un professionnel. Quelqu'un de méthodique, rapide et suffisamment sûr de lui pour s'attaquer à des Yakuza sans sembler particulièrement préoccupé par les conséquences. Je peux respecter la compétence. Cela ne signifie pas que j'apprécie nécessairement celui qui en fait preuve."
+    },
+    {
+      "type": "speech",
+      "text": "L'enquête avançait avec toute la célérité d'un ascenseur en panne. Nous avons malgré tout réussi à retrouver la moto de notre mystérieux tireur. Il l'avait abandonnée au beau milieu d'un chantier. Un choix assez étrange pour quelqu'un d'aussi soigneux dans son travail. Nous avons rapidement compris pourquoi : notre adversaire semblait parfaitement conscient de nos recherches et avait décidé de s'amuser un peu à nos dépens. Une intrusion informatique, pour être précis. À ce moment-là, une question m'est venue à l'esprit : où est donc notre fichu decker ?"
+    },
+    {
+      "type": "stage",
+      "text": "Ren observe la caméra quelques secondes, parfaitement impassible."
+    },
+    {
+      "type": "speech",
+      "text": "C'est vrai. Nous n'en avons pas."
+    },
+    {
+      "type": "speech",
+      "text": "Pour ma part, je ne suis guère inquiet. Un adepte sans cybernétique offre peu de prises à ce genre de plaisanterie. Mes compagnons et leur équipement, en revanche, sont une autre affaire. Il serait peut-être judicieux de combler cette lacune avant que notre prochain adversaire ne décide de transformer tout notre matériel en jouets télécommandés."
+    },
+    {
+      "type": "speech",
+      "text": "Notre employeur nous a alors contactés pour nous signaler une nouvelle attaque. Cette fois, dans une salle de jeux dissimulée derrière un salon de manucure. Même scénario, mêmes victimes : des Yakuza. Et toujours cet insaisissable professionnel qui semblait traverser les lieux sans laisser derrière lui autre chose que des cadavres et des témoins amnésiques."
+    },
+    {
+      "type": "speech",
+      "text": "Nous nous sommes rendus sur place. Les témoignages n'étaient guère plus utiles que ceux du restaurant. En revanche, nous avons rapidement attiré l'attention de quelques individus qui semblaient avoir une conception assez directe de la conversation. Ils sont venus chercher la bagarre."
+    },
+    {
+      "type": "stage",
+      "text": "Ren pose sa tasse, ajuste tranquillement sa manche et esquisse un sourire."
+    }
+  ]
+},
   {"id":"VESPER_003","date":"9 septembre 2075","title":"Le doute","summary":"ENREGISTREMENT CHIFFRÉ // ACCÈS RESTREINT","location":"LOCALISATION MASQUÉE","private":true,"salt":"tcNV6nKgbbCcZTRcRqERqQ==","iv":"lbLITK5Ei4U9sYQ+","ciphertext":"KyiK0WMQtr9ryadYlFVwBNSsm56djcLNM4ox7DwZqC/R6ppz9PeshZ+GmJO6UdLBaX6MAm6igBFxKco13bSdC7ljx4Fl72cCAndWb78xvnRT075iXjTaEpCbKsu7giBHVi0nwVV8WtEz7OH/BVtojzZcU4mBvrzOqQvAP9e7X2HUbxON5VQpNM+Vs4bCzKEv5TkPtJS7fIlFAqUGNXA2LRiQco5MrXqTFrVGf26y28b3IR17sGQ8VhBq6hwGcIXMNQgCMFewi788utZcmffpNN5MtD8CHumcjDHFdEugpLPtmEfKoP+/NT61+8f4JVTQuS3+9s2frvXDipsQI93L1DRMn+Ot3trtfoDeFec3c8cxL1o4pRqNZOZYYqbORCX3x0svHzVS0hyfVZ/VfFS+TNfFnsDY1rMPw1s32IU3jVSa9usvMfWwwvKrYDmySgQl+emEvXFyymVEgWYeyx6frKljiTRBS/7ULbLCR/uO0hEH1ivwAhvYbk+n4ugjdXCwV2cluhtHpwRrW9Kvz6ksn5cH3dIndcICOXSsM+VjLthDXDpFl2+ddC4OsWmd/p4xkZdXAQPYx1zRjsIRoe42ERQrQJRQRS5tDjQl0VAQNddE3i8jvafXVZITguBXmpbZveL8S5TMd55FoxgfHd4HWIS60/XVK4Jx7Rsyd+vnWJC2k8y322L9pTF7K7R45EieGoP9GsXz3IcABta/KwkOOxcQ83YgF3y7NdF3eiZ35/6U9WNK+ApW/nXDmQpEZieEhxO1wcDhqTkWGUlj/VZjkUNJB+haZtoJMipYL9Lxn58kQEojkFL1AhpFE1aXIMg7b9tKE+VrG2EjkyEWNwXhK9GbN/OOzPXj7rGcTTlMIskf/vgqSdnwLaDQotHA+9x8fRp56UL7Pp2h2nPEzwnLVrqTog3DfmV6khMxHNsynGXY8c55OhJzC+tDxfKW68ef0yephRb+J1GZG+25Llr1uc2HP9yhvaPQ8ySbqIdVFkIh0j+NEOXqtMhuPNbCk5ddajCiS/toKvbUtMlg8kfOugtHAyrPYRMglLltHcZA9xgPvOUOF4/oYtfMvNHgrfR4qODBIuzqf6MiHVyKqVVgZxGjS+L5cemjIMD5AyYMNcy2vLTvAOthR4D2qlwr9qguEbTnQUT+IubfVxHq8urw76P2XeC9cWuds4XYuNkdyL27xTuu0bUTVFh+khZ90D/lkiHKKoVPNGYnSMSHCY61pt8GrB03MUf+ewNm6mAqssolDJCbUWwJZ5IDghNV88vNlxHb6iZEukp8IJmgTE3ZxpdOCnssIQpclZeMbCqv6GPKotryub5BppvArB9D5mPAob6K2iTzj37S0xgYybK1UzvK4rpCOZGaVB5HGb+mIhDTzhWDaGXCDuPQBnK/EuRVdknA2rgbKBk="},
   {
   "id": "VESPER_002",
