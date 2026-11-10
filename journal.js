@@ -1,0 +1,2 @@
+// Chaque entrée ajoutée à ce tableau apparaît automatiquement sur la page d'accueil.
+const entries=[{id:"VESPER_001",date:"DATE À DÉFINIR",title:"Première archive",summary:"Pourquoi conserver une trace de sa propre vie ?",location:"LOCALISATION INCONNUE",lines:[{type:"stage",text:"L'image apparaît. Ren ajuste sa cravate et regarde l'objectif."},{type:"speech",text:"Je m'appelle Kagami Ren."},{type:"stage",text:"Un silence."},{type:"speech",text:"C'est la première chose que je voudrais ne jamais oublier."}]}];
