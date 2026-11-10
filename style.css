@@ -14,3 +14,6 @@
 
 /* Image de l'enregistrement, visible sur les archives publiques et chiffrées */
 .video-still{position:relative;overflow:hidden;background:#090a0d;border-bottom:1px solid #303238;line-height:0}.video-still img{display:block;width:100%;height:auto;max-height:440px;object-fit:cover;object-position:center}.still-label{position:absolute;left:16px;bottom:15px;background:#090b0dc9;color:#e2e3e6;padding:8px 10px;font:10px/1 monospace;letter-spacing:.14em}@media(max-width:650px){.video-still img{max-height:260px}}
+
+/* Capture plus discrète : vignette vidéo centrée */
+.video-still{max-width:540px;margin:22px auto 0;border:1px solid #303238}.video-still img{max-height:300px;object-fit:cover}.still-label{font-size:9px}@media(max-width:650px){.video-still{max-width:100%;margin:14px 12px 0}.video-still img{max-height:200px}}
