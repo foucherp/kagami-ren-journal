@@ -111,5 +111,18 @@
     "archives": [
       "VESPER_002"
     ]
+  },
+  "PJ/Team-Naphria-Expert en démolition.jpeg": {
+    "nom": "Naphria",
+    "role": "Expert en démolition",
+    "identite_civile": "Inconnue",
+    "metatype": "Inconnu",
+    "affiliation": "TEAM",
+    "statut": "Active",
+    "description": "Naphria est une spécialiste des explosifs qui travaille régulièrement avec Vesper et son équipe.\n\nPrécise et réfléchie, elle maîtrise suffisamment son domaine pour employer la force nécessaire sans provoquer de dégâts superflus. Elle privilégie les interventions calculées plutôt que les démonstrations spectaculaires.\n\nPour Naphria, les explosifs sont avant tout des outils dont l'efficacité dépend de la manière dont on les utilise.",
+    "avis": "Naphria possède une conception assez particulière de la résolution des problèmes. Là où certains envisagent la négociation, le contournement ou la patience, elle sait reconnaître les situations dans lesquelles une quantité judicieusement calculée d'explosifs constitue une réponse parfaitement raisonnable.\n\nCe qui pourrait sembler inquiétant chez une personne moins compétente devient, entre ses mains, une véritable démonstration de précision.\n\nJ'apprécie les gens qui maîtrisent leur art. Et je dois reconnaître que Naphria maîtrise le sien avec une élégance toute particulière.",
+    "archives": [
+      "VESPER_002"
+    ]
   }
 }
