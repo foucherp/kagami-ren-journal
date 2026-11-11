@@ -52,5 +52,19 @@
     ],
     "nom": "Silk",
     "role": "Face / Négociatrice"
+  },
+  "PJ/Team-Vesper-Pistolero.jpeg": {
+    "identite_civile": "Kagami Ren",
+    "metatype": "Elfe",
+    "affiliation": "TEAM",
+    "statut": "Actif",
+    "description": "Pistolero adepte spécialisé dans le combat armé et la protection rapprochée. Vesper privilégie la précision, la maîtrise de soi et l'efficacité plutôt que les démonstrations de force. Armé d'un Ares Predator VI, il suit un code d'honneur inspiré du Bushidō, qu'il s'efforce de respecter même dans les Ombres.\n\nCourtois, calme et particulièrement attentif à son apparence, il forme avec Silk, sa sœur jumelle, un duo aux compétences complémentaires. Là où elle privilégie la négociation, il intervient lorsque les arguments ne suffisent plus.",
+    "avis": "Un individu tout à fait recommandable, à ce qu'on m'a dit. Poli, ponctuel, convenablement habillé et capable de résoudre certains désaccords avec une remarquable économie de mots.\n\nOn lui reproche parfois un attachement excessif aux principes, une certaine rigidité et une tendance à considérer qu'une cravate bien nouée constitue déjà un début de civilisation. Je trouve ces critiques particulièrement injustes.\n\nQuant à ses compétences, je préfère laisser les autres en juger. L'autosatisfaction manque singulièrement d'élégance.\n\nIl paraît néanmoins qu'il tire plutôt bien.",
+    "archives": [
+      "VESPER_001",
+      "VESPER_002",
+      "VESPER_003",
+      "VESPER_004"
+    ]
   }
 }
