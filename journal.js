@@ -1,9 +1,9 @@
 const entries = [
   {
   "id": "VESPER_004",
-  "date": "11 septembre 2075",
+  "date": "12 septembre 2075",
   "title": "Don't Fear the Reaper",
-  "summary": "Deux attaques contre les Yakuza, un tireur insaisissable et une enquête qui se complique.",
+  "summary": "Un tueur professionnel, une autre équipe de runners et une enquête menée jusqu'à l'aube.",
   "location": "Seattle // Localisation masquée",
   "lines": [
     {
@@ -40,11 +40,27 @@ const entries = [
     },
     {
       "type": "speech",
-      "text": "Nous nous sommes rendus sur place. Les témoignages n'étaient guère plus utiles que ceux du restaurant. En revanche, nous avons rapidement attiré l'attention de quelques individus qui semblaient avoir une conception assez directe de la conversation. Ils sont venus chercher la bagarre."
+      "text": "Nous tentions encore de démêler ce bourbier lorsqu'une autre équipe de shadowrunners est arrivée. Voilà qui compliquait une situation déjà passablement obscure. Onee-chan a pris l'initiative d'engager la conversation. Je suis resté près d'elle, légèrement en retrait. Une position qui me permettait d'observer chacun de nos nouveaux interlocuteurs, leurs mains surtout. Au moindre geste hostile, j'étais prêt à intervenir avant même qu'ils ne comprennent leur erreur."
+    },
+    {
+      "type": "speech",
+      "text": "La tension était palpable. Personne ne semblait particulièrement disposé à faire confiance à l'autre camp, ce qui, à Seattle, relève plutôt du bon sens. Silk a néanmoins trouvé les mots justes et désamorcé la situation. Elle a ce talent. Elle obtient le oui. Je me charge du non."
+    },
+    {
+      "type": "speech",
+      "text": "Le reste de la nuit s'est transformé en une course dont nous avions toujours un temps de retard. Notre cible, ou plutôt le groupe auquel elle semblait appartenir, était manifestement bien organisé. Chaque piste nous laissait entrevoir une réponse avant de se refermer. Nous avons continué à chercher, mais il devenait difficile d'ignorer l'évidence : cette fois, nos adversaires avaient gardé l'initiative."
+    },
+    {
+      "type": "speech",
+      "text": "Vers cinq heures du matin, nous avons contacté monsieur Johnson pour lui présenter nos découvertes. Elles étaient maigres. Nous nous en sommes tenus aux faits, sans enjoliver nos résultats ni prétendre avoir résolu ce qui ne l'était pas. Il a apprécié notre franchise et nous a payés. C'est déjà une forme de réussite."
+    },
+    {
+      "type": "speech",
+      "text": "Nous sommes finalement rentrés chez nous avec un sentiment mitigé. Le contrat était honoré, de justesse, mais le mystère demeurait entier. Je préfère les affaires qui se terminent proprement. Celle-ci avait plutôt le goût d'une conversation interrompue au mauvais moment."
     },
     {
       "type": "stage",
-      "text": "Ren pose sa tasse, ajuste tranquillement sa manche et esquisse un sourire."
+      "text": "Ren pose sa tasse, ajuste tranquillement sa manche et esquisse un sourire. L'enregistrement s'interrompt."
     }
   ]
 },
