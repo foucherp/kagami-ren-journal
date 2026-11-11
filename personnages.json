@@ -56,5 +56,15 @@
     "description": "Razor est un ganger troll au tempérament particulièrement territorial. Sa première rencontre avec Vesper aurait pu très mal se terminer : Razor comptait corriger personnellement ce petit elfe qui avait eu l'audace de traverser son territoire.\n\nL'arrivée d'un gang rival changea cependant la situation. Malgré leur infériorité numérique, Vesper choisit de combattre aux côtés de Razor plutôt que de l'abandonner. Depuis cet affrontement, les deux hommes entretiennent une amitié aussi improbable que sincère.",
     "avis": "Notre première rencontre fut assez peu conventionnelle. Razor souhaitait me casser quelques os. Je trouvais cette entrée en matière regrettable, mais nous n'avons pas eu le loisir d'en débattre.\n\nQuelques individus encore moins courtois que lui ont interrompu notre conversation. Nous avons donc réglé ensemble un problème plus pressant.\n\nRazor possède une conception assez directe des relations humaines. Il parle fort, frappe fort et considère manifestement la diplomatie comme une perte de temps. Pourtant, derrière cette apparence intimidante se cache un homme dont la loyauté ne fait aucun doute.\n\nNous avons peu de choses en commun, hormis peut-être une certaine idée de l'honneur. Et, à bien y réfléchir, c'est déjà beaucoup.",
     "archives": []
+  },
+  "contact:ichida-takako": {
+    "identite_civile": "Ichida Takako",
+    "metatype": "Elfe",
+    "age": "45 ans",
+    "affiliation": "Filiale de Shiawase",
+    "statut": "Active",
+    "description": "Ichida Takako travaille pour une filiale de Shiawase et dispose d'un vaste réseau de relations dans le milieu corporatiste.\n\nElle a rencontré Vesper dans un bar. Leur rencontre a débouché sur une courte liaison qui n'a finalement connu aucune suite sentimentale. Ils sont néanmoins restés en bons termes et ont conservé le contact.",
+    "avis": "Takako-san est une femme qui connaît parfaitement les règles du monde corporatiste. Elle sait quand parler, quand se taire et, surtout, à qui s'adresser. Des qualités que j'apprécie.\n\nNous avons partagé quelques moments agréables, sans jamais chercher à leur donner davantage de sens qu'ils n'en avaient. Certaines rencontres n'ont pas vocation à devenir de grandes histoires.\n\nJe conserve d'elle un excellent souvenir. Et nos conversations restent toujours intéressantes, même lorsqu'elles ne concernent ni les affaires ni le passé.\n\nIl est finalement assez rare de pouvoir dire d'une ancienne liaison qu'elle s'est terminée avec autant de courtoisie qu'elle avait commencé.",
+    "archives": []
   }
 }
