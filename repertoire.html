@@ -69,7 +69,7 @@ const found=q?people.filter(p=>[p.name,p.role,p.info.affiliation].some(v=>normal
 total.textContent=q?found.length+' RÉSULTAT'+(found.length>1?'S':''):people.length+' PERSONNAGES // '+episodes.length+' ÉPISODES';
 if(q){if(!found.length){root.append(element('p','directory-state','AUCUN PERSONNAGE TROUVÉ'));return}const results=element('div','search-results');found.forEach(p=>results.append(row(p,'search')));root.append(results);return}
 for(const code of ordered){const group=groups.get(code);if(!group||!group.length)continue;
-const details=element('details','episode');details.open=false;
+const details=element('details','episode');details.open=false;details.addEventListener('toggle',()=>{if(details.open){root.querySelectorAll('details.episode').forEach(other=>{if(other!==details)other.open=false})}});
 const summary=element('summary');const heading=code==='TEAM'?'TEAM // ÉQUIPE':code==='CONTACTS'?'CONTACTS // CARNET D’ADRESSES':'SAISON '+code.slice(1,3)+' // ÉPISODE '+code.slice(4,6);
 summary.append(element('span','',heading),element('span','directory-count',group.length+' PERSONNAGE'+(group.length>1?'S':'')));
 const list=element('div','episode-list');group.forEach(p=>list.append(row(p)));details.append(summary,list);root.append(details);
