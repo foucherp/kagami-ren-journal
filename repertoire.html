@@ -38,7 +38,7 @@ const card=element('div','person-card'),head=element('div','person-head'),img=el
 img.src=p.url;img.alt='Portrait de '+p.name;img.loading='lazy';head.append(img);
 const facts=element('div','person-facts');facts.append(element('h3','',p.name),element('div','person-role',p.role.toUpperCase()));
 const dl=element('dl');const i=p.info||{};
-const fields=[['Métatype',i.metatype],['Affiliation',i.affiliation],['Statut',i.statut]];
+const fields=[['Identité civile',i.identite_civile],['Métatype',i.metatype],['Affiliation',i.affiliation],['Statut',i.statut]];
 for(const [k,v] of fields){if(v){dl.append(element('dt','',k),element('dd','',v))}}
 if(dl.children.length)facts.append(dl);head.append(facts);card.append(head);
 section(card,'INFORMATIONS CONNUES',i.description);
