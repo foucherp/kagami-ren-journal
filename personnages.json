@@ -66,5 +66,15 @@
     "description": "Ichida Takako travaille pour une filiale de Shiawase et dispose d'un vaste réseau de relations dans le milieu corporatiste.\n\nElle a rencontré Vesper dans un bar. Leur rencontre a débouché sur une courte liaison qui n'a finalement connu aucune suite sentimentale. Ils sont néanmoins restés en bons termes et ont conservé le contact.",
     "avis": "Takako-san est une femme qui connaît parfaitement les règles du monde corporatiste. Elle sait quand parler, quand se taire et, surtout, à qui s'adresser. Des qualités que j'apprécie.\n\nNous avons partagé quelques moments agréables, sans jamais chercher à leur donner davantage de sens qu'ils n'en avaient. Certaines rencontres n'ont pas vocation à devenir de grandes histoires.\n\nJe conserve d'elle un excellent souvenir. Et nos conversations restent toujours intéressantes, même lorsqu'elles ne concernent ni les affaires ni le passé.\n\nIl est finalement assez rare de pouvoir dire d'une ancienne liaison qu'elle s'est terminée avec autant de courtoisie qu'elle avait commencé.",
     "archives": []
+  },
+  "contact:hand": {
+    "nom": "Hand",
+    "identite_civile": "Achibald Sorrow",
+    "metatype": "Humain",
+    "affiliation": "Indépendant",
+    "statut": "Actif",
+    "description": "Achibald Sorrow, surnommé « Hand », est un fixer qui a joué un rôle important dans la vie de Vesper. Il lui a apporté une aide précieuse lors d'une situation personnelle particulièrement délicate.\n\nEn retour, Vesper lui a rendu plusieurs services. Leur relation, initialement fondée sur des échanges professionnels, s'est progressivement transformée en une véritable amitié, nourrie par la confiance et la réciprocité.",
+    "avis": "Dans les Ombres, les services se monnaient, les faveurs se négocient et les dettes se remboursent. C'est une mécanique parfaitement compréhensible, quoique parfois un peu triste.\n\nHand a eu l'élégance de me rappeler que certaines personnes valent davantage que leur carnet d'adresses. Il m'a tendu la main à un moment où j'en avais réellement besoin. Je n'ai pas oublié.\n\nDepuis, nous avons échangé quelques services, quelques conversations et, je crois, gagné quelque chose de plus précieux qu'une relation professionnelle.\n\nJe le considère comme un ami. Une distinction que je n'accorde pas à la légère.",
+    "archives": []
   }
 }
