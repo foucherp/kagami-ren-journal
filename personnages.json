@@ -76,5 +76,14 @@
     "description": "Achibald Sorrow, surnommé « Hand », est un fixer qui a joué un rôle important dans la vie de Vesper. Il lui a apporté une aide précieuse lors d'une situation personnelle particulièrement délicate.\n\nEn retour, Vesper lui a rendu plusieurs services. Leur relation, initialement fondée sur des échanges professionnels, s'est progressivement transformée en une véritable amitié, nourrie par la confiance et la réciprocité.",
     "avis": "Dans les Ombres, les services se monnaient, les faveurs se négocient et les dettes se remboursent. C'est une mécanique parfaitement compréhensible, quoique parfois un peu triste.\n\nHand a eu l'élégance de me rappeler que certaines personnes valent davantage que leur carnet d'adresses. Il m'a tendu la main à un moment où j'en avais réellement besoin. Je n'ai pas oublié.\n\nDepuis, nous avons échangé quelques services, quelques conversations et, je crois, gagné quelque chose de plus précieux qu'une relation professionnelle.\n\nJe le considère comme un ami. Une distinction que je n'accorde pas à la légère.",
     "archives": []
+  },
+  "contact:edward-hudson": {
+    "identite_civile": "Edward Hudson",
+    "metatype": "Nain",
+    "affiliation": "Inconnue",
+    "statut": "Actif",
+    "description": "Edward Hudson est un vendeur d'armes auprès duquel Vesper s'approvisionne régulièrement. Fournisseur fiable et discret, il privilégie les relations commerciales efficaces et évite les questions superflues.\n\nVesper compte parmi ses bons clients. Leur relation repose sur une confiance professionnelle et une appréciation mutuelle de la discrétion.",
+    "avis": "Monsieur Hudson possède trois qualités essentielles chez un armurier : il connaît sa marchandise, respecte ses engagements et ne manifeste aucune curiosité déplacée.\n\nJe trouve cette dernière qualité particulièrement appréciable. Certains commerçants semblent considérer chaque achat comme une invitation à discuter de votre vie privée. Edward, lui, comprend qu'un client qui demande des munitions souhaite généralement des munitions, pas une conversation.\n\nNos relations sont excellentes. Je paie mes factures, il fournit du matériel de qualité. Une forme d'harmonie commerciale que bien des corporations gagneraient à étudier.",
+    "archives": []
   }
 }
