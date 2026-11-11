@@ -23,7 +23,7 @@ const path=folder+'/'+f.name;
 const stable='contact:'+normalize(name).replace(/\s+/g,'-');
 const info=data[path]||data[stable]||{};
 if(info.categorie==='CONTACTS'&&folder==='PNJ')category='CONTACTS';
-people.push({name,role,path,url:folder+'/'+encodeURIComponent(f.name),category,code,info});
+people.push({name:info.nom||name,role:info.role||role,path,url:folder+'/'+encodeURIComponent(f.name),category,code,info});
 }
 pj.forEach(f=>add(f,'PJ'));pnj.forEach(f=>add(f,'PNJ'));
 people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
