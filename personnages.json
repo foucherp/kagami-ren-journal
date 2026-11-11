@@ -36,5 +36,21 @@
       "VESPER_003",
       "VESPER_004"
     ]
+  },
+  "PJ/Team-Kagami Aya aha Silk-Face.jpeg": {
+    "identite_civile": "Alyssa Argent",
+    "metatype": "Elfe",
+    "affiliation": "TEAM",
+    "statut": "Active",
+    "description": "Négociatrice spécialisée dans la persuasion, les relations humaines et l'obtention d'informations. Sœur jumelle de Vesper, avec lequel elle forme un duo complémentaire.",
+    "avis": "Onee-chan possède un talent remarquable pour obtenir des gens ce qu'ils n'avaient aucune intention de lui accorder. Elle prétend parfois que je manque de diplomatie. Je préfère considérer que nous avons simplement des méthodes complémentaires. Nous avons traversé suffisamment de choses ensemble pour que je sache une chose : je lui confierais ma vie sans hésiter. Je ne lui confierais peut-être pas le choix de ma prochaine cravate.",
+    "archives": [
+      "VESPER_001",
+      "VESPER_002",
+      "VESPER_003",
+      "VESPER_004"
+    ],
+    "nom": "Silk",
+    "role": "Face / Négociatrice"
   }
 }
