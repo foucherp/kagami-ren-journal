@@ -85,5 +85,18 @@
     "description": "Edward Hudson est un vendeur d'armes auprès duquel Vesper s'approvisionne régulièrement. Fournisseur fiable et discret, il privilégie les relations commerciales efficaces et évite les questions superflues.\n\nVesper compte parmi ses bons clients. Leur relation repose sur une confiance professionnelle et une appréciation mutuelle de la discrétion.",
     "avis": "Monsieur Hudson possède trois qualités essentielles chez un armurier : il connaît sa marchandise, respecte ses engagements et ne manifeste aucune curiosité déplacée.\n\nJe trouve cette dernière qualité particulièrement appréciable. Certains commerçants semblent considérer chaque achat comme une invitation à discuter de votre vie privée. Edward, lui, comprend qu'un client qui demande des munitions souhaite généralement des munitions, pas une conversation.\n\nNos relations sont excellentes. Je paie mes factures, il fournit du matériel de qualité. Une forme d'harmonie commerciale que bien des corporations gagneraient à étudier.",
     "archives": []
+  },
+  "PJ/Team-Makoto-Samourai.jpeg": {
+    "nom": "Makoto",
+    "role": "Samouraï des rues",
+    "identite_civile": "Inconnue",
+    "metatype": "Ork",
+    "affiliation": "TEAM",
+    "statut": "Actif",
+    "description": "Samouraï des rues et membre de l'équipe de Vesper, Makoto est un combattant de peu de mots. Calme, efficace et fiable, il préfère agir plutôt que démontrer ses capacités. Lorsque la situation exige une intervention physique, il répond présent sans discours inutile. Son passé et son équipement restent à préciser.",
+    "avis": "Makoto est un orc de peu de mots. Un homme efficace, fiable, qui ne ressent visiblement aucun besoin de démontrer ses capacités avant de les employer. J'apprécie cette retenue. Quand la situation exige une intervention physique, il agit sans discours inutile. Une certaine forme de sagesse. Je soupçonne néanmoins qu'il cache un sens de l'humour plus développé qu'il ne veut bien le laisser paraître.",
+    "archives": [
+      "VESPER_002"
+    ]
   }
 }
