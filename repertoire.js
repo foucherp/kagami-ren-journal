@@ -58,7 +58,7 @@ head.append(facts);card.append(head);section(card,'INFORMATIONS CONNUES',i.descr
 for(const [author,opinion] of Object.entries(merged)){if(typeof opinion!=='string'||!opinion.trim())continue;const member=manifest.personnages?.find(x=>x.kind==='team'&&normalize(x.name)===normalize(author));section(card,'AVIS DE '+(member?.name||author).toLocaleUpperCase('fr'),opinion,'person-opinion')}
 
 const actions=el('div','contact-action-bar');
-if(authorizedMember===p.kind&&p.kind!=='team'&&p.kind!=='common'&&p.metadataKey?.startsWith('contact:')&&window.RunnerContacts){
+if(authorizedMember===p.kind&&p.kind!=='team'&&p.kind!=='common'&&window.RunnerContacts){
  const edit=el('button','opinion-button','✎ MODIFIER CE CONTACT');
  edit.type='button';edit.onclick=()=>window.RunnerContacts.openEditor(p.kind,p,()=>{const u=new URL(location.href);u.searchParams.delete('person');u.searchParams.set('tab',p.kind);u.searchParams.set('focus',p.metadataKey);location.assign(u.href)});
  actions.append(edit);
