@@ -1,13 +1,13 @@
 (async()=>{
 'use strict';
 const root=document.getElementById('directory-content'),tabs=document.getElementById('directory-tabs'),search=document.getElementById('npc-search'),total=document.getElementById('total');
-const repo='https://api.github.com/repos/foucherp/kagami-ren-journal/contents/';
 const profiles=[['team',"L'ÉQUIPE"],['common','COMMUN'],['vesper','CONTACTS VESPER'],['silk','CONTACTS SILK'],['makoto','CONTACTS MAKOTO'],['plurk','CONTACTS PLURK'],['naphria','CONTACTS NAPHRIA']];
 const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr');
 const el=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(value!==undefined)n.textContent=value;return n};
-async function files(folder){const r=await fetch(repo+folder,{cache:'no-store'});if(r.status===404)return [];if(!r.ok)throw Error('HTTP '+r.status+' : '+folder);const data=await r.json();return Array.isArray(data)?data:[]}
+// Index local : aucune requête à l'API GitHub lors de la consultation.
+async function files(folder,manifest){return (manifest.folders?.[folder]||[]).map(name=>({type:'file',name}))}
 async function json(path){try{const r=await fetch(path,{cache:'no-store'});return r.ok?await r.json():{}}catch{return {}}}
-const data=await json('personnages.json');
+const [manifest,data]=await Promise.all([json('index-personnages.json'),json('personnages.json')]);
 let active=new URLSearchParams(location.search).get('tab')||'team';
 if(!profiles.some(p=>p[0]===active))active='team';
 const people=[];
@@ -26,14 +26,14 @@ const info=(kind==='vesper'||kind==='team'||kind==='common'?data[path]||data[sta
 people.push({name:info.nom||name,role:info.role||role,path,url:folder+'/'+encodeURIComponent(file.name),kind,episode,info});
 }
 try{
-const [pj,pnj]=await Promise.all([files('PJ'),files('PNJ')]);
+const [pj,pnj]=await Promise.all([files('PJ',manifest),files('PNJ',manifest)]);
 pj.forEach(f=>add(f,'PJ'));pnj.forEach(f=>add(f,'PNJ'));
 /* Pour chaque joueur, ses futurs portraits vont dans contacts/<profil>/.
    Ses métadonnées sont dans contacts/<profil>/personnages.json.
    Les dossiers absents donnent simplement un onglet vide. */
 for(const id of ['silk','makoto','plurk','naphria']){
 const folder='contacts/'+id;
-const [images,metadata]=await Promise.all([files(folder),json(folder+'/personnages.json')]);
+const [images,metadata]=await Promise.all([files(folder,manifest),json(folder+'/personnages.json')]);
 for(const file of images){const count=people.length;add(file,folder,id);if(people.length>count){const p=people[people.length-1];const key='contact:'+normalize(p.name).replace(/\s+/g,'-');p.info=metadata[p.path]||metadata[file.name]||metadata[key]||{};p.name=p.info.nom||p.name;p.role=p.info.role||p.role}}
 }
 people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
