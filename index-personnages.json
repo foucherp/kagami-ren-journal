@@ -114,7 +114,7 @@
       "role": "Sécurité du Golden Lotus",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-al-azir",
       "image": "images/Al Azir.jpeg",
       "legacyPath": "PNJ/S01e00-Al Azir- Sécurité du Golden Lotus.jpeg"
     },
@@ -123,7 +123,7 @@
       "role": "Joueur",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-andrew",
       "image": "images/Andrew.jpeg",
       "legacyPath": "PNJ/S01e00-Andrew-Joueur.jpeg"
     },
@@ -132,7 +132,7 @@
       "role": "Joueur",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-aranduin",
       "image": "images/Aranduin.jpeg",
       "legacyPath": "PNJ/S01e00-Aranduin-Joueur.jpeg"
     },
@@ -141,7 +141,7 @@
       "role": "Joueur",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-bob",
       "image": "images/Bob.jpeg",
       "legacyPath": "PNJ/S01e00-Bob-Joueur.jpeg"
     },
@@ -159,7 +159,7 @@
       "role": "Joueur",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-gordon",
       "image": "images/Gordon.jpeg",
       "legacyPath": "PNJ/S01e00-Gordon-Joueur.jpeg"
     },
@@ -168,7 +168,7 @@
       "role": "Joueuse",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-lauren",
       "image": "images/Lauren.jpeg",
       "legacyPath": "PNJ/S01e00-Lauren-Joueuse.jpeg"
     },
@@ -177,7 +177,7 @@
       "role": "Joueuse",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-lexxxi",
       "image": "images/Lexxxi.jpeg",
       "legacyPath": "PNJ/S01e00-Lexxxi-Joueuse.jpeg"
     },
@@ -186,7 +186,7 @@
       "role": "Dealer de partie",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-loretta",
       "image": "images/Loretta.jpeg",
       "legacyPath": "PNJ/S01e00-Loretta-Dealer de partie.jpeg"
     },
@@ -195,7 +195,7 @@
       "role": "Fixer",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-mr-johnson-1",
       "image": "images/Mr Johnson_1.jpeg",
       "legacyPath": "PNJ/S01e00-Mr Johnson-Fixer.jpeg"
     },
@@ -204,7 +204,7 @@
       "role": "Joueur",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-nagaoka",
       "image": "images/Nagaoka.jpeg",
       "legacyPath": "PNJ/S01e00-Nagaoka-Joueur.jpeg"
     },
@@ -213,7 +213,7 @@
       "role": "Sécurité du Golden Lotus",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-taki",
       "image": "images/Taki.jpeg",
       "legacyPath": "PNJ/S01e00-Taki-Sécurité du Golden Lotus.jpeg"
     },
@@ -222,7 +222,7 @@
       "role": "Joueuse",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-teresa",
       "image": "images/Teresa.jpeg",
       "legacyPath": "PNJ/S01e00-Teresa-Joueuse.jpeg"
     },
@@ -231,7 +231,7 @@
       "role": "Yakuza",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-unknown-1",
       "image": "images/Unknown_1.jpeg",
       "legacyPath": "PNJ/S01e00-Unknown-Yakuza.jpeg"
     },
@@ -240,7 +240,7 @@
       "role": "Patron du Golden Lotus",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": null,
+      "metadataKey": "common:s01e00-zhang-wei",
       "image": "images/Zhang Wei.jpeg",
       "legacyPath": "PNJ/S01e00-Zhang Wei-Patron du Golden Lotus.jpeg"
     },
@@ -249,7 +249,7 @@
       "role": "Membre des Barons Samedi",
       "kind": "common",
       "episode": "S01e01",
-      "metadataKey": null,
+      "metadataKey": "common:s01e01-big-tonton",
       "image": "images/Big Tonton.jpeg",
       "legacyPath": "PNJ/S01e01-Big Tonton-Membre des Barons Samedi.jpeg"
     },
@@ -258,7 +258,7 @@
       "role": "Fixer",
       "kind": "common",
       "episode": "S01e01",
-      "metadataKey": null,
+      "metadataKey": "common:s01e01-hendrix",
       "image": "images/Hendrix.jpeg",
       "legacyPath": "PNJ/S01e01-Hendrix-Fixer.jpeg"
     },
@@ -267,7 +267,7 @@
       "role": "Infirmière",
       "kind": "common",
       "episode": "S01e01",
-      "metadataKey": null,
+      "metadataKey": "common:s01e01-jill-mclaren",
       "image": "images/Jill McLaren.jpeg",
       "legacyPath": "PNJ/S01e01-Jill McLaren-Infirmière.jpeg"
     },
@@ -276,7 +276,7 @@
       "role": "Infirmier",
       "kind": "common",
       "episode": "S01e01",
-      "metadataKey": null,
+      "metadataKey": "common:s01e01-john-lavander",
       "image": "images/John Lavander.jpeg",
       "legacyPath": "PNJ/S01e01-John Lavander-Infirmier.jpeg"
     },
@@ -285,7 +285,7 @@
       "role": "Ex Membre des Barons Samedi",
       "kind": "common",
       "episode": "S01e01",
-      "metadataKey": null,
+      "metadataKey": "common:s01e01-malefice",
       "image": "images/Malefice.jpeg",
       "legacyPath": "PNJ/S01e01-Malefice-Ex Membre des Barons Samedi.jpeg"
     },
@@ -294,7 +294,7 @@
       "role": "Unknown",
       "kind": "common",
       "episode": "S01e01",
-      "metadataKey": null,
+      "metadataKey": "common:s01e01-unknown-2-1",
       "image": "images/Unknown 2_1.jpeg",
       "legacyPath": "PNJ/S01e01-Unknown 2-Unknown.jpeg"
     },
@@ -303,7 +303,7 @@
       "role": "Complice de Maléfice",
       "kind": "common",
       "episode": "S01e01",
-      "metadataKey": null,
+      "metadataKey": "common:s01e01-unknown-3-1",
       "image": "images/Unknown 3_1.jpeg",
       "legacyPath": "PNJ/S01e01-Unknown 3-Complice de Maléfice.jpeg"
     },
@@ -312,7 +312,7 @@
       "role": "Unknown",
       "kind": "common",
       "episode": "S01e01",
-      "metadataKey": null,
+      "metadataKey": "common:s01e01-unknown-2",
       "image": "images/Unknown_2.jpeg",
       "legacyPath": "PNJ/S01e01-Unknown-Unknown.jpeg"
     },
@@ -321,7 +321,7 @@
       "role": "Gérante de la salle de jeu Yakusa",
       "kind": "common",
       "episode": "S01e02",
-      "metadataKey": null,
+      "metadataKey": "common:s01e02-marisol-vega",
       "image": "images/Marisol Vega.jpeg",
       "legacyPath": "PNJ/S01e02-Marisol Vega-Gérante de la salle de jeu Yakusa.jpeg"
     },
@@ -330,7 +330,7 @@
       "role": "Inspecteur",
       "kind": "common",
       "episode": "S01e02",
-      "metadataKey": null,
+      "metadataKey": "common:s01e02-mori",
       "image": "images/Mori.jpeg",
       "legacyPath": "PNJ/S01e02-Mori-Inspecteur.jpeg"
     },
@@ -339,7 +339,7 @@
       "role": "Fixer",
       "kind": "common",
       "episode": "S01e02",
-      "metadataKey": null,
+      "metadataKey": "common:s01e02-mr-johnson-2",
       "image": "images/Mr Johnson_2.jpeg",
       "legacyPath": "PNJ/S01e02-Mr Johnson- Fixer.jpeg"
     },
@@ -348,7 +348,7 @@
       "role": "Shadowrunner",
       "kind": "common",
       "episode": "S01e02",
-      "metadataKey": null,
+      "metadataKey": "common:s01e02-unknown-1",
       "image": "images/Unknown 1.jpeg",
       "legacyPath": "PNJ/S01e02-Unknown 1-Shadowrunner.jpeg"
     },
@@ -357,7 +357,7 @@
       "role": "Shadowrunner",
       "kind": "common",
       "episode": "S01e02",
-      "metadataKey": null,
+      "metadataKey": "common:s01e02-unknown-2-2",
       "image": "images/Unknown 2_2.jpeg",
       "legacyPath": "PNJ/S01e02-Unknown 2-Shadowrunner.jpeg"
     },
@@ -366,7 +366,7 @@
       "role": "Shadowrunner",
       "kind": "common",
       "episode": "S01e02",
-      "metadataKey": null,
+      "metadataKey": "common:s01e02-unknown-3-2",
       "image": "images/Unknown 3_2.jpeg",
       "legacyPath": "PNJ/S01e02-Unknown 3-Shadowrunner.jpeg"
     },
@@ -375,7 +375,7 @@
       "role": "Shadowrunner",
       "kind": "common",
       "episode": "S01e02",
-      "metadataKey": null,
+      "metadataKey": "common:s01e02-unknown-4",
       "image": "images/Unknown 4.jpeg",
       "legacyPath": "PNJ/S01e02-Unknown 4-Shadowrunner.jpeg"
     },
@@ -384,7 +384,7 @@
       "role": "Shadowrunner",
       "kind": "common",
       "episode": "S01e02",
-      "metadataKey": null,
+      "metadataKey": "common:s01e02-unknown-5",
       "image": "images/Unknown 5.jpeg",
       "legacyPath": "PNJ/S01e02-Unknown 5-Shadowrunner.jpeg"
     },
