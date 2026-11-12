@@ -1,10 +1,14 @@
 -- ÉTAPE 4 : rendre modifiables les contacts historiques de chaque joueur.
 -- Sans toucher aux personnages communs, à l'équipe, aux portraits ni aux avis.
 begin;
+-- Suspendre le verrou uniquement pendant cette transaction de migration.
+-- En cas d'erreur, ROLLBACK restaure automatiquement le trigger.
+alter table public.characters disable trigger guard_character_update;
 update public.characters
 set owner_member_id=kind
 where kind in ('vesper','silk','makoto','plurk','naphria')
   and owner_member_id is null;
+alter table public.characters enable trigger guard_character_update;
 -- Accepter les portraits historiques déjà importés dans legacy/ en plus
 -- des nouveaux portraits rangés dans le dossier personnel du propriétaire.
 drop policy if exists "Joueur : modifier son contact" on public.characters;
