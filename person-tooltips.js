@@ -14,27 +14,17 @@ const style=document.createElement('style');style.textContent=`
 `;document.head.append(style);
 const pop=document.createElement('div');pop.className='person-tooltip';pop.hidden=true;pop.setAttribute('role','dialog');pop.setAttribute('aria-label','Aperçu du personnage');document.body.append(pop);
 const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
-const api='https://api.github.com/repos/foucherp/kagami-ren-journal/contents/';
 let names=[],active=null,hideTimer;
 const manual={'Vesper':['Ren','Kagami Ren'],'Silk':['Aya','Onee-chan']};
-async function list(folder){try{const r=await fetch(api+folder,{cache:'no-store'});return r.ok?await r.json():[]}catch{return []}}
 async function load(){
-const [pj,pnj,res]=await Promise.all([list('PJ'),list('PNJ'),fetch('personnages.json',{cache:'no-store'})]);
-const data=res.ok?await res.json():{};
-for(const [folder,files] of [['PJ',pj],['PNJ',pnj]]){
-if(!Array.isArray(files))continue;
-for(const f of files){
-if(f.type!=='file')continue;
-const m=folder==='PJ'?f.name.match(/^Team-(.+)\.(?:png|jpe?g|webp)$/i):f.name.match(/^(?:Contact-|S\d{2}e\d{2}-)(.+)\.(?:png|jpe?g|webp)$/i);
-if(!m)continue;
-const parts=m[1].split('-');if(parts.length<2)continue;
-const role=parts.pop().replace(/_/g,' '),name=parts.join('-').replace(/_/g,' ');
-const path=folder+'/'+f.name;
-const stable='contact:'+norm(name).replace(/\s+/g,'-');
-const info=data[path]||data[stable]||{};
-const display=info.nom||name;
-names.push({name:display,role:info.role||role,path,img:folder+'/'+encodeURIComponent(f.name),info,aliases:[display,name,...(manual[display]||[]),...(Array.isArray(info.alias)?info.alias:[])]});
-}}
+const [manifestRes,dataRes]=await Promise.all([fetch('index-personnages.json'),fetch('personnages.json')]);
+if(!manifestRes.ok)return;
+const manifest=await manifestRes.json(),data=dataRes.ok?await dataRes.json():{};
+for(const item of manifest.personnages||[]){
+ const info=data[item.metadataKey]||data[item.legacyPath]||{};
+ const display=info.nom||item.name;
+ names.push({name:display,role:info.role||item.role,path:item.image,img:encodeURI(item.image),info,aliases:[display,item.name,...(manual[display]||[]),...(Array.isArray(info.alias)?info.alias:[])]});
+}
 names.sort((a,b)=>b.name.length-a.name.length);
 }
 function place(target){const r=target.getBoundingClientRect(),w=pop.offsetWidth,h=pop.offsetHeight;let x=Math.min(Math.max(12,r.left),innerWidth-w-12);let y=r.bottom+9;if(y+h>innerHeight-10)y=Math.max(10,r.top-h-9);pop.style.left=x+'px';pop.style.top=y+'px'}

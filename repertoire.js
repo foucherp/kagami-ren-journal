@@ -4,43 +4,24 @@ const root=document.getElementById('directory-content'),tabs=document.getElement
 const profiles=[['team',"L'ÉQUIPE"],['common','COMMUN'],['vesper','CONTACTS VESPER'],['silk','CONTACTS SILK'],['makoto','CONTACTS MAKOTO'],['plurk','CONTACTS PLURK'],['naphria','CONTACTS NAPHRIA']];
 const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr');
 const el=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(value!==undefined)n.textContent=value;return n};
-// Index local : aucune requête à l'API GitHub lors de la consultation.
-async function files(folder,manifest){return (manifest.folders?.[folder]||[]).map(name=>({type:'file',name}))}
+// Le manifeste contient désormais toutes les fiches et les chemins des portraits.
 async function json(path){try{const r=await fetch(path,{cache:'no-store'});return r.ok?await r.json():{}}catch{return {}}}
 const [manifest,data]=await Promise.all([json('index-personnages.json'),json('personnages.json')]);
 let active=new URLSearchParams(location.search).get('tab')||'team';
 if(!profiles.some(p=>p[0]===active))active='team';
 const people=[];
-function add(file,folder,source){
-if(file.type!=='file')return;
-let m,kind,episode=null,part;
-if(folder==='PJ'){m=file.name.match(/^Team-(.+)\.(png|jpe?g|webp)$/i);if(!m)return;kind='team';part=m[1]}
-else if((m=file.name.match(/^Contact-(.+)\.(png|jpe?g|webp)$/i))){kind=source||'vesper';part=m[1]}
-else if((m=file.name.match(/^(S\d{2}e\d{2})-(.+)\.(png|jpe?g|webp)$/i))){kind='common';episode=m[1];part=m[2]}
-else return;
-const bits=part.split('-');if(bits.length<2)return;
-const role=bits.pop().replace(/_/g,' '),name=bits.join('-').replace(/_/g,' ');
-const path=folder+'/'+file.name;
-const stable='contact:'+normalize(name).replace(/\s+/g,'-');
-const info=(kind==='vesper'||kind==='team'||kind==='common'?data[path]||data[stable]:{})||{};
-people.push({name:info.nom||name,role:info.role||role,path,url:folder+'/'+encodeURIComponent(file.name),kind,episode,info});
-}
 try{
-const [pj,pnj]=await Promise.all([files('PJ',manifest),files('PNJ',manifest)]);
-pj.forEach(f=>add(f,'PJ'));pnj.forEach(f=>add(f,'PNJ'));
-/* Pour chaque joueur, ses futurs portraits vont dans contacts/<profil>/.
-   Ses métadonnées sont dans contacts/<profil>/personnages.json.
-   Les dossiers absents donnent simplement un onglet vide. */
 const contactIds=['silk','makoto','plurk','naphria'];
-const contactMetadata=await Promise.all(contactIds.map(id=>manifest.folders?.['contacts/'+id]?.length?json('contacts/'+id+'/personnages.json'):Promise.resolve({})));
-for(const [index,id] of contactIds.entries()){
-const folder='contacts/'+id;
-const images=await files(folder,manifest),metadata=contactMetadata[index];
-for(const file of images){const count=people.length;add(file,folder,id);if(people.length>count){const p=people[people.length-1];const key='contact:'+normalize(p.name).replace(/\s+/g,'-');p.info=metadata[p.path]||metadata[file.name]||metadata[key]||{};p.name=p.info.nom||p.name;p.role=p.info.role||p.role}}
+const contactMetadata=await Promise.all(contactIds.map(id=>manifest.personnages?.some(p=>p.kind===id)?json('contacts/'+id+'/personnages.json'):Promise.resolve({})));
+for(const item of manifest.personnages||[]){
+ const ownerIndex=contactIds.indexOf(item.kind);
+ const metadata=ownerIndex>=0?contactMetadata[ownerIndex]:data;
+ const info=metadata[item.metadataKey]||metadata[item.legacyPath]||metadata[item.image]||{};
+ people.push({name:info.nom||item.name,role:info.role||item.role,path:item.image,legacyPath:item.legacyPath,url:encodeURI(item.image),kind:item.kind,episode:item.episode||null,info});
 }
 people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
 const selected=new URLSearchParams(location.search).get('person');
-if(selected){const p=people.find(x=>x.path===selected);if(p){active=p.kind;search.value=p.name}}
+if(selected){const p=people.find(x=>(x.path===selected||x.legacyPath===selected));if(p){active=p.kind;search.value=p.name}}
 function section(parent,title,value,cls){if(!value)return;const s=el('section','person-section');s.append(el('h4','',title),el('p',cls||'',value));parent.append(s)}
 function card(p){const card=el('div','person-card'),head=el('div','person-head'),img=el('img');img.src=p.url;img.alt='Portrait de '+p.name;img.loading='lazy';head.append(img);
 const facts=el('div','person-facts'),i=p.info||{};facts.append(el('h3','',p.name),el('div','person-role',p.role.toUpperCase()));

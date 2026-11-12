@@ -1,56 +1,392 @@
 {
-  "version": 1,
-  "folders": {
-    "PJ": [
-      "Team-Makoto-Samourai.jpeg",
-      "Team-Naphria-Expert en démolition.jpeg",
-      "Team-Plurk-Rigger.jpeg",
-      "Team-Silk-Face.jpeg",
-      "Team-Vesper-Gunman.jpeg"
-    ],
-    "PNJ": [
-      "Contact-Ash-Personne à charge.jpeg",
-      "Contact-Edward Hudson-Armurier.jpeg",
-      "Contact-Hiroshi Takamura-Yakusa.jpeg",
-      "Contact-Ichida Takako-Corpo.jpeg",
-      "Contact-Naoko-Personne à charge.jpeg",
-      "Contact-Razor-Ganger.jpeg",
-      "Contact-Yuki Stardust-Chanteuse de JPop.jpg",
-      "S01e00-Al Azir- Sécurité du Golden Lotus.jpeg",
-      "S01e00-Andrew-Joueur.jpeg",
-      "S01e00-Aranduin-Joueur.jpeg",
-      "S01e00-Bob-Joueur.jpeg",
-      "S01e00-Cassandra-Fixer.jpeg",
-      "S01e00-Gordon-Joueur.jpeg",
-      "S01e00-Lauren-Joueuse.jpeg",
-      "S01e00-Lexxxi-Joueuse.jpeg",
-      "S01e00-Loretta-Dealer de partie.jpeg",
-      "S01e00-Mr Johnson-Fixer.jpeg",
-      "S01e00-Nagaoka-Joueur.jpeg",
-      "S01e00-Taki-Sécurité du Golden Lotus.jpeg",
-      "S01e00-Teresa-Joueuse.jpeg",
-      "S01e00-Unknown-Yakuza.jpeg",
-      "S01e00-Zhang Wei-Patron du Golden Lotus.jpeg",
-      "S01e01-Big Tonton-Membre des Barons Samedi.jpeg",
-      "S01e01-Hendrix-Fixer.jpeg",
-      "S01e01-Jill McLaren-Infirmière.jpeg",
-      "S01e01-John Lavander-Infirmier.jpeg",
-      "S01e01-Malefice-Ex Membre des Barons Samedi.jpeg",
-      "S01e01-Unknown 2-Unknown.jpeg",
-      "S01e01-Unknown 3-Complice de Maléfice.jpeg",
-      "S01e01-Unknown-Unknown.jpeg",
-      "S01e02-Marisol Vega-Gérante de la salle de jeu Yakusa.jpeg",
-      "S01e02-Mori-Inspecteur.jpeg",
-      "S01e02-Mr Johnson- Fixer.jpeg",
-      "S01e02-Unknown 1-Shadowrunner.jpeg",
-      "S01e02-Unknown 2-Shadowrunner.jpeg",
-      "S01e02-Unknown 3-Shadowrunner.jpeg",
-      "S01e02-Unknown 4-Shadowrunner.jpeg",
-      "S01e02-Unknown 5-Shadowrunner.jpeg"
-    ],
-    "contacts/silk": [],
-    "contacts/makoto": [],
-    "contacts/plurk": [],
-    "contacts/naphria": []
-  }
+  "version": 2,
+  "personnages": [
+    {
+      "name": "Makoto",
+      "role": "Samouraï des rues",
+      "kind": "team",
+      "episode": null,
+      "metadataKey": "PJ/Team-Makoto-Samourai.jpeg",
+      "image": "images/Makoto.jpeg",
+      "legacyPath": "PJ/Team-Makoto-Samourai.jpeg"
+    },
+    {
+      "name": "Naphria",
+      "role": "Expert en démolition",
+      "kind": "team",
+      "episode": null,
+      "metadataKey": "PJ/Team-Naphria-Expert en démolition.jpeg",
+      "image": "images/Naphria.jpeg",
+      "legacyPath": "PJ/Team-Naphria-Expert en démolition.jpeg"
+    },
+    {
+      "name": "Plurk",
+      "role": "Rigger",
+      "kind": "team",
+      "episode": null,
+      "metadataKey": "PJ/Team-Plurk-Rigger.jpeg",
+      "image": "images/Plurk.jpeg",
+      "legacyPath": "PJ/Team-Plurk-Rigger.jpeg"
+    },
+    {
+      "name": "Silk",
+      "role": "Face / Négociatrice",
+      "kind": "team",
+      "episode": null,
+      "metadataKey": "PJ/Team-Silk-Face.jpeg",
+      "image": "images/Silk.jpeg",
+      "legacyPath": "PJ/Team-Silk-Face.jpeg"
+    },
+    {
+      "name": "Vesper",
+      "role": "Gunman",
+      "kind": "team",
+      "episode": null,
+      "metadataKey": "PJ/Team-Vesper-Gunman.jpeg",
+      "image": "images/Vesper.jpeg",
+      "legacyPath": "PJ/Team-Vesper-Gunman.jpeg"
+    },
+    {
+      "name": "Ash",
+      "role": "Personne à charge",
+      "kind": "vesper",
+      "episode": null,
+      "metadataKey": "contact:ash",
+      "image": "images/Ash.jpeg",
+      "legacyPath": "PNJ/Contact-Ash-Personne à charge.jpeg"
+    },
+    {
+      "name": "Edward Hudson",
+      "role": "Armurier",
+      "kind": "vesper",
+      "episode": null,
+      "metadataKey": "contact:edward-hudson",
+      "image": "images/Edward Hudson.jpeg",
+      "legacyPath": "PNJ/Contact-Edward Hudson-Armurier.jpeg"
+    },
+    {
+      "name": "Hiroshi Takamura",
+      "role": "Wakagashira-hosa / Lieutenant Yakuza",
+      "kind": "vesper",
+      "episode": null,
+      "metadataKey": "PNJ/Contact-Hiroshi Takamura-Yakusa.jpeg",
+      "image": "images/Hiroshi Takamura.jpeg",
+      "legacyPath": "PNJ/Contact-Hiroshi Takamura-Yakusa.jpeg"
+    },
+    {
+      "name": "Ichida Takako",
+      "role": "Corpo",
+      "kind": "vesper",
+      "episode": null,
+      "metadataKey": "contact:ichida-takako",
+      "image": "images/Ichida Takako.jpeg",
+      "legacyPath": "PNJ/Contact-Ichida Takako-Corpo.jpeg"
+    },
+    {
+      "name": "Naoko Mizuhara",
+      "role": "Scientifique / Personne à charge",
+      "kind": "vesper",
+      "episode": null,
+      "metadataKey": "PNJ/Contact-Naoko-Personne à charge.jpeg",
+      "image": "images/Naoko Mizuhara.jpeg",
+      "legacyPath": "PNJ/Contact-Naoko-Personne à charge.jpeg"
+    },
+    {
+      "name": "Razor",
+      "role": "Ganger",
+      "kind": "vesper",
+      "episode": null,
+      "metadataKey": "contact:razor",
+      "image": "images/Razor.jpeg",
+      "legacyPath": "PNJ/Contact-Razor-Ganger.jpeg"
+    },
+    {
+      "name": "Yuki Stardust",
+      "role": "Chanteuse de JPop",
+      "kind": "vesper",
+      "episode": null,
+      "metadataKey": "contact:yuki-stardust",
+      "image": "images/Yuki Stardust.jpg",
+      "legacyPath": "PNJ/Contact-Yuki Stardust-Chanteuse de JPop.jpg"
+    },
+    {
+      "name": "Al Azir",
+      "role": "Sécurité du Golden Lotus",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Al Azir.jpeg",
+      "legacyPath": "PNJ/S01e00-Al Azir- Sécurité du Golden Lotus.jpeg"
+    },
+    {
+      "name": "Andrew",
+      "role": "Joueur",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Andrew.jpeg",
+      "legacyPath": "PNJ/S01e00-Andrew-Joueur.jpeg"
+    },
+    {
+      "name": "Aranduin",
+      "role": "Joueur",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Aranduin.jpeg",
+      "legacyPath": "PNJ/S01e00-Aranduin-Joueur.jpeg"
+    },
+    {
+      "name": "Bob",
+      "role": "Joueur",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Bob.jpeg",
+      "legacyPath": "PNJ/S01e00-Bob-Joueur.jpeg"
+    },
+    {
+      "name": "Cassandra",
+      "role": "Fixer",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": "contact:cassandra",
+      "image": "images/Cassandra.jpeg",
+      "legacyPath": "PNJ/S01e00-Cassandra-Fixer.jpeg"
+    },
+    {
+      "name": "Gordon",
+      "role": "Joueur",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Gordon.jpeg",
+      "legacyPath": "PNJ/S01e00-Gordon-Joueur.jpeg"
+    },
+    {
+      "name": "Lauren",
+      "role": "Joueuse",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Lauren.jpeg",
+      "legacyPath": "PNJ/S01e00-Lauren-Joueuse.jpeg"
+    },
+    {
+      "name": "Lexxxi",
+      "role": "Joueuse",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Lexxxi.jpeg",
+      "legacyPath": "PNJ/S01e00-Lexxxi-Joueuse.jpeg"
+    },
+    {
+      "name": "Loretta",
+      "role": "Dealer de partie",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Loretta.jpeg",
+      "legacyPath": "PNJ/S01e00-Loretta-Dealer de partie.jpeg"
+    },
+    {
+      "name": "Mr Johnson",
+      "role": "Fixer",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Mr Johnson_S01e00.jpeg",
+      "legacyPath": "PNJ/S01e00-Mr Johnson-Fixer.jpeg"
+    },
+    {
+      "name": "Nagaoka",
+      "role": "Joueur",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Nagaoka.jpeg",
+      "legacyPath": "PNJ/S01e00-Nagaoka-Joueur.jpeg"
+    },
+    {
+      "name": "Taki",
+      "role": "Sécurité du Golden Lotus",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Taki.jpeg",
+      "legacyPath": "PNJ/S01e00-Taki-Sécurité du Golden Lotus.jpeg"
+    },
+    {
+      "name": "Teresa",
+      "role": "Joueuse",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Teresa.jpeg",
+      "legacyPath": "PNJ/S01e00-Teresa-Joueuse.jpeg"
+    },
+    {
+      "name": "Unknown",
+      "role": "Yakuza",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Unknown_S01e00.jpeg",
+      "legacyPath": "PNJ/S01e00-Unknown-Yakuza.jpeg"
+    },
+    {
+      "name": "Zhang Wei",
+      "role": "Patron du Golden Lotus",
+      "kind": "common",
+      "episode": "S01e00",
+      "metadataKey": null,
+      "image": "images/Zhang Wei.jpeg",
+      "legacyPath": "PNJ/S01e00-Zhang Wei-Patron du Golden Lotus.jpeg"
+    },
+    {
+      "name": "Big Tonton",
+      "role": "Membre des Barons Samedi",
+      "kind": "common",
+      "episode": "S01e01",
+      "metadataKey": null,
+      "image": "images/Big Tonton.jpeg",
+      "legacyPath": "PNJ/S01e01-Big Tonton-Membre des Barons Samedi.jpeg"
+    },
+    {
+      "name": "Hendrix",
+      "role": "Fixer",
+      "kind": "common",
+      "episode": "S01e01",
+      "metadataKey": null,
+      "image": "images/Hendrix.jpeg",
+      "legacyPath": "PNJ/S01e01-Hendrix-Fixer.jpeg"
+    },
+    {
+      "name": "Jill McLaren",
+      "role": "Infirmière",
+      "kind": "common",
+      "episode": "S01e01",
+      "metadataKey": null,
+      "image": "images/Jill McLaren.jpeg",
+      "legacyPath": "PNJ/S01e01-Jill McLaren-Infirmière.jpeg"
+    },
+    {
+      "name": "John Lavander",
+      "role": "Infirmier",
+      "kind": "common",
+      "episode": "S01e01",
+      "metadataKey": null,
+      "image": "images/John Lavander.jpeg",
+      "legacyPath": "PNJ/S01e01-John Lavander-Infirmier.jpeg"
+    },
+    {
+      "name": "Malefice",
+      "role": "Ex Membre des Barons Samedi",
+      "kind": "common",
+      "episode": "S01e01",
+      "metadataKey": null,
+      "image": "images/Malefice.jpeg",
+      "legacyPath": "PNJ/S01e01-Malefice-Ex Membre des Barons Samedi.jpeg"
+    },
+    {
+      "name": "Unknown 2",
+      "role": "Unknown",
+      "kind": "common",
+      "episode": "S01e01",
+      "metadataKey": null,
+      "image": "images/Unknown 2_S01e01.jpeg",
+      "legacyPath": "PNJ/S01e01-Unknown 2-Unknown.jpeg"
+    },
+    {
+      "name": "Unknown 3",
+      "role": "Complice de Maléfice",
+      "kind": "common",
+      "episode": "S01e01",
+      "metadataKey": null,
+      "image": "images/Unknown 3_S01e01.jpeg",
+      "legacyPath": "PNJ/S01e01-Unknown 3-Complice de Maléfice.jpeg"
+    },
+    {
+      "name": "Unknown",
+      "role": "Unknown",
+      "kind": "common",
+      "episode": "S01e01",
+      "metadataKey": null,
+      "image": "images/Unknown_S01e01.jpeg",
+      "legacyPath": "PNJ/S01e01-Unknown-Unknown.jpeg"
+    },
+    {
+      "name": "Marisol Vega",
+      "role": "Gérante de la salle de jeu Yakusa",
+      "kind": "common",
+      "episode": "S01e02",
+      "metadataKey": null,
+      "image": "images/Marisol Vega.jpeg",
+      "legacyPath": "PNJ/S01e02-Marisol Vega-Gérante de la salle de jeu Yakusa.jpeg"
+    },
+    {
+      "name": "Mori",
+      "role": "Inspecteur",
+      "kind": "common",
+      "episode": "S01e02",
+      "metadataKey": null,
+      "image": "images/Mori.jpeg",
+      "legacyPath": "PNJ/S01e02-Mori-Inspecteur.jpeg"
+    },
+    {
+      "name": "Mr Johnson",
+      "role": "Fixer",
+      "kind": "common",
+      "episode": "S01e02",
+      "metadataKey": null,
+      "image": "images/Mr Johnson_S01e02.jpeg",
+      "legacyPath": "PNJ/S01e02-Mr Johnson- Fixer.jpeg"
+    },
+    {
+      "name": "Unknown 1",
+      "role": "Shadowrunner",
+      "kind": "common",
+      "episode": "S01e02",
+      "metadataKey": null,
+      "image": "images/Unknown 1.jpeg",
+      "legacyPath": "PNJ/S01e02-Unknown 1-Shadowrunner.jpeg"
+    },
+    {
+      "name": "Unknown 2",
+      "role": "Shadowrunner",
+      "kind": "common",
+      "episode": "S01e02",
+      "metadataKey": null,
+      "image": "images/Unknown 2_S01e02.jpeg",
+      "legacyPath": "PNJ/S01e02-Unknown 2-Shadowrunner.jpeg"
+    },
+    {
+      "name": "Unknown 3",
+      "role": "Shadowrunner",
+      "kind": "common",
+      "episode": "S01e02",
+      "metadataKey": null,
+      "image": "images/Unknown 3_S01e02.jpeg",
+      "legacyPath": "PNJ/S01e02-Unknown 3-Shadowrunner.jpeg"
+    },
+    {
+      "name": "Unknown 4",
+      "role": "Shadowrunner",
+      "kind": "common",
+      "episode": "S01e02",
+      "metadataKey": null,
+      "image": "images/Unknown 4.jpeg",
+      "legacyPath": "PNJ/S01e02-Unknown 4-Shadowrunner.jpeg"
+    },
+    {
+      "name": "Unknown 5",
+      "role": "Shadowrunner",
+      "kind": "common",
+      "episode": "S01e02",
+      "metadataKey": null,
+      "image": "images/Unknown 5.jpeg",
+      "legacyPath": "PNJ/S01e02-Unknown 5-Shadowrunner.jpeg"
+    }
+  ]
 }
