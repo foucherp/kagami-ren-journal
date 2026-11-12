@@ -31,9 +31,11 @@ pj.forEach(f=>add(f,'PJ'));pnj.forEach(f=>add(f,'PNJ'));
 /* Pour chaque joueur, ses futurs portraits vont dans contacts/<profil>/.
    Ses métadonnées sont dans contacts/<profil>/personnages.json.
    Les dossiers absents donnent simplement un onglet vide. */
-for(const id of ['silk','makoto','plurk','naphria']){
+const contactIds=['silk','makoto','plurk','naphria'];
+const contactMetadata=await Promise.all(contactIds.map(id=>manifest.folders?.['contacts/'+id]?.length?json('contacts/'+id+'/personnages.json'):Promise.resolve({})));
+for(const [index,id] of contactIds.entries()){
 const folder='contacts/'+id;
-const [images,metadata]=await Promise.all([files(folder,manifest),json(folder+'/personnages.json')]);
+const images=await files(folder,manifest),metadata=contactMetadata[index];
 for(const file of images){const count=people.length;add(file,folder,id);if(people.length>count){const p=people[people.length-1];const key='contact:'+normalize(p.name).replace(/\s+/g,'-');p.info=metadata[p.path]||metadata[file.name]||metadata[key]||{};p.name=p.info.nom||p.name;p.role=p.info.role||p.role}}
 }
 people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
