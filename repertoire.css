@@ -68,3 +68,9 @@
 .opinion-dialog .opinion-textarea{resize:vertical;min-height:170px}
 .opinion-dialog .opinion-controls{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
 .opinion-dialog .opinion-message{color:#a8d7bd}.opinion-dialog .opinion-message.error{color:#f3a0a8}
+
+/* Formulaire de contact */
+.contact-editor{max-width:min(640px,calc(100vw - 32px));width:100%;box-sizing:border-box;max-height:85vh;overflow:auto}
+.contact-editor .contact-field{display:flex;flex-direction:column;gap:7px;margin:14px 0;font:11px monospace;letter-spacing:.06em;color:#d9b9bf}
+.contact-editor .contact-field input,.contact-editor .contact-field textarea{width:100%;box-sizing:border-box;padding:11px;background:#101115;border:1px solid #51434b;color:#fff;font:14px sans-serif}
+.contact-editor .contact-field textarea{min-height:120px;resize:vertical}
