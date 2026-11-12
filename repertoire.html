@@ -77,6 +77,6 @@ const list=element('div','episode-list');group.forEach(p=>list.append(row(p)));d
 }
 if(!people.length)root.append(element('p','directory-state','AUCUN PERSONNAGE TROUVÉ // Ajoutez une image dans PJ/ ou PNJ/'));
 }
-search.addEventListener('input',render);render();
+search.addEventListener('input',render);render();if(selected){const match=people.find(p=>p.path===selected);if(match){const btn=root.querySelector('.npc');if(btn)btn.click();}}
 }catch(error){root.replaceChildren(element('p','directory-state','INDEX INDISPONIBLE // '+error.message));total.textContent='ERREUR DE LECTURE'}
 })();</script></body></html>
