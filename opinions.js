@@ -1,0 +1,24 @@
+/* Avis collaboratifs : authentification email Supabase, autorisations appliquées par RLS. */
+(()=>{
+'use strict';
+const URL='https://alzcnmmxumcqiermylik.supabase.co';
+const KEY='sb_publishable_jqzqRJzA-Bj5p7d_T7OMnw_h9hlzsV2';
+const supabase=window.supabase?.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const identity=p=>p.kind+':'+(p.info?.nom?norm(p.info.nom):norm(p.name));
+let records=new Map(),membership=null,session=null,team=[];
+const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e};
+function modal(){let dialog=document.getElementById('opinion-dialog');if(!dialog){dialog=el('dialog','opinion-dialog');document.body.append(dialog);dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()})}dialog.replaceChildren();return dialog}
+function message(d,text,isError=false){const node=el('p','opinion-message'+(isError?' error':''),text);d.append(node);return node}
+function open(d){if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','')}
+async function refresh(){if(!supabase)return;const {data:{session:s}}=await supabase.auth.getSession();session=s;membership=null;if(s){const {data}=await supabase.from('opinion_members').select('member_id').eq('user_id',s.user.id).maybeSingle();membership=data?.member_id||null}const {data,error}=await supabase.from('character_opinions').select('character_id,member_id,body');if(!error)records=new Map((data||[]).map(r=>[r.character_id+'|'+r.member_id,r.body]))}
+function merged(p,original){const out={...original};for(const [key,body] of records){const split=key.lastIndexOf('|');if(key.slice(0,split)===identity(p))out[key.slice(split+1)]=body}return out}
+function addButton(card,p,opinions,redraw){const box=el('div','opinion-actions');const button=el('button','opinion-button','✎ '+(membership&&opinions[membership]?'MODIFIER MON AVIS':'DONNER MON AVIS'));button.type='button';button.onclick=()=>edit(p,opinions,redraw);box.append(button);card.append(box)}
+async function edit(p,opinions,redraw){const d=modal();d.append(el('h3','', 'AVIS // '+p.name));if(!supabase){message(d,'Module de connexion indisponible. Rechargez la page.',true);open(d);return}
+await refresh();if(!session){d.append(el('p','','Connectez-vous avec votre adresse e-mail autorisée. Vous recevrez un lien de connexion.'));const form=el('form','opinion-form'),input=el('input');input.type='email';input.required=true;input.placeholder='votre@email.fr';input.autocomplete='email';const submit=el('button','opinion-button','RECEVOIR MON LIEN');submit.type='submit';form.append(input,submit);form.onsubmit=async e=>{e.preventDefault();submit.disabled=true;const {error}=await supabase.auth.signInWithOtp({email:input.value.trim(),options:{emailRedirectTo:location.origin+location.pathname+location.search,shouldCreateUser:true}});message(d,error?'Connexion impossible : '+error.message:'Vérifiez votre boîte mail, puis ouvrez le lien reçu.',!!error);submit.disabled=false};d.append(form);open(d);return}
+if(!membership){message(d,'Ce compte est connecté, mais aucun personnage ne lui a été attribué. Contactez le responsable du site.',true);const signout=el('button','opinion-button secondary','CHANGER DE COMPTE');signout.onclick=async()=>{await supabase.auth.signOut();d.close()};d.append(signout);open(d);return}
+const member=team.find(m=>norm(m.name)===membership);d.append(el('p','opinion-author','Auteur : '+(member?.name||membership)));
+const textarea=el('textarea','opinion-textarea');textarea.value=merged(p,opinions)[membership]||'';textarea.rows=8;textarea.maxLength=8000;textarea.placeholder='Votre avis sur ce personnage…';d.append(textarea);
+const controls=el('div','opinion-controls'),save=el('button','opinion-button','PUBLIER'),cancel=el('button','opinion-button secondary','ANNULER');cancel.onclick=()=>d.close();save.onclick=async()=>{const body=textarea.value.trim();if(!body){message(d,'Saisissez un avis avant de publier.',true);return}save.disabled=true;const {error}=await supabase.from('character_opinions').upsert({character_id:identity(p),member_id:membership,body},{onConflict:'character_id,member_id'});if(error){message(d,'Publication impossible : '+error.message,true);save.disabled=false;return}records.set(identity(p)+'|'+membership,body);d.close();redraw()};controls.append(cancel,save);d.append(controls);open(d)}
+window.RunnerOpinions={async init(manifest){team=(manifest.personnages||[]).filter(p=>p.kind==='team');if(supabase)await refresh();return {merge:merged,addButton}}};
+})();
