@@ -20,3 +20,10 @@
 
 /* Harmonisation des titres des pages principales : Vlog et Répertoires. */
 .vlog-heading h1{font-size:clamp(35px,6vw,65px);line-height:1.12;letter-spacing:-.04em;font-weight:800;margin:20px 0}
+
+/* Navigation persistante entre les sections principales. */
+.top .top-links{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.top .top-links a{color:#bdb6bd;text-decoration:none;transition:color .15s}
+.top .top-links a:hover,.top .top-links a:focus-visible{color:#fff}
+.top .top-links a[aria-current="page"]{color:#e28b9b}
+@media(max-width:650px){.top .top-links{gap:8px;letter-spacing:.03em}.top{padding:16px 0;min-height:68px}}
