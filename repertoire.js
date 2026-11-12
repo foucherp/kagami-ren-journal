@@ -23,7 +23,7 @@ people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
 const selected=new URLSearchParams(location.search).get('person');
 if(selected){const p=people.find(x=>(x.path===selected||x.legacyPath===selected));if(p){active=p.kind;search.value=p.name}}
 function section(parent,title,value,cls){if(!value)return;const s=el('section','person-section');s.append(el('h4','',title),el('p',cls||'',value));parent.append(s)}
-function card(p){const card=el('div','person-card'),head=el('div','person-head'),img=el('img');img.src=p.url;img.alt='Portrait de '+p.name;img.loading='lazy';head.append(img);
+function card(p){const card=el('div','person-card'),head=el('div','person-head'),img=el('img');img.src=p.url||'images/JohnDoe.jpeg';img.onerror=()=>{if(!img.src.endsWith('/JohnDoe.jpeg'))img.src='images/JohnDoe.jpeg'};img.alt='Portrait de '+p.name;img.loading='lazy';head.append(img);
 const facts=el('div','person-facts'),i=p.info||{};facts.append(el('h3','',p.name),el('div','person-role',p.role.toUpperCase()));
 const dl=el('dl');for(const [k,v] of [['Identité civile',i.identite_civile||'Inconnu'],['Métatype',i.metatype||'Inconnu'],['Affiliation',i.affiliation||'Inconnu'],['Statut',i.statut||'Inconnu']]){if(v)dl.append(el('dt','',k),el('dd','',v))}
 facts.append(dl);
