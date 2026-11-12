@@ -18,7 +18,7 @@ for(const item of manifest.personnages||[]){
  const ownerIndex=contactIds.indexOf(item.kind);
  const metadata=ownerIndex>=0?contactMetadata[ownerIndex]:data;
  const info=metadata[item.metadataKey]||metadata[item.legacyPath]||metadata[item.image]||{};
- people.push({name:info.nom||item.name,role:info.role||item.role,path:item.image,legacyPath:item.legacyPath,url:encodeURI(item.image),kind:item.kind,episode:item.episode||null,info});
+ people.push({name:info.nom||item.name,role:info.role||item.role,path:item.image,legacyPath:item.legacyPath,url:encodeURI(item.image),kind:item.kind,metadataKey:item.metadataKey,episode:item.episode||null,info});
 }
 people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
 const opinionApi=window.RunnerOpinions?await window.RunnerOpinions.init(manifest):null;
