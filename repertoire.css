@@ -41,3 +41,9 @@
 .directory-ui .contact-rating-cell.filled{background:var(--meter-filled);border-color:var(--meter-filled)}
 .directory-ui .person-section a{color:#e5c4c7}
 @media(max-width:600px){.directory-ui .person-head{display:block}.directory-ui .person-card img{max-width:100%;margin-bottom:16px}.directory-ui .directory-tab{flex:1 1 auto}}
+
+/* Résultats de recherche globale : nom // rôle // catégorie */
+.directory-ui .npc-category{color:var(--tab-accent);font:10px monospace;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;margin-left:auto}
+.directory-ui .npc:has(.npc-category){display:grid;grid-template-columns:minmax(120px,1.2fr) minmax(120px,1fr) minmax(110px,.8fr);align-items:center}
+.directory-ui .npc:has(.npc-category) .npc-category{text-align:right}
+@media(max-width:650px){.directory-ui .npc:has(.npc-category){grid-template-columns:1fr auto;row-gap:6px}.directory-ui .npc:has(.npc-category) .npc-role{grid-column:1;grid-row:2}.directory-ui .npc:has(.npc-category) .npc-category{grid-column:2;grid-row:1 / span 2}}
