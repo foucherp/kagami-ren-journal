@@ -47,7 +47,7 @@ const opinionApi=window.RunnerOpinions?await window.RunnerOpinions.init(manifest
 let authorizedMember=null;
 try{authorizedMember=await window.RunnerContacts?.member()||null}catch(e){console.warn('Droits du carnet indisponibles :',e)}
 const params=new URLSearchParams(location.search);const selected=params.get('person');const focused=params.get('focus');
-if(selected||focused){const p=people.find(x=>focused?x.metadataKey===focused:(x.path===selected||x.legacyPath===selected));if(p){active=p.kind;if(selected)search.value=p.name}}
+if(selected||focused){const p=people.find(x=>focused?x.metadataKey===focused:(x.path===selected||x.legacyPath===selected));if(p){active=p.kind;search.value=''}}
 function section(parent,title,value,cls){if(!value)return;const s=el('section','person-section');s.append(el('h4','',title),el('p',cls||'',value));parent.append(s)}
 function card(p){const card=el('div','person-card'),head=el('div','person-head'),img=el('img');img.src=p.url||'images/JohnDoe.jpeg';img.onerror=()=>{if(!img.src.endsWith('/JohnDoe.jpeg'))img.src='images/JohnDoe.jpeg'};img.alt='Portrait de '+p.name;img.loading='lazy';head.append(img);
 const facts=el('div','person-facts'),i=p.info||{};facts.append(el('h3','',p.name),el('div','person-role',p.role.toUpperCase()));
