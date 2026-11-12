@@ -35,12 +35,20 @@ Les avis sont désormais lus uniquement dans Supabase. Une panne de Supabase ren
 2. Dans **Authentication → Settings / Security and Protection**, activer la protection CAPTCHA (hCaptcha ou Cloudflare Turnstile) si vous souhaitez aussi limiter les demandes de liens de connexion automatisées. **Attention :** le CAPTCHA doit également être intégré au formulaire du site avec un jeton valide ; ne l'activer qu'après cette intégration, sinon les connexions par e-mail échoueront. Sans CAPTCHA, les quotas d'envoi de mails Supabase et la liste des membres autorisés protègent la publication, mais pas totalement la création de comptes.
 3. Pour empêcher la création de comptes non autorisés, vous pouvez désactiver les inscriptions publiques dans **Authentication → Providers → Email** et créer/inviter les joueurs à l'avance depuis Supabase. **Attention :** cette option nécessite d'inviter chaque nouveau joueur côté administration avant son premier lien magique. Ne pas désactiver les inscriptions tant que les joueurs ne sont pas créés.
 
-Lorsqu'un nouveau personnage est ajouté au manifeste GitHub, ajouter aussi son identifiant dans `opinion_characters` depuis le SQL Editor avant de permettre les avis sur sa fiche :
+## Synchronisation automatique des nouveaux personnages
 
-```sql
-insert into public.opinion_characters(character_id)
-values ('contact:nouveau-personnage')
-on conflict do nothing;
-```
+Le dépôt inclut [GitHub Actions](../.github/workflows/sync-opinion-characters.yml). À chaque modification de `index-personnages.json` sur `main`, l'action enregistre automatiquement tous les `metadataKey` du manifeste dans `opinion_characters`.
+
+**Configuration unique, réservée à l'administrateur :**
+
+1. Ouvrir GitHub → dépôt → **Settings → Secrets and variables → Actions → New repository secret**.
+2. Créer `SUPABASE_URL` avec `https://alzcnmmxumcqiermylik.supabase.co`.
+3. Créer `SUPABASE_SERVICE_ROLE_KEY` avec la clé **service_role** (ou une clé secrète équivalente autorisée) depuis Supabase → **Project Settings → API Keys**. Ne jamais la mettre dans le code, dans le navigateur ou dans un fichier public.
+4. Ouvrir **Actions → Synchroniser les personnages vers Supabase → Run workflow** pour le premier lancement. Vérifier que le job est vert.
+
+L'action ajoute les identifiants manquants et conserve les anciens, afin de ne pas casser des avis existants. La suppression d'un personnage n'efface donc pas automatiquement son autorisation ni ses avis ; cette opération reste volontairement manuelle.
+
+**Important :** ajouter un membre de l'équipe qui peut **écrire** des avis demande toujours de lui associer son adresse email dans `opinion_members`. La synchronisation ne gère que les fiches **qui peuvent recevoir** des avis.
+
 
 Le script de sécurité doit être appliqué côté Supabase : sa seule présence dans GitHub ne protège pas la base.
