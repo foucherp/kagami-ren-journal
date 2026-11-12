@@ -387,6 +387,14 @@
       "metadataKey": null,
       "image": "images/Unknown 5.jpeg",
       "legacyPath": "PNJ/S01e02-Unknown 5-Shadowrunner.jpeg"
+    },
+    {
+      "name": "Coldline",
+      "role": "",
+      "kind": "silk",
+      "episode": null,
+      "metadataKey": "contact:coldline",
+      "image": "images/JohnDoe.jpeg"
     }
   ]
 }
