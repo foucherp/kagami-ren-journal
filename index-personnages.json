@@ -6,7 +6,7 @@
       "role": "Samouraï des rues",
       "kind": "team",
       "episode": null,
-      "metadataKey": "PJ/Team-Makoto-Samourai.jpeg",
+      "metadataKey": "team:makoto",
       "image": "images/Makoto.jpeg",
       "legacyPath": "PJ/Team-Makoto-Samourai.jpeg"
     },
@@ -15,7 +15,7 @@
       "role": "Expert en démolition",
       "kind": "team",
       "episode": null,
-      "metadataKey": "PJ/Team-Naphria-Expert en démolition.jpeg",
+      "metadataKey": "team:naphria",
       "image": "images/Naphria.jpeg",
       "legacyPath": "PJ/Team-Naphria-Expert en démolition.jpeg"
     },
@@ -24,7 +24,7 @@
       "role": "Rigger",
       "kind": "team",
       "episode": null,
-      "metadataKey": "PJ/Team-Plurk-Rigger.jpeg",
+      "metadataKey": "team:plurk",
       "image": "images/Plurk.jpeg",
       "legacyPath": "PJ/Team-Plurk-Rigger.jpeg"
     },
@@ -33,7 +33,7 @@
       "role": "Face / Négociatrice",
       "kind": "team",
       "episode": null,
-      "metadataKey": "PJ/Team-Silk-Face.jpeg",
+      "metadataKey": "team:silk",
       "image": "images/Silk.jpeg",
       "legacyPath": "PJ/Team-Silk-Face.jpeg"
     },
@@ -42,7 +42,7 @@
       "role": "Gunman",
       "kind": "team",
       "episode": null,
-      "metadataKey": "PJ/Team-Vesper-Gunman.jpeg",
+      "metadataKey": "team:vesper",
       "image": "images/Vesper.jpeg",
       "legacyPath": "PJ/Team-Vesper-Gunman.jpeg"
     },
@@ -150,7 +150,7 @@
       "role": "Fixer",
       "kind": "common",
       "episode": "S01e00",
-      "metadataKey": "contact:cassandra",
+      "metadataKey": "common:cassandra",
       "image": "images/Cassandra.jpeg",
       "legacyPath": "PNJ/S01e00-Cassandra-Fixer.jpeg"
     },
