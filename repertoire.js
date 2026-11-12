@@ -55,6 +55,16 @@ if(!['team','common'].includes(p.kind)){const ratings=[['RÉSEAU',i.reseau],['LO
 head.append(facts);card.append(head);section(card,'INFORMATIONS CONNUES',i.description||'Inconnu');const merged=opinionApi?opinionApi.merge(p,{}):{};
 for(const [author,opinion] of Object.entries(merged)){if(typeof opinion!=='string'||!opinion.trim())continue;const member=manifest.personnages?.find(x=>x.kind==='team'&&normalize(x.name)===normalize(author));section(card,'AVIS DE '+(member?.name||author).toLocaleUpperCase('fr'),opinion,'person-opinion')}
 
+const actions=el('div','contact-action-bar');
+if(p.kind!=='team'&&p.kind!=='common'&&p.metadataKey?.startsWith('contact:')&&window.RunnerContacts){
+ const edit=el('button','opinion-button','✎ MODIFIER CE CONTACT');
+ edit.type='button';edit.onclick=()=>window.RunnerContacts.openEditor(p.kind,p,()=>location.reload());
+ actions.append(edit);
+}
+if(opinionApi)opinionApi.addButton(actions,p,merged,()=>{
+ const opened=card.parentElement;
+ if(opened){const fresh=cardFn(p);card.replaceWith(fresh)}
+});
 if(i.premiere_apparition&&/^VESPER_\d{3,}$/.test(i.premiere_apparition)){const sec=el('section','person-section');sec.append(el('h4','','PREMIÈRE APPARITION'));const a=el('a','',i.premiere_apparition);a.href='archive.html?id='+encodeURIComponent(i.premiere_apparition);sec.append(a);card.append(sec)}if(actions.childElementCount)card.append(actions);return card}
 const cardFn=card;
 function row(p,globalSearch=false){const wrap=el('div','person-row'),btn=el('button','npc');btn.type='button';btn.setAttribute('aria-expanded','false');btn.append(el('span','npc-name',p.name),el('span','npc-role',p.role));if(globalSearch){const label=profiles.find(([id])=>id===p.kind)?.[1]||p.kind;btn.append(el('span','npc-category',p.kind==='team'?'TEAM':p.kind==='common'?'COMMUN':label.replace('CONTACTS ','CONTACT ')))}btn.onclick=()=>{const previous=wrap.querySelector('.person-card');if(previous){previous.remove();btn.setAttribute('aria-expanded','false');return}const container=wrap.parentElement;container.querySelectorAll('.person-card').forEach(n=>n.remove());container.querySelectorAll('.npc[aria-expanded=true]').forEach(n=>n.setAttribute('aria-expanded','false'));wrap.append(card(p));btn.setAttribute('aria-expanded','true')};wrap.append(btn);return wrap}
