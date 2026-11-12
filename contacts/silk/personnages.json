@@ -1,1 +1,15 @@
-{}
+{
+  "contact:coldline": {
+    "nom": "Coldline",
+    "role": "",
+    "identite_civile": "",
+    "metatype": "",
+    "affiliation": "",
+    "statut": "",
+    "description": "",
+    "avis": "",
+    "premiere_apparition": null,
+    "reseau": null,
+    "loyaute": null
+  }
+}
