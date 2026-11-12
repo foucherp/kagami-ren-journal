@@ -7,18 +7,40 @@ const el=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.classNam
 // Le manifeste contient désormais toutes les fiches et les chemins des portraits.
 async function json(path){try{const r=await fetch(path,{cache:'no-store'});return r.ok?await r.json():{}}catch{return {}}}
 const [manifest,data]=await Promise.all([json('index-personnages.json'),json('personnages.json')]);
+// Lecture prioritaire de Supabase ; retour aux JSON si la base est indisponible.
+// Les avis utilisent les metadataKey historiques, inchangés.
+async function databasePeople(){
+ if(!window.supabase?.createClient)return null;
+ try{
+  const client=window.supabase.createClient('https://alzcnmmxumcqiermylik.supabase.co','sb_publishable_jqzqRJzA-Bj5p7d_T7OMnw_h9hlzsV2',{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
+  const {data:rows,error}=await client.from('characters').select('character_id,name,role,kind,episode,image,legacy_path,info,image_storage_path').order('name');
+  if(error||!rows?.length)throw error||new Error('Table vide');
+  const ids=new Set(rows.map(r=>r.character_id));
+  if((manifest.personnages||[]).some(p=>!ids.has(p.metadataKey)))throw new Error('Migration incomplète');
+  return rows.map(r=>({
+   name:r.info?.nom||r.name,role:r.info?.role||r.role||'',kind:r.kind,episode:r.episode,
+   metadataKey:r.character_id,path:r.image||'',legacyPath:r.legacy_path||'',
+   url:r.image_storage_path?client.storage.from('character-portraits').getPublicUrl(r.image_storage_path).data.publicUrl:encodeURI(r.image||'images/JohnDoe.jpeg'),
+   info:r.info||{}
+  }));
+ }catch(e){console.warn('Lecture Supabase indisponible, utilisation des fichiers JSON :',e);return null}
+}
+const dbPeople=await databasePeople();
 let active=new URLSearchParams(location.search).get('tab')||'team';
 if(!profiles.some(p=>p[0]===active))active='team';
 const people=[];
 try{
-const contactIds=[...new Set((manifest.personnages||[]).filter(p=>p.kind!=='team'&&p.kind!=='common').map(p=>p.kind))];
+const contactIds=[...new Set((dbPeople||manifest.personnages||[]).filter(p=>p.kind!=='team'&&p.kind!=='common').map(p=>p.kind))];
 for(const id of contactIds)if(!profiles.some(p=>p[0]===id))profiles.push([id,'CONTACTS '+id.toUpperCase()]);
-const contactMetadata=await Promise.all(contactIds.map(id=>manifest.personnages?.some(p=>p.kind===id)?json('contacts/'+id+'/personnages.json'):Promise.resolve({})));
-for(const item of manifest.personnages||[]){
- const ownerIndex=contactIds.indexOf(item.kind);
- const metadata=ownerIndex>=0?contactMetadata[ownerIndex]:data;
- const info=metadata[item.metadataKey]||metadata[item.legacyPath]||metadata[item.image]||{};
- people.push({name:info.nom||item.name,role:info.role||item.role,path:item.image,legacyPath:item.legacyPath,url:encodeURI(item.image),kind:item.kind,metadataKey:item.metadataKey,episode:item.episode||null,info});
+if(dbPeople){people.push(...dbPeople)}
+else {
+ const contactMetadata=await Promise.all(contactIds.map(id=>manifest.personnages?.some(p=>p.kind===id)?json('contacts/'+id+'/personnages.json'):Promise.resolve({})));
+ for(const item of manifest.personnages||[]){
+  const ownerIndex=contactIds.indexOf(item.kind);
+  const metadata=ownerIndex>=0?contactMetadata[ownerIndex]:data;
+  const info=metadata[item.metadataKey]||metadata[item.legacyPath]||metadata[item.image]||{};
+  people.push({name:info.nom||item.name,role:info.role||item.role,path:item.image,legacyPath:item.legacyPath,url:encodeURI(item.image),kind:item.kind,metadataKey:item.metadataKey,episode:item.episode||null,info});
+ }
 }
 people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
 const opinionApi=window.RunnerOpinions?await window.RunnerOpinions.init(manifest):null;
