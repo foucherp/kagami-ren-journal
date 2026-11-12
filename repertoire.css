@@ -74,3 +74,9 @@
 .contact-editor .contact-field{display:flex;flex-direction:column;gap:7px;margin:14px 0;font:11px monospace;letter-spacing:.06em;color:#d9b9bf}
 .contact-editor .contact-field input,.contact-editor .contact-field textarea{width:100%;box-sizing:border-box;padding:11px;background:#101115;border:1px solid #51434b;color:#fff;font:14px sans-serif}
 .contact-editor .contact-field textarea{min-height:120px;resize:vertical}
+
+/* Actions réunies au pied de chaque fiche */
+.directory-ui .contact-action-bar{display:flex;align-items:center;flex-wrap:wrap;gap:10px;border-top:1px solid var(--card-border);padding-top:16px;margin-top:18px}
+.directory-ui .contact-action-bar .opinion-actions{margin:0;padding:0;border:0}
+.directory-ui .contact-create-bar{display:flex;justify-content:flex-end;margin:22px 0 6px;padding-top:15px;border-top:1px solid var(--tab-border)}
+@media(max-width:600px){.directory-ui .contact-action-bar .opinion-button{width:100%}.directory-ui .contact-action-bar .opinion-actions{flex:1 1 100%}.directory-ui .contact-create-bar .opinion-button{width:100%}}
