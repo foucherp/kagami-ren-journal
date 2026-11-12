@@ -43,11 +43,10 @@ for(const [k,v] of fields){if(v){dl.append(element('dt','',k),element('dd','',v)
 if(dl.children.length)facts.append(dl);head.append(facts);card.append(head);
 section(card,'INFORMATIONS CONNUES',i.description||'Inconnu');
 section(card,'AVIS DE VESPER',i.avis||'Inconnu','person-opinion');
-if(Array.isArray(i.archives)&&i.archives.length){
-const s=element('section','person-section');s.append(element('h4','','ARCHIVES ASSOCIÉES'));
-const links=element('div','person-links');
-for(const id of i.archives){if(!/^VESPER_\d{3,}$/.test(id))continue;const a=element('a','',id);a.href='archive.html?id='+encodeURIComponent(id);links.append(a)}
-if(links.children.length){s.append(links);card.append(s)}
+if(i.premiere_apparition&&/^VESPER_\d{3,}$/.test(i.premiere_apparition)){
+const sec=element('section','person-section');sec.append(element('h4','','PREMIÈRE APPARITION'));
+const a=element('a','',i.premiere_apparition);a.href='archive.html?id='+encodeURIComponent(i.premiere_apparition);
+sec.append(a);card.append(sec);
 }
 return card;
 }
