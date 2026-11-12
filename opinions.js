@@ -5,13 +5,13 @@ const URL='https://alzcnmmxumcqiermylik.supabase.co';
 const KEY='sb_publishable_jqzqRJzA-Bj5p7d_T7OMnw_h9hlzsV2';
 const supabase=window.supabase?.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const identity=p=>p.kind+':'+(p.info?.nom?norm(p.info.nom):norm(p.name));
+const identity=p=>p.metadataKey||p.kind+':'+norm(p.name);
 let records=new Map(),membership=null,session=null,team=[];
 const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e};
 function modal(){let dialog=document.getElementById('opinion-dialog');if(!dialog){dialog=el('dialog','opinion-dialog');document.body.append(dialog);dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()})}dialog.replaceChildren();return dialog}
 function message(d,text,isError=false){const node=el('p','opinion-message'+(isError?' error':''),text);d.append(node);return node}
 function open(d){if(typeof d.showModal==='function')d.showModal();else d.setAttribute('open','')}
-async function refresh(){if(!supabase)return;const {data:{session:s}}=await supabase.auth.getSession();session=s;membership=null;if(s){const {data}=await supabase.from('opinion_members').select('member_id').eq('user_id',s.user.id).maybeSingle();membership=data?.member_id||null}const {data,error}=await supabase.from('character_opinions').select('character_id,member_id,body');if(!error)records=new Map((data||[]).map(r=>[r.character_id+'|'+r.member_id,r.body]))}
+async function refresh(){if(!supabase)return;const {data:{session:s}}=await supabase.auth.getSession();session=s;membership=null;if(s){const {data}=await supabase.from('opinion_members').select('member_id').eq('email',s.user.email.toLowerCase()).maybeSingle();membership=data?.member_id||null}const {data,error}=await supabase.from('character_opinions').select('character_id,member_id,body');if(!error)records=new Map((data||[]).map(r=>[r.character_id+'|'+r.member_id,r.body]))}
 function merged(p,original){const out={...original};for(const [key,body] of records){const split=key.lastIndexOf('|');if(key.slice(0,split)===identity(p))out[key.slice(split+1)]=body}return out}
 function addButton(card,p,opinions,redraw){const box=el('div','opinion-actions');const button=el('button','opinion-button','✎ '+(membership&&opinions[membership]?'MODIFIER MON AVIS':'DONNER MON AVIS'));button.type='button';button.onclick=()=>edit(p,opinions,redraw);box.append(button);card.append(box)}
 async function edit(p,opinions,redraw){const d=modal();d.append(el('h3','', 'AVIS // '+p.name));if(!supabase){message(d,'Module de connexion indisponible. Rechargez la page.',true);open(d);return}
