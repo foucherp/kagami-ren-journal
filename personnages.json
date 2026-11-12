@@ -8,7 +8,7 @@
     "premiere_apparition": "VESPER_002"
   },
   "PJ/Team-Silk-Face.jpeg": {
-    "identite_civile": "Alyssa Argent",
+    "identite_civile": "Kagami Aya (鏡 綾)",
     "metatype": "Elfe",
     "affiliation": "TEAM",
     "statut": "Active",
@@ -19,7 +19,7 @@
     "premiere_apparition": "VESPER_001"
   },
   "PJ/Team-Vesper-Gunman.jpeg": {
-    "identite_civile": "Kagami Ren",
+    "identite_civile": "Kagami Ren (鏡 蓮)",
     "metatype": "Elfe",
     "affiliation": "TEAM",
     "statut": "Actif",
@@ -46,7 +46,7 @@
     "premiere_apparition": null
   },
   "contact:ichida-takako": {
-    "identite_civile": "Ichida Takako",
+    "identite_civile": "Ichida Takako (市田 貴子)",
     "metatype": "Elfe",
     "age": "45 ans",
     "affiliation": "Filiale de Shiawase",
@@ -110,7 +110,7 @@
   "PNJ/Contact-Naoko-Personne à charge.jpeg": {
     "nom": "Naoko Mizuhara",
     "role": "Scientifique / Personne à charge",
-    "identite_civile": "Naoko Mizuhara",
+    "identite_civile": "Naoko Mizuhara (水原 直子)",
     "metatype": "Elfe",
     "affiliation": "Anciennement Kagamori Biosystems (projet Gemini)",
     "statut": "Active, sous la protection de Vesper",
