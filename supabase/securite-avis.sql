@@ -60,6 +60,15 @@ insert into public.opinion_characters(character_id) values
   ('contact:coldline')
 on conflict (character_id) do nothing;
 
+-- Préserver les identifiants historiques qui possèdent déjà des avis.
+-- Certains anciens avis utilisent une clé différente de celle du manifeste actuel.
+-- Ces identifiants sont ajoutés uniquement à partir des données déjà présentes,
+-- jamais à partir d'une requête publique.
+insert into public.opinion_characters(character_id)
+select distinct character_id
+from public.character_opinions
+on conflict (character_id) do nothing;
+
 -- Une FK interdit toute création d'avis sur un identifiant inconnu.
 -- Si la base contient déjà des identifiants étrangers, corriger ces lignes avant
 -- d'activer la contrainte (aucune suppression automatique).
