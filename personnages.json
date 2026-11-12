@@ -68,7 +68,8 @@
     "statut": "Actif",
     "description": "Fixer raffinée et professionnelle, Cassandra a notamment confié un contrat à l'équipe.\n\nSelon certaines informations, elle aurait autrefois travaillé pour une corporation, peut-être comme avocate. Elle aurait ensuite disparu pendant deux ans avant de refaire surface dans les Ombres.\n\nElle exerce son activité de fixer depuis environ quatre ans, travaillant très majoritairement avec le milieu des shadowrunners.",
     "avis": {
-      "vesper": "Cassandra possède cette qualité rare : elle sait que le professionnalisme n'interdit ni l'élégance ni les bonnes manières. J'apprécie particulièrement de travailler avec elle. Quant à son regard… disons qu'il m'arrive d'oublier, l'espace d'un instant, que nous sommes censés parler affaires. Une distraction que je ne m'autorise pas souvent."
+      "vesper": "Cassandra possède cette qualité rare : elle sait que le professionnalisme n'interdit ni l'élégance ni les bonnes manières. J'apprécie particulièrement de travailler avec elle. Quant à son regard… disons qu'il m'arrive d'oublier, l'espace d'un instant, que nous sommes censés parler affaires. Une distraction que je ne m'autorise pas souvent.",
+      "silk": "Je n'ai pas bien compris ce que mon frère pouvait lui trouver."
     },
     "premiere_apparition": "VESPER_002"
   }
