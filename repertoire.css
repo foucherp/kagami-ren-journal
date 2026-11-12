@@ -53,3 +53,18 @@
 .directory-ui .directory-toolbar .section-title{flex:1 1 auto;min-width:0;margin:0}
 .directory-ui .directory-toolbar .directory-search{flex:0 1 340px;min-width:210px;width:auto;margin:0;padding:11px 13px;font-size:11px}
 @media(max-width:760px){.directory-ui .directory-toolbar{flex-wrap:wrap;gap:12px}.directory-ui .directory-toolbar .section-title{flex:1 1 100%}.directory-ui .directory-toolbar .directory-search{flex:1 1 100%;min-width:0}}
+
+/* Avis collaboratifs */
+.directory-ui .opinion-actions{border-top:1px solid var(--card-border);margin-top:18px;padding-top:15px}
+.opinion-button{background:#5e303a;border:1px solid #bd6c78;color:#fff;padding:11px 15px;font:12px monospace;letter-spacing:.06em;cursor:pointer}
+.opinion-button:hover{background:#79404a}.opinion-button:disabled{opacity:.55;cursor:wait}
+.opinion-button.secondary{background:#242228;border-color:#61565d}
+.opinion-dialog{background:#17161d;color:#eee;border:1px solid #a85a67;box-shadow:0 22px 65px #000b;width:min(520px,calc(100vw - 44px));max-height:85vh;box-sizing:border-box;padding:24px}
+.opinion-dialog::backdrop{background:#050509c9}
+.opinion-dialog h3{margin:0 0 16px;color:#e8b5bc;font:16px monospace}
+.opinion-dialog p{font:13px/1.6 system-ui,sans-serif}
+.opinion-dialog .opinion-author{color:#c7b7bf}
+.opinion-dialog .opinion-textarea,.opinion-dialog input{display:block;width:100%;box-sizing:border-box;background:#0d0d12;color:#f3eff2;border:1px solid #6b515b;padding:12px;font:14px/1.5 system-ui,sans-serif;margin:12px 0}
+.opinion-dialog .opinion-textarea{resize:vertical;min-height:170px}
+.opinion-dialog .opinion-controls{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.opinion-dialog .opinion-message{color:#a8d7bd}.opinion-dialog .opinion-message.error{color:#f3a0a8}
