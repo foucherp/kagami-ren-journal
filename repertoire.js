@@ -44,6 +44,8 @@ else {
 }
 people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
 const opinionApi=window.RunnerOpinions?await window.RunnerOpinions.init(manifest):null;
+let authorizedMember=null;
+try{authorizedMember=await window.RunnerContacts?.member()||null}catch(e){console.warn('Droits du carnet indisponibles :',e)}
 const params=new URLSearchParams(location.search);const selected=params.get('person');const focused=params.get('focus');
 if(selected||focused){const p=people.find(x=>focused?x.metadataKey===focused:(x.path===selected||x.legacyPath===selected));if(p){active=p.kind;if(selected)search.value=p.name}}
 function section(parent,title,value,cls){if(!value)return;const s=el('section','person-section');s.append(el('h4','',title),el('p',cls||'',value));parent.append(s)}
@@ -56,7 +58,7 @@ head.append(facts);card.append(head);section(card,'INFORMATIONS CONNUES',i.descr
 for(const [author,opinion] of Object.entries(merged)){if(typeof opinion!=='string'||!opinion.trim())continue;const member=manifest.personnages?.find(x=>x.kind==='team'&&normalize(x.name)===normalize(author));section(card,'AVIS DE '+(member?.name||author).toLocaleUpperCase('fr'),opinion,'person-opinion')}
 
 const actions=el('div','contact-action-bar');
-if(p.kind!=='team'&&p.kind!=='common'&&p.metadataKey?.startsWith('contact:')&&window.RunnerContacts){
+if(authorizedMember===p.kind&&p.kind!=='team'&&p.kind!=='common'&&p.metadataKey?.startsWith('contact:')&&window.RunnerContacts){
  const edit=el('button','opinion-button','✎ MODIFIER CE CONTACT');
  edit.type='button';edit.onclick=()=>window.RunnerContacts.openEditor(p.kind,p,()=>{const u=new URL(location.href);u.searchParams.delete('person');u.searchParams.set('tab',p.kind);u.searchParams.set('focus',p.metadataKey);location.assign(u.href)});
  actions.append(edit);
@@ -70,7 +72,7 @@ const cardFn=card;
 function row(p,globalSearch=false){const wrap=el('div','person-row'),btn=el('button','npc');btn.type='button';btn.setAttribute('aria-expanded','false');btn.append(el('span','npc-name',p.name),el('span','npc-role',p.role));if(globalSearch){const label=profiles.find(([id])=>id===p.kind)?.[1]||p.kind;btn.append(el('span','npc-category',p.kind==='team'?'TEAM':p.kind==='common'?'COMMUN':label.replace('CONTACTS ','CONTACT ')))}btn.onclick=()=>{const previous=wrap.querySelector('.person-card');if(previous){previous.remove();btn.setAttribute('aria-expanded','false');return}const container=wrap.parentElement;container.querySelectorAll('.person-card').forEach(n=>n.remove());container.querySelectorAll('.npc[aria-expanded=true]').forEach(n=>n.setAttribute('aria-expanded','false'));wrap.append(card(p));btn.setAttribute('aria-expanded','true')};wrap.append(btn);return wrap}
 function render(){tabs.replaceChildren();for(const [id,label] of profiles){const b=el('button','directory-tab',label);b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-selected',String(active===id));b.onclick=()=>{active=id;search.value='';history.replaceState(null,'',location.pathname+'?tab='+id);render()};tabs.append(b)}
 root.replaceChildren();const q=normalize(search.value.trim());if(q){const results=people.filter(p=>[p.name,p.role,p.info.affiliation,p.info.identite_civile,p.kind,profiles.find(([id])=>id===p.kind)?.[1],p.episode].some(v=>normalize(v).includes(q)));total.textContent=results.length+' RÉSULTAT'+(results.length>1?'S':'');if(!results.length){root.append(el('p','directory-state','AUCUN RÉSULTAT DANS LES RÉPERTOIRES'));return}results.forEach(p=>root.append(row(p,true)));return}const shown=people.filter(p=>p.kind===active);total.textContent=shown.length+' PERSONNAGE'+(shown.length>1?'S':'');
-if(!shown.length){root.append(el('p','directory-state',q?'AUCUN RÉSULTAT':'AUCUNE FICHE DANS CET ONGLET'));if(active!=='team'&&active!=='common'&&window.RunnerContacts){const bar=el('div','contact-create-bar'),add=el('button','opinion-button','＋ CRÉER UN CONTACT');add.type='button';add.onclick=()=>window.RunnerContacts.openEditor(active,null,()=>location.reload());bar.append(add);root.append(bar)}return}
+if(!shown.length){root.append(el('p','directory-state',q?'AUCUN RÉSULTAT':'AUCUNE FICHE DANS CET ONGLET'));if(authorizedMember===active&&window.RunnerContacts){const bar=el('div','contact-create-bar'),add=el('button','opinion-button','＋ CRÉER UN CONTACT');add.type='button';add.onclick=()=>window.RunnerContacts.openEditor(active,null,()=>location.reload());bar.append(add);root.append(bar)}return}
 if(active==='common'){const groups=new Map();for(const p of shown){const k=p.episode||'AUTRES';if(!groups.has(k))groups.set(k,[]);groups.get(k).push(p)}for(const [code,group] of [...groups].sort((a,b)=>a[0].localeCompare(b[0], 'fr',{numeric:true}))){const details=el('details','episode'),summary=el('summary'),list=el('div','episode-list');summary.append(el('span','',code),el('span','directory-count',group.length+' PERSONNAGE'+(group.length>1?'S':'')));group.forEach(p=>list.append(row(p)));details.append(summary,list);root.append(details)}}
 else shown.forEach(p=>root.append(row(p)));
 if(active!=='team'&&active!=='common'&&window.RunnerContacts){
