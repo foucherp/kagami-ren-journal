@@ -1,6 +1,6 @@
 # Avis collaboratifs : mise en service
 
-Le répertoire utilise **Supabase** pour les nouveaux avis. Les avis existants restent dans les JSON, sans perte ; un avis publié sur Supabase prend le dessus pour le même auteur. Les autres champs et portraits restent hébergés sur GitHub Pages.
+Le répertoire utilise **Supabase comme source unique des avis**. Les avis initiaux ont été préparés pour import via `import-avis-initiaux.sql`. Les fichiers JSON ne contiennent plus d'avis. Une sauvegarde intégrale est conservée dans `sauvegarde-avis-avant-migration.json`. Les autres champs et portraits restent hébergés sur GitHub Pages.
 
 ## Mise en service (administrateur, une seule fois)
 
@@ -27,4 +27,4 @@ La clé `sb_publishable_` est publique par conception. Les règles RLS n'autoris
 
 Les nouveaux membres sont reconnus dans l'interface via les entrées `kind: "team"` de `index-personnages.json`. Leur identifiant d'auteur correspond à la version normalisée de leur nom (ex. `silk`, `vesper`). Leur accès à la publication exige seulement une association email → identifiant dans Supabase.
 
-Attention : si un avis existant dans un JSON est remplacé par un avis Supabase, le texte JSON reste présent comme archive et n'est pas effacé. Supprimer un avis nécessite une action d'administration SQL, non proposée dans l'interface.
+Les avis sont désormais lus uniquement dans Supabase. Une panne de Supabase rend les avis temporairement indisponibles, sans toucher aux autres informations des fiches. Supprimer un avis nécessite une action d'administration SQL, non proposée dans l'interface.
