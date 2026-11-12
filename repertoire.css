@@ -47,3 +47,9 @@
 .directory-ui .npc:has(.npc-category){display:grid;grid-template-columns:minmax(120px,1.2fr) minmax(120px,1fr) minmax(110px,.8fr);align-items:center}
 .directory-ui .npc:has(.npc-category) .npc-category{text-align:right}
 @media(max-width:650px){.directory-ui .npc:has(.npc-category){grid-template-columns:1fr auto;row-gap:6px}.directory-ui .npc:has(.npc-category) .npc-role{grid-column:1;grid-row:2}.directory-ui .npc:has(.npc-category) .npc-category{grid-column:2;grid-row:1 / span 2}}
+
+/* Barre d'index : recherche globale hors des onglets, alignée sur le titre. */
+.directory-ui .directory-toolbar{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:23px}
+.directory-ui .directory-toolbar .section-title{flex:1 1 auto;min-width:0;margin:0}
+.directory-ui .directory-toolbar .directory-search{flex:0 1 340px;min-width:210px;width:auto;margin:0;padding:11px 13px;font-size:11px}
+@media(max-width:760px){.directory-ui .directory-toolbar{flex-wrap:wrap;gap:12px}.directory-ui .directory-toolbar .section-title{flex:1 1 100%}.directory-ui .directory-toolbar .directory-search{flex:1 1 100%;min-width:0}}
