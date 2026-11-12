@@ -28,3 +28,19 @@ La clé `sb_publishable_` est publique par conception. Les règles RLS n'autoris
 Les nouveaux membres sont reconnus dans l'interface via les entrées `kind: "team"` de `index-personnages.json`. Leur identifiant d'auteur correspond à la version normalisée de leur nom (ex. `silk`, `vesper`). Leur accès à la publication exige seulement une association email → identifiant dans Supabase.
 
 Les avis sont désormais lus uniquement dans Supabase. Une panne de Supabase rend les avis temporairement indisponibles, sans toucher aux autres informations des fiches. Supprimer un avis nécessite une action d'administration SQL, non proposée dans l'interface.
+
+## Protection contre les robots (à activer après l'importation)
+
+1. Exécuter [securite-avis.sql](securite-avis.sql) dans le SQL Editor de Supabase. Le script crée la liste blanche des **44 personnages**, interdit les avis sur des identifiants inconnus et limite les écritures à **une par joueur toutes les 60 secondes**, y compris en cas de requêtes API directes. Le contrôle se fait en base et ne supprime pas les avis existants.
+2. Dans **Authentication → Settings / Security and Protection**, activer la protection CAPTCHA (hCaptcha ou Cloudflare Turnstile) si vous souhaitez aussi limiter les demandes de liens de connexion automatisées. **Attention :** le CAPTCHA doit également être intégré au formulaire du site avec un jeton valide ; ne l'activer qu'après cette intégration, sinon les connexions par e-mail échoueront. Sans CAPTCHA, les quotas d'envoi de mails Supabase et la liste des membres autorisés protègent la publication, mais pas totalement la création de comptes.
+3. Pour empêcher la création de comptes non autorisés, vous pouvez désactiver les inscriptions publiques dans **Authentication → Providers → Email** et créer/inviter les joueurs à l'avance depuis Supabase. **Attention :** cette option nécessite d'inviter chaque nouveau joueur côté administration avant son premier lien magique. Ne pas désactiver les inscriptions tant que les joueurs ne sont pas créés.
+
+Lorsqu'un nouveau personnage est ajouté au manifeste GitHub, ajouter aussi son identifiant dans `opinion_characters` depuis le SQL Editor avant de permettre les avis sur sa fiche :
+
+```sql
+insert into public.opinion_characters(character_id)
+values ('contact:nouveau-personnage')
+on conflict do nothing;
+```
+
+Le script de sécurité doit être appliqué côté Supabase : sa seule présence dans GitHub ne protège pas la base.
