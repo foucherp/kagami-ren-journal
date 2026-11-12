@@ -44,8 +44,8 @@ else {
 }
 people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
 const opinionApi=window.RunnerOpinions?await window.RunnerOpinions.init(manifest):null;
-const selected=new URLSearchParams(location.search).get('person');
-if(selected){const p=people.find(x=>(x.path===selected||x.legacyPath===selected));if(p){active=p.kind;search.value=p.name}}
+const params=new URLSearchParams(location.search);const selected=params.get('person');const focused=params.get('focus');
+if(selected||focused){const p=people.find(x=>focused?x.metadataKey===focused:(x.path===selected||x.legacyPath===selected));if(p){active=p.kind;if(selected)search.value=p.name}}
 function section(parent,title,value,cls){if(!value)return;const s=el('section','person-section');s.append(el('h4','',title),el('p',cls||'',value));parent.append(s)}
 function card(p){const card=el('div','person-card'),head=el('div','person-head'),img=el('img');img.src=p.url||'images/JohnDoe.jpeg';img.onerror=()=>{if(!img.src.endsWith('/JohnDoe.jpeg'))img.src='images/JohnDoe.jpeg'};img.alt='Portrait de '+p.name;img.loading='lazy';head.append(img);
 const facts=el('div','person-facts'),i=p.info||{};facts.append(el('h3','',p.name),el('div','person-role',p.role.toUpperCase()));
@@ -58,7 +58,7 @@ for(const [author,opinion] of Object.entries(merged)){if(typeof opinion!=='strin
 const actions=el('div','contact-action-bar');
 if(p.kind!=='team'&&p.kind!=='common'&&p.metadataKey?.startsWith('contact:')&&window.RunnerContacts){
  const edit=el('button','opinion-button','✎ MODIFIER CE CONTACT');
- edit.type='button';edit.onclick=()=>window.RunnerContacts.openEditor(p.kind,p,()=>location.reload());
+ edit.type='button';edit.onclick=()=>window.RunnerContacts.openEditor(p.kind,p,()=>{const u=new URL(location.href);u.searchParams.delete('person');u.searchParams.set('tab',p.kind);u.searchParams.set('focus',p.metadataKey);location.assign(u.href)});
  actions.append(edit);
 }
 if(opinionApi)opinionApi.addButton(actions,p,merged,()=>{
@@ -78,7 +78,7 @@ if(active!=='team'&&active!=='common'&&window.RunnerContacts){
  add.type='button';add.onclick=()=>window.RunnerContacts.openEditor(active,null,()=>location.reload());
  addBar.append(add);root.append(addBar);
 }
-if(selected){const p=shown.find(p=>p.path===selected||p.legacyPath===selected);if(p){const target=[...root.querySelectorAll('.person-row')].find(r=>r.querySelector('.npc-name')?.textContent===p.name);if(target){const parent=target.closest('details');if(parent)parent.open=true;target.querySelector('.npc')?.click()}}}
+if(selected||focused){const p=shown.find(p=>focused?p.metadataKey===focused:(p.path===selected||p.legacyPath===selected));if(p){const target=[...root.querySelectorAll('.person-row')].find(r=>r.querySelector('.npc-name')?.textContent===p.name);if(target){const parent=target.closest('details');if(parent)parent.open=true;target.querySelector('.npc')?.click()}}}
 }
 search.addEventListener('input',render);render();
 }catch(e){root.replaceChildren(el('p','directory-state','RÉPERTOIRE INDISPONIBLE // '+e.message));total.textContent='ERREUR'}
