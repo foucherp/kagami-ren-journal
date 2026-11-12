@@ -33,6 +33,10 @@ const res = await fetch(endpoint, {
   body: JSON.stringify(ids.map(character_id => ({character_id})))
 });
 if (!res.ok) {
-  throw new Error('Échec de la synchronisation Supabase (HTTP ' + res.status + ') : ' + (await res.text()).slice(0, 500));
+  const response = (await res.text()).slice(0, 500);
+  if (res.status === 404 && response.includes('PGRST205') && response.includes('opinion_characters')) {
+    throw new Error('Table opinion_characters absente de Supabase. Exécuter une seule fois supabase/securite-avis.sql dans le SQL Editor de Supabase, puis relancer le workflow.');
+  }
+  throw new Error('Échec de la synchronisation Supabase (HTTP ' + res.status + ') : ' + response);
 }
 console.log(ids.length + ' personnages autorisés dans Supabase. Les anciennes entrées sont conservées pour ne pas casser les avis existants.');
