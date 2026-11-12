@@ -110,7 +110,7 @@ $$;
 revoke all on function public.enforce_opinion_write_limit() from public,anon,authenticated;
 drop trigger if exists enforce_opinion_write_limit on public.character_opinions;
 create trigger enforce_opinion_write_limit
-before insert or update on public.character_opinions
+after insert or update on public.character_opinions
 for each row execute function public.enforce_opinion_write_limit();
 
 -- 3. Bloquer les changements d'auteur ou de personnage lors d'une modification.
