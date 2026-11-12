@@ -7,7 +7,9 @@
     "affiliation": "TEAM",
     "statut": "Actif",
     "description": "Samouraï des rues et membre de l'équipe de Vesper, Makoto est un combattant de peu de mots. Calme, efficace et fiable, il préfère agir plutôt que démontrer ses capacités. Lorsque la situation exige une intervention physique, il répond présent sans discours inutile. Son passé et son équipement restent à préciser.",
-    "avis": "Makoto est un orc de peu de mots. Un homme efficace, fiable, qui ne ressent visiblement aucun besoin de démontrer ses capacités avant de les employer. J'apprécie cette retenue. Quand la situation exige une intervention physique, il agit sans discours inutile. Une certaine forme de sagesse. Je soupçonne néanmoins qu'il cache un sens de l'humour plus développé qu'il ne veut bien le laisser paraître.",
+    "avis": {
+      "vesper": "Makoto est un orc de peu de mots. Un homme efficace, fiable, qui ne ressent visiblement aucun besoin de démontrer ses capacités avant de les employer. J'apprécie cette retenue. Quand la situation exige une intervention physique, il agit sans discours inutile. Une certaine forme de sagesse. Je soupçonne néanmoins qu'il cache un sens de l'humour plus développé qu'il ne veut bien le laisser paraître."
+    },
     "premiere_apparition": "VESPER_002"
   },
   "team:naphria": {
@@ -18,7 +20,9 @@
     "affiliation": "TEAM",
     "statut": "Active",
     "description": "Naphria est une spécialiste des explosifs qui travaille régulièrement avec Vesper et son équipe.\n\nPrécise et réfléchie, elle maîtrise suffisamment son domaine pour employer la force nécessaire sans provoquer de dégâts superflus. Elle privilégie les interventions calculées plutôt que les démonstrations spectaculaires.\n\nPour Naphria, les explosifs sont avant tout des outils dont l'efficacité dépend de la manière dont on les utilise.",
-    "avis": "Naphria possède une conception assez particulière de la résolution des problèmes. Là où certains envisagent la négociation, le contournement ou la patience, elle sait reconnaître les situations dans lesquelles une quantité judicieusement calculée d'explosifs constitue une réponse parfaitement raisonnable.\n\nCe qui pourrait sembler inquiétant chez une personne moins compétente devient, entre ses mains, une véritable démonstration de précision.\n\nJ'apprécie les gens qui maîtrisent leur art. Et je dois reconnaître que Naphria maîtrise le sien avec une élégance toute particulière.",
+    "avis": {
+      "vesper": "Naphria possède une conception assez particulière de la résolution des problèmes. Là où certains envisagent la négociation, le contournement ou la patience, elle sait reconnaître les situations dans lesquelles une quantité judicieusement calculée d'explosifs constitue une réponse parfaitement raisonnable.\n\nCe qui pourrait sembler inquiétant chez une personne moins compétente devient, entre ses mains, une véritable démonstration de précision.\n\nJ'apprécie les gens qui maîtrisent leur art. Et je dois reconnaître que Naphria maîtrise le sien avec une élégance toute particulière."
+    },
     "premiere_apparition": "VESPER_002"
   },
   "team:plurk": {
@@ -29,7 +33,9 @@
     "affiliation": "TEAM",
     "statut": "Actif",
     "description": "Plurk est un troll rigger qui travaille régulièrement aux côtés de Vesper et de son équipe.\n\nMéthodique, attentif et compétent, il possède une capacité particulièrement appréciable dans les Ombres : anticiper les difficultés avant qu'elles ne deviennent de véritables problèmes.\n\nMalgré son apparence imposante, Plurk se distingue avant tout par son sens de l'observation et sa réflexion.\n\nIl possède également un humour assez particulier, que Vesper juge discutable. Silk semble néanmoins trouver quelques ressemblances entre leurs deux façons de plaisanter.",
-    "avis": "Plurk est un professionnel remarquablement compétent. Il possède cette qualité rare qui consiste à prévoir les ennuis avant même que nous ayons eu le temps de nous y précipiter. Une aptitude que je considère comme particulièrement précieuse dans notre métier.\n\nQuoi qu'il en soit, c'est un compagnon fiable, et j'apprécie de travailler avec lui.",
+    "avis": {
+      "vesper": "Plurk est un professionnel remarquablement compétent. Il possède cette qualité rare qui consiste à prévoir les ennuis avant même que nous ayons eu le temps de nous y précipiter. Une aptitude que je considère comme particulièrement précieuse dans notre métier.\n\nQuoi qu'il en soit, c'est un compagnon fiable, et j'apprécie de travailler avec lui."
+    },
     "premiere_apparition": "VESPER_002"
   },
   "team:silk": {
@@ -38,7 +44,9 @@
     "affiliation": "TEAM",
     "statut": "Active",
     "description": "Négociatrice spécialisée dans la persuasion, les relations humaines et l'obtention d'informations. Sœur jumelle de Vesper, avec lequel elle forme un duo complémentaire.",
-    "avis": "Onee-chan possède un talent remarquable pour obtenir des gens ce qu'ils n'avaient aucune intention de lui accorder. Elle prétend parfois que je manque de diplomatie. Je préfère considérer que nous avons simplement des méthodes complémentaires. Nous avons traversé suffisamment de choses ensemble pour que je sache une chose : je lui confierais ma vie sans hésiter. Je ne lui confierais peut-être pas le choix de ma prochaine cravate.",
+    "avis": {
+      "vesper": "Onee-chan possède un talent remarquable pour obtenir des gens ce qu'ils n'avaient aucune intention de lui accorder. Elle prétend parfois que je manque de diplomatie. Je préfère considérer que nous avons simplement des méthodes complémentaires. Nous avons traversé suffisamment de choses ensemble pour que je sache une chose : je lui confierais ma vie sans hésiter. Je ne lui confierais peut-être pas le choix de ma prochaine cravate."
+    },
     "nom": "Silk",
     "role": "Face / Négociatrice",
     "premiere_apparition": "VESPER_001"
@@ -49,7 +57,9 @@
     "affiliation": "TEAM",
     "statut": "Actif",
     "description": "Pistolero adepte spécialisé dans le combat armé et la protection rapprochée. Vesper privilégie la précision, la maîtrise de soi et l'efficacité plutôt que les démonstrations de force. Armé d'un Ares Predator VI, il suit un code d'honneur inspiré du Bushidō, qu'il s'efforce de respecter même dans les Ombres.\n\nCourtois, calme et particulièrement attentif à son apparence, il forme avec Silk, sa sœur jumelle, un duo aux compétences complémentaires. Là où elle privilégie la négociation, il intervient lorsque les arguments ne suffisent plus.",
-    "avis": "Un individu tout à fait recommandable, à ce qu'on m'a dit. Poli, ponctuel, convenablement habillé et capable de résoudre certains désaccords avec une remarquable économie de mots.\n\nOn lui reproche parfois un attachement excessif aux principes, une certaine rigidité et une tendance à considérer qu'une cravate bien nouée constitue déjà un début de civilisation. Je trouve ces critiques particulièrement injustes.\n\nQuant à ses compétences, je préfère laisser les autres en juger. L'autosatisfaction manque singulièrement d'élégance.\n\nIl paraît néanmoins qu'il tire plutôt bien.",
+    "avis": {
+      "vesper": "Un individu tout à fait recommandable, à ce qu'on m'a dit. Poli, ponctuel, convenablement habillé et capable de résoudre certains désaccords avec une remarquable économie de mots.\n\nOn lui reproche parfois un attachement excessif aux principes, une certaine rigidité et une tendance à considérer qu'une cravate bien nouée constitue déjà un début de civilisation. Je trouve ces critiques particulièrement injustes.\n\nQuant à ses compétences, je préfère laisser les autres en juger. L'autosatisfaction manque singulièrement d'élégance.\n\nIl paraît néanmoins qu'il tire plutôt bien."
+    },
     "premiere_apparition": "VESPER_001"
   },
   "common:cassandra": {
@@ -57,7 +67,9 @@
     "affiliation": "Inconnue",
     "statut": "Actif",
     "description": "Fixer raffinée et professionnelle, Cassandra a notamment confié un contrat à l'équipe.\n\nSelon certaines informations, elle aurait autrefois travaillé pour une corporation, peut-être comme avocate. Elle aurait ensuite disparu pendant deux ans avant de refaire surface dans les Ombres.\n\nElle exerce son activité de fixer depuis environ quatre ans, travaillant très majoritairement avec le milieu des shadowrunners.",
-    "avis": "Cassandra possède cette qualité rare : elle sait que le professionnalisme n'interdit ni l'élégance ni les bonnes manières. J'apprécie particulièrement de travailler avec elle. Quant à son regard… disons qu'il m'arrive d'oublier, l'espace d'un instant, que nous sommes censés parler affaires. Une distraction que je ne m'autorise pas souvent.",
+    "avis": {
+      "vesper": "Cassandra possède cette qualité rare : elle sait que le professionnalisme n'interdit ni l'élégance ni les bonnes manières. J'apprécie particulièrement de travailler avec elle. Quant à son regard… disons qu'il m'arrive d'oublier, l'espace d'un instant, que nous sommes censés parler affaires. Une distraction que je ne m'autorise pas souvent."
+    },
     "premiere_apparition": "VESPER_002"
   }
 }
