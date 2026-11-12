@@ -11,7 +11,7 @@ let active=new URLSearchParams(location.search).get('tab')||'team';
 if(!profiles.some(p=>p[0]===active))active='team';
 const people=[];
 try{
-const contactIds=['silk','makoto','plurk','naphria'];
+const contactIds=['vesper','silk','makoto','plurk','naphria'];
 const contactMetadata=await Promise.all(contactIds.map(id=>manifest.personnages?.some(p=>p.kind===id)?json('contacts/'+id+'/personnages.json'):Promise.resolve({})));
 for(const item of manifest.personnages||[]){
  const ownerIndex=contactIds.indexOf(item.kind);

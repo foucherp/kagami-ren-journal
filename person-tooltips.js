@@ -17,11 +17,12 @@ const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().tr
 let names=[],active=null,hideTimer;
 const manual={'Vesper':['Ren','Kagami Ren'],'Silk':['Aya','Onee-chan']};
 async function load(){
-const [manifestRes,dataRes]=await Promise.all([fetch('index-personnages.json'),fetch('personnages.json')]);
+const [manifestRes,dataRes,vesperRes]=await Promise.all([fetch('index-personnages.json'),fetch('personnages.json'),fetch('contacts/vesper/personnages.json')]);
 if(!manifestRes.ok)return;
-const manifest=await manifestRes.json(),data=dataRes.ok?await dataRes.json():{};
+const manifest=await manifestRes.json(),data=dataRes.ok?await dataRes.json():{},vesper=vesperRes.ok?await vesperRes.json():{};
 for(const item of manifest.personnages||[]){
- const info=data[item.metadataKey]||data[item.legacyPath]||{};
+ const metadata=item.kind==='vesper'?vesper:data;
+ const info=metadata[item.metadataKey]||metadata[item.legacyPath]||{};
  const display=info.nom||item.name;
  names.push({name:display,role:info.role||item.role,path:item.image,img:encodeURI(item.image),info,aliases:[display,item.name,...(manual[display]||[]),...(Array.isArray(info.alias)?info.alias:[])]});
 }

@@ -69,7 +69,7 @@
       "role": "Wakagashira-hosa / Lieutenant Yakuza",
       "kind": "vesper",
       "episode": null,
-      "metadataKey": "PNJ/Contact-Hiroshi Takamura-Yakusa.jpeg",
+      "metadataKey": "contact:hiroshi-takamura",
       "image": "images/Hiroshi Takamura.jpeg",
       "legacyPath": "PNJ/Contact-Hiroshi Takamura-Yakusa.jpeg"
     },
@@ -87,7 +87,7 @@
       "role": "Scientifique / Personne à charge",
       "kind": "vesper",
       "episode": null,
-      "metadataKey": "PNJ/Contact-Naoko-Personne à charge.jpeg",
+      "metadataKey": "contact:naoko-mizuhara",
       "image": "images/Naoko Mizuhara.jpeg",
       "legacyPath": "PNJ/Contact-Naoko-Personne à charge.jpeg"
     },
