@@ -55,16 +55,6 @@
     "avis": "Takako-san est une femme qui connaît parfaitement les règles du monde corporatiste. Elle sait quand parler, quand se taire et, surtout, à qui s'adresser. Des qualités que j'apprécie.\n\nNous avons partagé quelques moments agréables, sans jamais chercher à leur donner davantage de sens qu'ils n'en avaient. Certaines rencontres n'ont pas vocation à devenir de grandes histoires.\n\nJe conserve d'elle un excellent souvenir. Et nos conversations restent toujours intéressantes, même lorsqu'elles ne concernent ni les affaires ni le passé.\n\nIl est finalement assez rare de pouvoir dire d'une ancienne liaison qu'elle s'est terminée avec autant de courtoisie qu'elle avait commencé.",
     "premiere_apparition": null
   },
-  "contact:hand": {
-    "nom": "Hand",
-    "identite_civile": "Achibald Sorrow",
-    "metatype": "Humain",
-    "affiliation": "Indépendant",
-    "statut": "Actif",
-    "description": "Achibald Sorrow, surnommé « Hand », est un fixer qui a joué un rôle important dans la vie de Vesper. Il lui a apporté une aide précieuse lors d'une situation personnelle particulièrement délicate.\n\nEn retour, Vesper lui a rendu plusieurs services. Leur relation, initialement fondée sur des échanges professionnels, s'est progressivement transformée en une véritable amitié, nourrie par la confiance et la réciprocité.",
-    "avis": "Dans les Ombres, les services se monnaient, les faveurs se négocient et les dettes se remboursent. C'est une mécanique parfaitement compréhensible, quoique parfois un peu triste.\n\nHand a eu l'élégance de me rappeler que certaines personnes valent davantage que leur carnet d'adresses. Il m'a tendu la main à un moment où j'en avais réellement besoin. Je n'ai pas oublié.\n\nDepuis, nous avons échangé quelques services, quelques conversations et, je crois, gagné quelque chose de plus précieux qu'une relation professionnelle.\n\nJe le considère comme un ami. Une distinction que je n'accorde pas à la légère.",
-    "premiere_apparition": null
-  },
   "contact:edward-hudson": {
     "identite_civile": "Edward Hudson",
     "metatype": "Nain",
@@ -126,5 +116,17 @@
     "statut": "Sous la protection de Vesper",
     "description": "Ash est un ancien sujet expérimental de Kagamori Biosystems. Éveillé, il était destiné à devenir le résultat d'un programme de recherche dont les objectifs exacts restent obscurs. Mais l'expérience n'a jamais produit les résultats escomptés.\n\nConsidéré comme un échec par ses créateurs, Ash avait été condamné à la destruction.\n\nLorsque Naoko et Ren ont organisé leur fuite, ils ont décidé de ne pas l'abandonner. Ash a ainsi échappé au sort qui l'attendait et découvert, pour la première fois, une existence qui ne soit pas entièrement dictée par les protocoles d'un laboratoire.\n\nSon identité véritable demeure inconnue. Après son évasion, il a adopté le nom de famille de Naoko, Mizuhara, ainsi qu'un prénom américain, Ethan. Il reste néanmoins connu sous le surnom d'Ash.\n\nAujourd'hui, il vit discrètement chez Vesper, aux côtés de Naoko. Ren assure leur protection et dissimule leur présence à son entourage, y compris à Aya.",
     "avis": "Je crois que les scientifiques de Kagamori Biosystems avaient une définition assez particulière du mot échec.\n\nAsh n'avait pas donné les résultats attendus. Il ne correspondait pas à ce que l'on avait prévu pour lui. Leur conclusion était donc parfaitement logique, du moins selon leurs critères : il fallait s'en débarrasser.\n\nJe me suis souvent demandé ce qu'il fallait avoir perdu de son humanité pour considérer qu'une vie pouvait être jetée parce qu'elle ne répondait pas à un cahier des charges.\n\nNaoko et moi avons décidé qu'il viendrait avec nous. Je n'ai jamais regretté cette décision.\n\nIl est parfois difficile de savoir ce que représente une famille lorsque l'on n'en a jamais véritablement eu. J'ai ma sœur, bien entendu. Et puis il y a Naoko. Et Ash.\n\nJe suppose que cela fait de moi un grand frère. Une responsabilité que je prends très au sérieux, même si je ne suis pas certain de toujours savoir comment m'y prendre.\n\nAsh mérite de découvrir ce qu'il souhaite devenir, plutôt que de vivre avec le souvenir de ce que d'autres avaient décidé qu'il serait.\n\nEt tant que je serai là, personne ne décidera à nouveau de sa valeur à sa place."
+  },
+  "PNJ/Contact-Hiroshi Takamura-Yakusa.jpeg": {
+    "nom": "Hiroshi Takamura (高村 浩)",
+    "role": "Wakagashira-hosa / Lieutenant Yakuza",
+    "identite_civile": "Hiroshi Takamura (高村 浩)",
+    "metatype": "Humain",
+    "age": "54 ans",
+    "affiliation": "Clan Shotozumi, Seattle",
+    "statut": "Actif",
+    "description": "Surnommé « Hiro-san », Hiroshi Takamura est un wakagashira-hosa, lieutenant du clan Shotozumi à Seattle. Élégant, cultivé et étonnamment chaleureux, il est grand amateur de whiskies japonais et possède une impressionnante collection de bouteilles rares. Il aime plaisanter, raconter des anecdotes et débattre pendant des heures des mérites respectifs du Yamazaki et du Hibiki.\n\nDerrière cette bonhomie se cache un lieutenant respecté, capable d'une froideur absolue lorsque les intérêts de son clan sont menacés. Il accorde une importance considérable à la loyauté, à la parole donnée et au respect.\n\nHiroshi a rencontré Vesper lors d'une dégustation improvisée dans un petit bar japonais de Seattle. Une discussion sur un whisky tourbé s'est prolongée jusqu'à la fermeture. Il apprécie la courtoisie de Ren, son calme et sa conception du Bushidō, et l'appelle affectueusement « Ren-kun ».\n\nDepuis, ils partagent régulièrement une bouteille et parlent rarement de leurs métiers. Hiroshi sait que Ren travaille dans les Ombres, mais ne lui pose aucune question indiscrète. Il peut lui apporter des renseignements sur le milieu criminel japonais, faciliter certaines rencontres ou intervenir discrètement en sa faveur.",
+    "avis": "Hiro-san est un homme de goût, ce qui constitue déjà une excellente raison de partager un verre avec lui. Nous ne sommes pas toujours d'accord sur le whisky, mais je crois que nos désaccords font partie du plaisir.\n\nIl connaît la valeur d'une parole donnée et sait respecter les silences. Je ne lui demande pas ce qui concerne son clan ; il ne me demande pas ce qui concerne mes activités. C'est une forme de courtoisie que j'apprécie sincèrement.\n\nIl tient toujours à régler la première tournée. J'insiste pour payer la seconde. Nous n'avons jamais jugé nécessaire de modifier cet arrangement.",
+    "premiere_apparition": null
   }
 }
