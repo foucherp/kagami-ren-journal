@@ -75,7 +75,7 @@ root.replaceChildren();const q=normalize(search.value.trim());if(q){const result
 if(!shown.length){root.append(el('p','directory-state',q?'AUCUN RÉSULTAT':'AUCUNE FICHE DANS CET ONGLET'));if(authorizedMember===active&&window.RunnerContacts){const bar=el('div','contact-create-bar'),add=el('button','opinion-button','＋ CRÉER UN CONTACT');add.type='button';add.onclick=()=>window.RunnerContacts.openEditor(active,null,()=>location.reload());bar.append(add);root.append(bar)}return}
 if(active==='common'){const groups=new Map();for(const p of shown){const k=p.episode||'AUTRES';if(!groups.has(k))groups.set(k,[]);groups.get(k).push(p)}for(const [code,group] of [...groups].sort((a,b)=>a[0].localeCompare(b[0], 'fr',{numeric:true}))){const details=el('details','episode'),summary=el('summary'),list=el('div','episode-list');summary.append(el('span','',code),el('span','directory-count',group.length+' PERSONNAGE'+(group.length>1?'S':'')));group.forEach(p=>list.append(row(p)));details.append(summary,list);root.append(details)}}
 else shown.forEach(p=>root.append(row(p)));
-if(active!=='team'&&active!=='common'&&window.RunnerContacts){
+if(authorizedMember===active&&window.RunnerContacts){
  const addBar=el('div','contact-create-bar'),add=el('button','opinion-button','＋ CRÉER UN CONTACT');
  add.type='button';add.onclick=()=>window.RunnerContacts.openEditor(active,null,()=>location.reload());
  addBar.append(add);root.append(addBar);
