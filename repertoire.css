@@ -1,0 +1,43 @@
+/* Répertoire : personnalisation autonome, sans impact sur le Vlog.
+   Modifier les variables ci-dessous pour adapter les onglets et fiches. */
+.directory-ui{--tab-accent:#cf6571;--tab-bg:#141319;--tab-active:#32212a;--tab-border:#493740;--tab-text:#e9e4e8;--card-bg:#151419;--card-border:#403238;--meter-filled:#c45b64;--meter-empty:#101115;color:var(--tab-text)}
+.directory-ui .directory-intro{color:#a8a9ae;margin:0 0 26px}
+.directory-ui .directory-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 23px;border-bottom:1px solid var(--tab-border);padding-bottom:10px}
+.directory-ui .directory-tab{background:var(--tab-bg);border:1px solid var(--tab-border);color:#bcb3bb;padding:12px 15px;cursor:pointer;font:11px monospace;letter-spacing:.07em;transition:background .15s,color .15s}
+.directory-ui .directory-tab:hover,.directory-ui .directory-tab:focus-visible{color:#fff;border-color:var(--tab-accent)}
+.directory-ui .directory-tab[aria-selected=true]{background:var(--tab-active);color:#fff;border-color:var(--tab-accent);box-shadow:inset 0 -2px var(--tab-accent)}
+.directory-ui .directory-search{width:100%;box-sizing:border-box;margin:0 0 20px;padding:15px 17px;background:#101115;border:1px solid #454047;color:#f1eef0;font:13px monospace;outline:none}
+.directory-ui .directory-search:focus{border-color:var(--tab-accent)}
+.directory-ui .directory-state{color:#a8a9ae;padding:22px 0;font:13px monospace}
+.directory-ui .directory-count{color:#a8a9ae;font-size:11px}
+.directory-ui .episode{border:1px solid #34343a;margin:12px 0;background:#101115}
+.directory-ui .episode summary{cursor:pointer;padding:16px 19px;list-style:none;display:flex;justify-content:space-between;gap:15px;font:12px monospace;letter-spacing:.09em;color:#e5e5e7}
+.directory-ui .episode summary::-webkit-details-marker{display:none}
+.directory-ui .episode summary:after{content:'+';color:var(--tab-accent)}
+.directory-ui .episode[open] summary:after{content:'−'}
+.directory-ui .episode-list{border-top:1px solid #34343a;padding:10px 14px}
+.directory-ui .npc{width:100%;display:flex;align-items:center;justify-content:space-between;text-align:left;gap:14px;background:transparent;color:#e4e4e6;border:0;border-bottom:1px solid #292a30;padding:13px 8px;cursor:pointer}
+.directory-ui .npc:hover,.directory-ui .npc[aria-expanded=true]{background:#21191d}
+.directory-ui .npc-name{font-weight:600}
+.directory-ui .npc-role{color:#a5a4aa;font:11px monospace;letter-spacing:.07em}
+.directory-ui .person-card{margin:0 0 14px;padding:18px;background:var(--card-bg);border:1px solid var(--card-border);color:#e5e3e5}
+.directory-ui .person-card img{display:block;width:100%;max-width:240px;max-height:360px;object-fit:contain;border:1px solid #47363c}
+.directory-ui .person-head{display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.directory-ui .person-facts{flex:1;min-width:190px}
+.directory-ui .person-facts h3{margin:0 0 8px;font-size:22px}
+.directory-ui .person-role{color:var(--tab-accent);font:12px monospace;letter-spacing:.1em}
+.directory-ui .person-facts dl{display:grid;grid-template-columns:max-content 1fr;gap:8px 14px;font-size:13px}
+.directory-ui .person-facts dt{color:#aaa4aa}
+.directory-ui .person-facts dd{margin:0}
+.directory-ui .person-section{border-top:1px solid var(--card-border);padding-top:14px;margin-top:16px}
+.directory-ui .person-section h4{font:11px monospace;letter-spacing:.12em;color:var(--tab-accent);margin:0 0 9px}
+.directory-ui .person-section p{line-height:1.65;margin:0;white-space:pre-line}
+.directory-ui .person-opinion{font-style:italic}
+.directory-ui .contact-ratings{margin-top:13px;display:grid;gap:10px}
+.directory-ui .contact-rating{max-width:300px}
+.directory-ui .contact-rating-label{display:flex;justify-content:space-between;gap:10px;margin-bottom:6px;color:var(--tab-accent);font:10px monospace;letter-spacing:.1em}
+.directory-ui .contact-rating-cells{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:3px}
+.directory-ui .contact-rating-cell{height:12px;border:1px solid #65555c;background:var(--meter-empty);box-sizing:border-box}
+.directory-ui .contact-rating-cell.filled{background:var(--meter-filled);border-color:var(--meter-filled)}
+.directory-ui .person-section a{color:#e5c4c7}
+@media(max-width:600px){.directory-ui .person-head{display:block}.directory-ui .person-card img{max-width:100%;margin-bottom:16px}.directory-ui .directory-tab{flex:1 1 auto}}
