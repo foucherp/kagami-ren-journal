@@ -26,6 +26,8 @@ if(info.categorie==='CONTACTS'&&folder==='PNJ')category='CONTACTS';
 people.push({name:info.nom||name,role:info.role||role,path,url:folder+'/'+encodeURIComponent(f.name),category,code,info});
 }
 pj.forEach(f=>add(f,'PJ'));pnj.forEach(f=>add(f,'PNJ'));
+const selected=new URLSearchParams(location.search).get('person');
+if(selected){const match=people.find(p=>p.path===selected);if(match){search.value=match.name;}}
 people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
 const groups=new Map();
 for(const p of people){const group=p.category==='RENCONTRES'?p.code:p.category;if(!groups.has(group))groups.set(group,[]);groups.get(group).push(p)}
