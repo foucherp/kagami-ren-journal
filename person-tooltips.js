@@ -32,7 +32,7 @@ function place(target){const r=target.getBoundingClientRect(),w=pop.offsetWidth,
 function show(person,target){
 clearTimeout(hideTimer);active=target;pop.replaceChildren();
 const head=document.createElement('div');head.className='person-tooltip-head';
-const img=document.createElement('img');img.src=person.img;img.alt='Portrait de '+person.name;
+const img=document.createElement('img');img.src=person.img||'images/JohnDoe.jpeg';img.onerror=()=>{if(!img.src.endsWith('/JohnDoe.jpeg'))img.src='images/JohnDoe.jpeg'};img.alt='Portrait de '+person.name;
 const body=document.createElement('div');const title=document.createElement('strong');title.textContent=person.name;body.append(title);
 const role=document.createElement('small');role.textContent=person.role;body.append(role);
 const dl=document.createElement('dl');for(const [label,value] of [['Identité civile',person.info.identite_civile||'Inconnue'],['Métatype',person.info.metatype||'Inconnu'],['Affiliation',person.info.affiliation||'Inconnue']]){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;dl.append(dt,dd)}body.append(dl);head.append(img,body);pop.append(head);
