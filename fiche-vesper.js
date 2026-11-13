@@ -1,0 +1,48 @@
+(()=>{'use strict';
+const client=window.supabase.createClient('https://alzcnmmxumcqiermylik.supabase.co','sb_publishable_jqzqRJzA-Bj5p7d_T7OMnw_h9hlzsV2',{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+const attributes=['CON','AGI','RÉA','FOR','VOL','LOG','INT','CHA','MAG','ESS','ATO'];
+const skills=['Armes à feu','Armes exotiques','Astral','Athlétisme','Biotech','Combat rapproché','Électronique','Enchantement','Escroquerie','Furtivité','Influence','Ingénierie','Perception','Pilotage','Piratage','Plein air','Sorcellerie','Technomancie'];
+const derived=['Initiative','Défense','Bloquer','Esquiver','Éviter','Résistance aux dégâts','Score déf. C','Score déf. I','Score déf. S','Score déf. P','Jauger intentions','Mémoire','Sang-froid','Soulever / porter'];
+const starter={
+CON_base:'4',CON_bonus:'0',CON_total:'4',AGI_base:'8',AGI_bonus:'2',AGI_total:'10','RÉA_base':'3','RÉA_bonus':'2','RÉA_total':'5',FOR_base:'4',FOR_bonus:'0',FOR_total:'4',VOL_base:'3',VOL_bonus:'0',VOL_total:'3',LOG_base:'3',LOG_bonus:'0',LOG_total:'3',INT_base:'5',INT_bonus:'0',INT_total:'5',CHA_base:'5',CHA_bonus:'0',CHA_total:'5',MAG_base:'6',MAG_bonus:'0',MAG_total:'6',ESS_base:'6',ESS_bonus:'0',ESS_total:'6',ATO_base:'3',ATO_bonus:'0',ATO_total:'10',
+alias:'Vesper',nom:'Kagami Ren',metatype:'Elfe',voie:'Adepte',style_court:'Moyen',
+langues:'Anglais : natal\nJaponais : expert\nSperethiel (elfique) : spécialisé',connaissances:'Systèmes de sécurité ; Combat urbain ; Gangs de Seattle ; Mégacorporations ; Techniques d’espionnage',
+quartier:'Seattle Downtown',niveau_vie:'Moyen',cout_vie:'5 000 ¥',duree_vie:'1 mois payé',notes_vie:'Downtown',
+fausse_identite_1_0:'Kurose Shin',fausse_identite_1_1:'4',fausse_identite_1_2:'UCAS / célibataire',fausse_identite_1_3:'Magie ; port d’arme (4)',
+background:'Ancien sujet du projet Gemini Keikaku K2. Ren et sa sœur jumelle Silk furent entraînés comme deux agents complémentaires. Adepte pistolero, il a choisi sa liberté et le Bushidō. Naoko Kressler et Ash sont liés à sa fuite. Loyauté et maîtrise de soi guident ses choix.',
+pouvoirs:'Agilité améliorée 2 ; Réflexes améliorés 2 ; Sens du combat 2 ; Précision améliorée 1 ; Armure mystique 2',
+traits:"Code d'honneur : Bushidō ; Personne à charge ; Traumatisme (laboratoires) ; Endurance à la douleur ; Guérison rapide ; Caractéristique exceptionnelle (AGI)",
+equipement:'Commlinks : Renraku Sensei ; Meta Link\nMarqueurs furtifs x10 ; démarqueur ; autocrocheteur ; matériel d’escalade ; lampe torche ; gants adhésifs ; grappin ; kit de serrurerie\nLunettes (amplification, zoom, anti-flash) ; lentilles (smartlink).',
+armures_et_munitions:'Veste pare-balles (4) ; Armure mystique (2).\nMunitions normales x100, explosives x100\nGrenades explosives x2, fragmentation x2, fumigènes x2, fumigènes therm. x2. Couteau de combat.',
+contacts:'Naoko Kressler ; Ash ; Hiroshi Takamura R : 7 / L : 5 ; Edwards Hudson R : 5 / L : 3 ; Razor R : 3 / L : 5 ; Yuki Stardust R : 2 / L : 2 ; Ichida Takako R : 5 / L : 6',
+dommages_PHYSIQUE:'0',dommages_ÉTOURDISSANT:'0'
+};
+const skillRows=[['6','16','Pistolets lourds : 18'],['N','—',''],['N','—',''],['4','14 / 7','Lancer : 16'],['N','—',''],['3','13','Armes tranchantes : 15'],['0','1 / 3',''],['N','—',''],['0','3',''],['5','15','Discrétion : 17'],['3','8 / 6','Intimidation : 10'],['1','4 / 6 / 11','Crochetage : 13'],['2','7 / 5',''],['0','3',''],['N','—',''],['1','6','Orientation : 8'],['N','—',''],['N','—','']];
+skillRows.forEach((r,i)=>r.forEach((v,j)=>starter['competence_'+i+'_'+['rang','des','spec'][j]]=v));
+['10 + 3D6','10 (12)','13 (15)','14 (16)','9 (11)','4','10','','','','8','8','8','7'].forEach((v,i)=>starter['derive_'+i]=v);
+[['Ares Predator VI','18','3P','SA/TR','15c'],['Ares Light Fire 75','18','2P','SA','16c'],['Ingram Smartgun XI','16','3P','SA/TR','32c'],['Yamaha Raiden','16','4P','SA/TR/TA','60c'],['Yamaha Raiden shotgun','16','4P','CC/SA','2cb'],['Couteaux de lancer x5','16','2P','—','—']].forEach((r,i)=>r.forEach((v,j)=>starter['arme_'+i+'_'+j]=v));
+const sheet=document.getElementById('sheet'),access=document.getElementById('access'),save=document.getElementById('save'),notice=document.getElementById('notice');
+let editable=false,values={...starter},dirty=false;
+function el(tag,cls,txt){const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e}
+function panel(title){const p=el('section','panel');p.append(el('h2','',title));sheet.append(p);return p}
+function field(parent,key,label,large=false){const wrap=el('label','field');wrap.append(el('span','',label));const input=el(large?'textarea':'input');input.dataset.key=key;input.value=values[key]??'';input.disabled=!editable;if(large)input.rows=5;input.addEventListener('input',()=>{dirty=true;notice.textContent='Modifications non enregistrées';});wrap.append(input);parent.append(wrap);return input}
+function fieldsPanel(title,arr){const p=panel(title),grid=el('div','fields');p.append(grid);arr.forEach(([key,label])=>field(grid,key,label));return p}
+function table(title,heads,rows){const p=panel(title),outer=el('div','row-table'),t=el('table'),head=el('tr');heads.forEach(h=>head.append(el('th','',h)));t.append(head);rows.forEach(row=>{const tr=el('tr');row.forEach(cell=>{const td=el('td');if(typeof cell==='string')td.textContent=cell;else{const input=el('input');input.dataset.key=cell.key;input.value=values[cell.key]??'';input.disabled=!editable;input.setAttribute('aria-label',cell.label);input.addEventListener('input',()=>{dirty=true;notice.textContent='Modifications non enregistrées'});td.append(input)}tr.append(td)});t.append(tr)});outer.append(t);p.append(outer)}
+const col=(key,label)=>({key,label});
+function render(){sheet.replaceChildren();fieldsPanel('IDENTITÉ',[['alias','Alias'],['nom','Nom'],['metatype','Métatype'],['voie','Voie'],['style_court','Train de vie']]);
+table('ATTRIBUTS / BASE · BONUS · TOTAL',['Attribut','Base','Bonus','Total'],attributes.map(a=>[a,col(a+'_base',a+' base'),col(a+'_bonus',a+' bonus'),col(a+'_total',a+' total')]));
+table('COMPÉTENCES ACTIVES',['Compétence','Rang','Dés','Spécialisation / dés'],skills.map((s,i)=>[s,...['rang','des','spec'].map(k=>col('competence_'+i+'_'+k,s+' '+k))]));
+table('JETS DÉRIVÉS',['Jet','Valeur'],derived.map((s,i)=>[s,col('derive_'+i,s)]));
+for(const [type,n] of [['PHYSIQUE',12],['ÉTOURDISSANT',11]]){const p=panel('MONITEUR '+type),grid=el('div','damage');field(p,'dommages_'+type,'Dommages subis');for(let i=1;i<=n;i++){const key='moniteur_'+type+'_'+i,l=el('label'),input=el('input');input.type='checkbox';input.dataset.key=key;input.checked=values[key]==='On';input.disabled=!editable;input.addEventListener('change',()=>{dirty=true;notice.textContent='Modifications non enregistrées'});l.append(input,document.createTextNode(String(i)));grid.append(l)}p.append(grid)}
+for(const [title,key] of [['POUVOIRS D’ADEPTE','pouvoirs'],['TRAITS','traits'],['LANGUES','langues'],['CONNAISSANCES','connaissances']]){const p=panel(title);field(p,key,title,true)}
+fieldsPanel('STYLE DE VIE',[['quartier','Quartier'],['niveau_vie','Niveau'],['cout_vie','Coût / mois'],['duree_vie','Paiement'],['notes_vie','Notes']]);
+table('IDENTITÉS DE COUVERTURE',['Identité','Indice','Détails','Licences'],[1,2,3].map(i=>[0,1,2,3].map(j=>col('fausse_identite_'+i+'_'+j,'Identité '+i+' champ '+j))));
+for(const [title,key] of [['BACKGROUND / NOTES','background'],['ÉQUIPEMENT / ACCESSOIRES','equipement'],['ARMURES / MUNITIONS','armures_et_munitions'],['CONTACTS / NOTES','contacts']]){const p=panel(title);field(p,key,title,true)}
+table('ARMES / DÉS / VALEUR DE DÉGÂTS / MODES / MUNITIONS',['Arme','Dés','VD','Mode','Munitions'],Array.from({length:6},(_,i)=>[0,1,2,3,4].map(j=>col('arme_'+i+'_'+j,'Arme '+(i+1)+' champ '+j))));
+}
+function collect(){const next={...values};sheet.querySelectorAll('[data-key]').forEach(e=>next[e.dataset.key]=e.type==='checkbox'?(e.checked?'On':'Off'):e.value);return next}
+async function init(){const {data:{session}}=await client.auth.getSession();if(session){const {data}=await client.from('opinion_members').select('member_id').eq('email',session.user.email.toLowerCase()).maybeSingle();editable=data?.member_id==='vesper'}
+const {data,error}=await client.from('runner_sheets').select('sheet_data').eq('sheet_id','vesper').maybeSingle();if(error){access.textContent='Fiche non synchronisée';notice.textContent='Configuration Supabase nécessaire : '+error.message}else if(data){values={...starter,...data.sheet_data};access.textContent=editable?'MODE ÉDITION // VESPER':'LECTURE SEULE'}else{access.textContent=editable?'MODE ÉDITION // VESPER':'LECTURE SEULE';notice.textContent='Fiche initiale affichée : sauvegarde Supabase à initialiser'}save.hidden=!editable;render()}
+save.addEventListener('click',async()=>{save.disabled=true;notice.textContent='Enregistrement…';const next=collect();const {error}=await client.from('runner_sheets').update({sheet_data:next}).eq('sheet_id','vesper');if(error)notice.textContent='Échec : '+error.message;else{values=next;dirty=false;notice.textContent='Modifications enregistrées'}save.disabled=false});
+window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.returnValue=''}});init().catch(e=>{access.textContent='Erreur';notice.textContent=e.message});
+})();
