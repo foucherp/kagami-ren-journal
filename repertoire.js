@@ -16,11 +16,11 @@ async function databasePeople(){
   const {data:rows,error}=await client.from('characters').select('character_id,name,role,kind,episode,image,legacy_path,info,image_storage_path').order('name');
   if(error||!rows?.length)throw error||new Error('Table vide');
   const ids=new Set(rows.map(r=>r.character_id));
-  if((manifest.personnages||[]).some(p=>!ids.has(p.metadataKey)))throw new Error('Migration incomplète');
+  if((manifest.personnages||[]).some(p=>!ids.has(p.metadataKey)))console.warn('Certains personnages du manifeste ne sont pas encore en base');
   return rows.map(r=>({
    name:r.info?.nom||r.name,role:r.info?.role||r.role||'',kind:r.kind,episode:r.episode,
    metadataKey:r.character_id,path:r.image||'',legacyPath:r.legacy_path||'',image_storage_path:r.image_storage_path,
-   url:r.image_storage_path?client.storage.from('character-portraits').getPublicUrl(r.image_storage_path).data.publicUrl:encodeURI(r.image||'images/JohnDoe.jpeg'),
+   url:client.storage.from('character-portraits').getPublicUrl(r.character_id==='team:hesperis'?'legacy/team/Hesperis.jpeg':(r.image_storage_path||'')).data.publicUrl || encodeURI(r.image||'images/JohnDoe.jpeg'),
    info:r.info||{}
   }));
  }catch(e){console.warn('Lecture Supabase indisponible, utilisation des fichiers JSON :',e);return null}
@@ -32,14 +32,14 @@ const people=[];
 try{
 const contactIds=[...new Set((dbPeople||manifest.personnages||[]).filter(p=>p.kind!=='team'&&p.kind!=='common').map(p=>p.kind))];
 for(const id of contactIds)if(!profiles.some(p=>p[0]===id))profiles.push([id,'CONTACTS '+id.toUpperCase()]);
-if(dbPeople){people.push(...dbPeople)}
+if(dbPeople){people.push(...dbPeople);for(const p of manifest.personnages||[]){if(!people.some(r=>r.metadataKey===p.metadataKey))people.push({name:p.name,role:p.role,kind:p.kind,episode:p.episode,metadataKey:p.metadataKey,path:p.image,legacyPath:p.legacyPath,url:p.metadataKey==='team:hesperis'?'https://alzcnmmxumcqiermylik.supabase.co/storage/v1/object/public/character-portraits/legacy/team/Hesperis.jpeg':encodeURI(p.image),info:{}})}}
 else {
  const contactMetadata=await Promise.all(contactIds.map(id=>manifest.personnages?.some(p=>p.kind===id)?json('contacts/'+id+'/personnages.json'):Promise.resolve({})));
  for(const item of manifest.personnages||[]){
   const ownerIndex=contactIds.indexOf(item.kind);
   const metadata=ownerIndex>=0?contactMetadata[ownerIndex]:data;
   const info=metadata[item.metadataKey]||metadata[item.legacyPath]||metadata[item.image]||{};
-  people.push({name:info.nom||item.name,role:info.role||item.role,path:item.image,legacyPath:item.legacyPath,url:encodeURI(item.image),kind:item.kind,metadataKey:item.metadataKey,episode:item.episode||null,info});
+  people.push({name:info.nom||item.name,role:info.role||item.role,path:item.image,legacyPath:item.legacyPath,url:item.metadataKey==='team:hesperis'?'https://alzcnmmxumcqiermylik.supabase.co/storage/v1/object/public/character-portraits/legacy/team/Hesperis.jpeg':encodeURI(item.image),kind:item.kind,metadataKey:item.metadataKey,episode:item.episode||null,info});
  }
 }
 people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
