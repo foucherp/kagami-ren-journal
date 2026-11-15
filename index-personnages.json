@@ -3,11 +3,11 @@
   "personnages": [
     {
       "name": "Hesperis",
-      "role": "À préciser",
+      "role": "Magicien",
       "kind": "team",
       "episode": null,
       "metadataKey": "team:hesperis",
-      "image": "images/JohnDoe.jpeg",
+      "image": "images/Hesperis.jpg",
       "legacyPath": null
     },
     {
