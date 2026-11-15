@@ -6,7 +6,7 @@ values (
  'team:hesperis','Hesperis','Magicien','team',null,
  'images/Hesperis.jpeg',null,
  '{"nom":"Hesperis","role":"Magicien","identite_civile":"Inconnue","metatype":"Elfe","affiliation":"TEAM","statut":"Actif","description":"Magicien elfe, nouveau membre de l’équipe. Son parcours reste à découvrir."}'::jsonb,
- null,'Hesperis.jpeg'
+ null,'team/Hesperis.jpeg'
 )
 on conflict (character_id) do update set name=excluded.name,role=excluded.role,image=excluded.image,info=excluded.info,image_storage_path=excluded.image_storage_path;
 insert into public.opinion_characters(character_id)
