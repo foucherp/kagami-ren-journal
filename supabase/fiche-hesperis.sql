@@ -3,12 +3,12 @@
 begin;
 insert into public.characters(character_id,name,role,kind,episode,image,legacy_path,info,owner_member_id)
 values (
- 'team:hesperis','Hesperis','À préciser','team',null,
- 'images/JohnDoe.jpeg',null,
- '{"nom":"Hesperis","role":"À préciser","identite_civile":"Inconnue","metatype":"Inconnu","affiliation":"TEAM","statut":"Actif","description":"Nouveau membre de l’équipe. Profil en cours de création."}'::jsonb,
+ 'team:hesperis','Hesperis','Magicien','team',null,
+ 'images/Hesperis.jpg',null,
+ '{"nom":"Hesperis","role":"Magicien","identite_civile":"Inconnue","metatype":"Elfe","affiliation":"TEAM","statut":"Actif","description":"Magicien elfe, nouveau membre de l’équipe. Son parcours reste à découvrir."}'::jsonb,
  null
 )
-on conflict (character_id) do nothing;
+on conflict (character_id) do update set name=excluded.name,role=excluded.role,image=excluded.image,info=excluded.info;
 insert into public.opinion_characters(character_id)
 values ('team:hesperis') on conflict do nothing;
 commit;
