@@ -1,7 +1,7 @@
 (async()=>{
 'use strict';
 const root=document.getElementById('directory-content'),tabs=document.getElementById('directory-tabs'),search=document.getElementById('npc-search'),total=document.getElementById('total');
-const profiles=[['team',"L'ÉQUIPE"],['common','COMMUN'],...['vesper','silk','makoto','plurk','naphria'].map(id=>[id,'CONTACTS '+id.toUpperCase()])];
+const profiles=[['team',"L'ÉQUIPE"],['common','COMMUN'],...['vesper','silk','makoto','plurk','naphria','hesperis'].map(id=>[id,'CONTACTS '+id.toUpperCase()])];
 const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr');
 const el=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(value!==undefined)n.textContent=value;return n};
 // Le manifeste contient désormais toutes les fiches et les chemins des portraits.
