@@ -2,6 +2,15 @@
   "version": 2,
   "personnages": [
     {
+      "name": "Hesperis",
+      "role": "À préciser",
+      "kind": "team",
+      "episode": null,
+      "metadataKey": "team:hesperis",
+      "image": "images/JohnDoe.jpeg",
+      "legacyPath": null
+    },
+    {
       "name": "Makoto",
       "role": "Samouraï des rues",
       "kind": "team",
