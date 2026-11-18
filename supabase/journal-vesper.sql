@@ -18,6 +18,10 @@ drop policy if exists "Journal : modification Vesper" on public.vesper_journal;
 create policy "Journal : modification Vesper" on public.vesper_journal for update to authenticated
 using (exists(select 1 from public.opinion_members m where m.member_id='vesper' and m.email=lower(auth.jwt()->>'email')))
 with check (exists(select 1 from public.opinion_members m where m.member_id='vesper' and m.email=lower(auth.jwt()->>'email')));
+drop policy if exists "Journal : suppression Vesper" on public.vesper_journal;
+create policy "Journal : suppression Vesper" on public.vesper_journal for delete to authenticated
+using (exists(select 1 from public.opinion_members m where m.member_id='vesper' and m.email=lower(auth.jwt()->>'email')));
+grant delete on public.vesper_journal to authenticated;
 commit;
 -- La migration des quatre archives existantes se lance automatiquement
 -- lors de la première visite du VLOG par Vesper connecté.
