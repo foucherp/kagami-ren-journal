@@ -17,16 +17,33 @@ const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().tr
 let names=[],active=null,hideTimer;
 const manual={'Vesper':['Ren','Kagami Ren'],'Silk':['Aya','Onee-chan']};
 async function load(){
-const [manifestRes,dataRes,vesperRes]=await Promise.all([fetch('index-personnages.json'),fetch('personnages.json'),fetch('contacts/vesper/personnages.json')]);
-if(!manifestRes.ok)return;
-const manifest=await manifestRes.json(),data=dataRes.ok?await dataRes.json():{},vesper=vesperRes.ok?await vesperRes.json():{};
-for(const item of manifest.personnages||[]){
- const metadata=item.kind==='vesper'?vesper:data;
- const info=metadata[item.metadataKey]||metadata[item.legacyPath]||{};
- const display=info.nom||item.name;
- names.push({name:display,role:info.role||item.role,path:item.image,img:encodeURI(item.image),info,aliases:[display,item.name,...(manual[display]||[]),...(Array.isArray(info.alias)?info.alias:[])]});
-}
-names.sort((a,b)=>b.name.length-a.name.length);
+ const manifestRes=await fetch('index-personnages.json');
+ const manifest=manifestRes.ok?await manifestRes.json():{personnages:[]};
+ let rows=null,client=null;
+ if(window.supabase?.createClient){
+  try{
+   client=window.supabase.createClient('https://alzcnmmxumcqiermylik.supabase.co','sb_publishable_jqzqRJzA-Bj5p7d_T7OMnw_h9hlzsV2',{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
+   const result=await client.from('characters').select('character_id,name,role,kind,image,info,image_storage_path');
+   if(!result.error&&result.data?.length)rows=result.data;
+  }catch(e){console.warn('Références Supabase indisponibles',e)}
+ }
+ if(rows){
+  for(const r of rows){
+   const info=r.info||{},display=info.nom||r.name;
+   const img=r.image_storage_path?client.storage.from('character-portraits').getPublicUrl(r.image_storage_path).data.publicUrl:encodeURI(r.image||'images/JohnDoe.jpeg');
+   names.push({name:display,role:info.role||r.role||'',path:r.image||'',id:r.character_id,img,info,aliases:[display,r.name,...(manual[display]||[]),...(Array.isArray(info.alias)?info.alias:[])]});
+  }
+ }else{
+  const [dataRes,vesperRes]=await Promise.all([fetch('personnages.json'),fetch('contacts/vesper/personnages.json')]);
+  const data=dataRes.ok?await dataRes.json():{},vesper=vesperRes.ok?await vesperRes.json():{};
+  for(const item of manifest.personnages||[]){
+   const metadata=item.kind==='vesper'?vesper:data;
+   const info=metadata[item.metadataKey]||metadata[item.legacyPath]||{};
+   const display=info.nom||item.name;
+   names.push({name:display,role:info.role||item.role,path:item.image,id:item.metadataKey,img:encodeURI(item.image),info,aliases:[display,item.name,...(manual[display]||[]),...(Array.isArray(info.alias)?info.alias:[])]});
+  }
+ }
+ names.sort((a,b)=>b.name.length-a.name.length);
 }
 function place(target){const r=target.getBoundingClientRect(),w=pop.offsetWidth,h=pop.offsetHeight;let x=Math.min(Math.max(12,r.left),innerWidth-w-12);let y=r.bottom+9;if(y+h>innerHeight-10)y=Math.max(10,r.top-h-9);pop.style.left=x+'px';pop.style.top=y+'px'}
 function show(person,target){
@@ -36,7 +53,7 @@ const img=document.createElement('img');img.src=person.img||'images/JohnDoe.jpeg
 const body=document.createElement('div');const title=document.createElement('strong');title.textContent=person.name;body.append(title);
 const role=document.createElement('small');role.textContent=person.role;body.append(role);
 const dl=document.createElement('dl');for(const [label,value] of [['Identité civile',person.info.identite_civile||'Inconnue'],['Métatype',person.info.metatype||'Inconnu'],['Affiliation',person.info.affiliation||'Inconnue']]){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;dl.append(dt,dd)}body.append(dl);head.append(img,body);pop.append(head);
-const link=document.createElement('a');link.href='repertoire.html?person='+encodeURIComponent(person.path);link.textContent='Voir la fiche détaillée';pop.append(link);pop.hidden=false;place(target);
+const link=document.createElement('a');link.href='repertoire.html?focus='+encodeURIComponent(person.id);link.textContent='Voir la fiche détaillée';pop.append(link);pop.hidden=false;place(target);
 }
 function scheduleHide(){clearTimeout(hideTimer);hideTimer=setTimeout(()=>{pop.hidden=true;active=null},220)}
 pop.addEventListener('mouseenter',()=>clearTimeout(hideTimer));pop.addEventListener('mouseleave',scheduleHide);
