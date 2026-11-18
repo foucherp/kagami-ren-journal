@@ -4,7 +4,7 @@
 const URL='https://alzcnmmxumcqiermylik.supabase.co',KEY='sb_publishable_jqzqRJzA-Bj5p7d_T7OMnw_h9hlzsV2';
 const client=window.supabase?.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 let authorized=false,stored=[],available=false;
-const legacy=()=>Array.isArray(window.entries)?window.entries:[];
+const legacy=()=>typeof entries!=='undefined'&&Array.isArray(entries)?entries:[];
 async function load(){
  if(!client)return legacy();
  const {data,error}=await client.from('vesper_journal').select('id,entry_data').order('id',{ascending:false});
