@@ -74,7 +74,7 @@ function edit(entry,onSaved){
   if(!encrypted){
    const lines=body.value.split(/\r?\n/).filter(x=>x.trim()).map(line=>line.startsWith('[stage]')?{type:'stage',text:line.slice(7).trim()}:{type:'speech',text:line.trim()});
    if(privateToggle.checked){
-    if(password.value.length<12||password.value!==passwordConfirm.value){status.textContent='Mot de passe : 12 caractères minimum et confirmation identique.';return}
+    if(!password.value||password.value!==passwordConfirm.value){status.textContent='Saisis un mot de passe et une confirmation identique.';return}
     try{Object.assign(result,await encryptLines(lines,password.value));result.private=true;delete result.lines}
     catch(err){status.textContent='Chiffrement impossible : '+err.message;return}
    }else{result.private=false;result.lines=lines}
