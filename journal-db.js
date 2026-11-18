@@ -28,6 +28,14 @@ async function init(){
  }
  return {entries:all,editable:authorized};
 }
+const bytes64=bytes=>btoa(String.fromCharCode(...bytes));
+async function encryptLines(lines,password){
+ const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+ const material=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);
+ const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:310000,hash:'SHA-256'},material,{name:'AES-GCM',length:256},false,['encrypt']);
+ const cipher=new Uint8Array(await crypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(JSON.stringify(lines))));
+ return {salt:bytes64(salt),iv:bytes64(iv),ciphertext:bytes64(cipher)};
+}
 const node=(tag,label,value)=>{const n=document.createElement(tag);if(label)n.textContent=label;if(value!==undefined)n.value=value;return n};
 function edit(entry,onSaved){
  if(!authorized||!available)return;
@@ -42,6 +50,12 @@ function edit(entry,onSaved){
   wrap.append(input);fields[key]=input;d.append(wrap);
  }
  const encrypted=!!existing.private;
+ const privateWrap=node('label','🔒 Entrée privée (transcription chiffrée)');privateWrap.style.cssText='display:block;margin:14px 0';
+ const privateToggle=document.createElement('input');privateToggle.type='checkbox';privateToggle.checked=encrypted;privateToggle.disabled=encrypted;privateWrap.prepend(privateToggle);d.append(privateWrap);
+ const passwordWrap=node('label','Mot de passe de déchiffrement');passwordWrap.style.cssText='display:block;margin:10px 0';
+ const password=node('input','');password.type='password';password.autocomplete='new-password';password.placeholder='Choisir un mot de passe robuste';password.style.cssText='display:block;width:100%;padding:10px;background:#1d202a;color:white';passwordWrap.append(password);d.append(passwordWrap);
+ const passwordConfirm=node('input','');passwordConfirm.type='password';passwordConfirm.autocomplete='new-password';passwordConfirm.placeholder='Confirmer le mot de passe';passwordConfirm.style.cssText='display:block;width:100%;padding:10px;background:#1d202a;color:white';d.append(passwordConfirm);
+ const syncPrivate=()=>{passwordWrap.hidden=passwordConfirm.hidden=!privateToggle.checked||encrypted};privateToggle.addEventListener('change',syncPrivate);syncPrivate();
  const label=node('label',encrypted?'Archive chiffrée : transcription conservée, non modifiable ici.':'Transcription : une ligne par paragraphe ; préfixer les didascalies par [stage]');
  label.style.cssText='display:block;margin-top:14px;font-size:12px;color:#b9a4b0';
  const body=node('textarea','',encrypted?'':(existing.lines||[]).map(l=>(l.type==='stage'?'[stage] ':'')+l.text).join('\n'));
@@ -57,13 +71,32 @@ function edit(entry,onSaved){
   const result={...existing};
   for(const [k,v] of Object.entries(fields))result[k]=v.value.trim();
   if(!/^VESPER_[0-9]{3,}$/.test(result.id)||!result.title||!result.date){status.textContent='Identifiant VESPER_###, titre et date requis.';return}
-  if(!encrypted)result.lines=body.value.split(/\r?\n/).filter(x=>x.trim()).map(line=>line.startsWith('[stage]')?{type:'stage',text:line.slice(7).trim()}:{type:'speech',text:line.trim()});
+  if(!encrypted){
+   const lines=body.value.split(/\r?\n/).filter(x=>x.trim()).map(line=>line.startsWith('[stage]')?{type:'stage',text:line.slice(7).trim()}:{type:'speech',text:line.trim()});
+   if(privateToggle.checked){
+    if(password.value.length<12||password.value!==passwordConfirm.value){status.textContent='Mot de passe : 12 caractères minimum et confirmation identique.';return}
+    try{Object.assign(result,await encryptLines(lines,password.value));result.private=true;delete result.lines}
+    catch(err){status.textContent='Chiffrement impossible : '+err.message;return}
+   }else{result.private=false;result.lines=lines}
+  }
   save.disabled=true;
   const {error}=await client.from('vesper_journal').upsert({id:result.id,entry_data:result},{onConflict:'id'});
   if(error){status.textContent='Enregistrement impossible : '+error.message;save.disabled=false;return}
   d.close();onSaved();
  };
- actions.append(save,cancel);d.append(actions);document.body.append(d);d.addEventListener('close',()=>d.remove());d.showModal();
+ actions.append(save,cancel);
+ if(entry){
+  const del=node('button','SUPPRIMER');del.style.cssText='padding:10px 16px;background:#642b36;color:white;border:1px solid #c27b83;cursor:pointer;margin-left:auto';
+  del.onclick=async()=>{
+   if(!confirm('Supprimer définitivement '+existing.id+' ? Cette action est irréversible.'))return;
+   del.disabled=true;
+   const {error}=await client.from('vesper_journal').delete().eq('id',existing.id);
+   if(error){status.textContent='Suppression impossible : '+error.message;del.disabled=false;return}
+   d.close();onSaved();
+  };
+  actions.append(del);
+ }
+ d.append(actions);document.body.append(d);d.addEventListener('close',()=>d.remove());d.showModal();
 }
 window.VesperJournal={init,load,edit,get canEdit(){return authorized}};
 })();
