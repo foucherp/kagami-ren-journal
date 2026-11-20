@@ -34,6 +34,7 @@ async function openEditor(kind,existing,onSaved){
  for(const [key,label,required] of fields)inputs[key]=line(d,label,'text',info[key]|| (key==='nom'?existing?.name:key==='role'?existing?.role:'')||'',required);
  inputs.alias=line(d,'PSEUDONYMES / SURNOMS (séparés par des virgules)','text',[...new Set([...(Array.isArray(info.alias)?info.alias:[]),...(legacyAliases[existing?.name]||legacyAliases[info.nom]||[])])].join(', '));
  inputs.alias.maxLength=2000;
+ if(kind==='common')inputs.episode=line(d,'ÉPISODE DE PREMIÈRE APPARITION','text',existing?.episode||'');
  inputs.description=line(d,'DESCRIPTION','textarea',info.description||'');
  inputs.reseau=line(d,'RÉSEAU (0 À 12)','number',info.reseau??'');
  inputs.loyaute=line(d,'LOYAUTÉ (0 À 12)','number',info.loyaute??'');
@@ -62,6 +63,7 @@ async function openEditor(kind,existing,onSaved){
    infoNext.description=inputs.description.value.trim();
    for(const key of ['reseau','loyaute'])infoNext[key]=inputs[key].value===''?null:Number(inputs[key].value);
    const payload={name:infoNext.nom,role:infoNext.role,info:infoNext,image_storage_path:imagePath};
+   if(kind==='common')payload.episode=inputs.episode.value.trim()||null;
    const query=existing?client.from('characters').update(payload).eq('character_id',id):client.from('characters').insert({...payload,character_id:id,kind,owner_member_id:owner,image:'images/JohnDoe.jpeg'});
    const {error}=await query;if(error)throw error;
    d.close();onSaved();
