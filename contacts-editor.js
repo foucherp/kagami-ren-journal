@@ -5,6 +5,7 @@ const URL='https://alzcnmmxumcqiermylik.supabase.co';
 const KEY='sb_publishable_jqzqRJzA-Bj5p7d_T7OMnw_h9hlzsV2';
 const client=window.supabase?.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 const E=(tag,cls,text)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n};
+const legacyAliases={'Silk':['Aya','Onee-chan'],'Vesper':['Ren','Kagami Ren']};
 const fields=[['nom','NOM / ALIAS',true],['role','RÔLE / ACTIVITÉ',true],['identite_civile','IDENTITÉ CIVILE'],['metatype','MÉTATYPE'],['affiliation','AFFILIATION'],['statut','STATUT']];
 async function member(){
  if(!client)throw Error('Module Supabase indisponible');
@@ -31,7 +32,7 @@ async function openEditor(kind,existing,onSaved){
  if(!(owner===kind||(owner==='vesper'&&['team','common'].includes(kind)))||(existing&&existing.kind!==kind)){msg(d,'Seul le propriétaire de ce carnet peut modifier ses contacts.',true);d.showModal();return}
  const info=existing?.info||{},inputs={};
  for(const [key,label,required] of fields)inputs[key]=line(d,label,'text',info[key]|| (key==='nom'?existing?.name:key==='role'?existing?.role:'')||'',required);
- inputs.alias=line(d,'PSEUDONYMES / SURNOMS (séparés par des virgules)','text',Array.isArray(info.alias)?info.alias.join(', '):'');
+ inputs.alias=line(d,'PSEUDONYMES / SURNOMS (séparés par des virgules)','text',[...new Set([...(Array.isArray(info.alias)?info.alias:[]),...(legacyAliases[existing?.name]||legacyAliases[info.nom]||[])])].join(', '));
  inputs.alias.maxLength=2000;
  inputs.description=line(d,'DESCRIPTION','textarea',info.description||'');
  inputs.reseau=line(d,'RÉSEAU (0 À 12)','number',info.reseau??'');
