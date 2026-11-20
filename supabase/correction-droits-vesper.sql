@@ -22,7 +22,7 @@ begin
  owner := new.owner_member_id;
  if not (
    (new.kind=actor and owner=actor)
-   or (actor='vesper' and new.kind in ('team','common') and owner is not distinct from old.owner_member_id)
+   or (actor='vesper' and new.kind in ('team','common') and (TG_OP='INSERT' or owner is not distinct from old.owner_member_id))
  ) then
   raise exception 'Propriétaire du contact invalide.' using errcode='P0001';
  end if;
