@@ -2,6 +2,7 @@
 'use strict';
 const root=document.getElementById('directory-content'),tabs=document.getElementById('directory-tabs'),search=document.getElementById('npc-search'),total=document.getElementById('total');
 const profiles=[['team',"L'ÉQUIPE"],['common','COMMUN'],...['vesper','silk','makoto','plurk','naphria','hesperis'].map(id=>[id,'CONTACTS '+id.toUpperCase()])];
+const legacyAliases={'Silk':['Aya','Onee-chan'],'Vesper':['Ren','Kagami Ren']};
 const normalize=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('fr');
 const el=(tag,cls,value)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(value!==undefined)n.textContent=value;return n};
 // Le manifeste contient désormais toutes les fiches et les chemins des portraits.
@@ -54,6 +55,8 @@ function card(p){const card=el('div','person-card'),head=el('div','person-head')
 const facts=el('div','person-facts'),i=p.info||{};facts.append(el('h3','',p.name),el('div','person-role',p.role.toUpperCase()));
 const dl=el('dl');for(const [k,v] of [['Identité civile',i.identite_civile||'Inconnu'],['Métatype',i.metatype||'Inconnu'],['Affiliation',i.affiliation||'Inconnu'],['Statut',i.statut||'Inconnu']]){if(v)dl.append(el('dt','',k),el('dd','',v))}
 facts.append(dl);
+const aliases=[...new Set([...(Array.isArray(i.alias)?i.alias:[]),...(legacyAliases[p.name]||[])])];
+if(aliases.length)section(facts,'ALIAS',aliases.join(' · '));
 if(!['team','common'].includes(p.kind)){const ratings=[['RÉSEAU',i.reseau],['LOYAUTÉ',i.loyaute]].filter(([,v])=>Number.isInteger(v)&&v>=0&&v<=12);if(ratings.length){const panel=el('div','contact-ratings');for(const [label,value] of ratings){const block=el('div','contact-rating'),heading=el('div','contact-rating-label'),cells=el('div','contact-rating-cells');heading.append(el('span','',label),el('span','',value+' / 12'));for(let n=0;n<12;n++){const cell=el('span','contact-rating-cell'+(n<value?' filled':''));cell.setAttribute('aria-hidden','true');cells.append(cell)}block.setAttribute('role','img');block.setAttribute('aria-label',label+' : '+value+' sur 12');block.append(heading,cells);panel.append(block)}facts.append(panel)}}
 head.append(facts);card.append(head);section(card,'INFORMATIONS CONNUES',i.description||'Inconnu');const merged=opinionApi?opinionApi.merge(p,{}):{};
 for(const [author,opinion] of Object.entries(merged)){if(typeof opinion!=='string'||!opinion.trim())continue;const member=manifest.personnages?.find(x=>x.kind==='team'&&normalize(x.name)===normalize(author));section(card,'AVIS DE '+(member?.name||author).toLocaleUpperCase('fr'),opinion,'person-opinion')}
