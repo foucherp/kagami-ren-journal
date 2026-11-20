@@ -47,7 +47,6 @@ people.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
 const opinionApi=window.RunnerOpinions?await window.RunnerOpinions.init(manifest):null;
 let authorizedMember=null;
 try{authorizedMember=await window.RunnerContacts?.member()||null}catch(e){console.warn('Droits du carnet indisponibles :',e)}
-if(authorizedMember==='vesper'){const status=el('div','directory-state','ACCÈS VESPER ACTIF · ÉQUIPE ET COMMUN MODIFIABLES');root.before(status)}
 const params=new URLSearchParams(location.search);const selected=params.get('person');const focused=params.get('focus');
 if(selected||focused){const p=people.find(x=>focused?x.metadataKey===focused:(x.path===selected||x.legacyPath===selected));if(p){active=p.kind;search.value=''}}
 function section(parent,title,value,cls){if(!value)return;const s=el('section','person-section');s.append(el('h4','',title),el('p',cls||'',value));parent.append(s)}
