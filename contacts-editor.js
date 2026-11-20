@@ -31,6 +31,8 @@ async function openEditor(kind,existing,onSaved){
  if(owner!==kind||(existing&&existing.kind!==owner)){msg(d,'Seul le propriétaire de ce carnet peut modifier ses contacts.',true);d.showModal();return}
  const info=existing?.info||{},inputs={};
  for(const [key,label,required] of fields)inputs[key]=line(d,label,'text',info[key]|| (key==='nom'?existing?.name:key==='role'?existing?.role:'')||'',required);
+ inputs.alias=line(d,'PSEUDONYMES / SURNOMS (séparés par des virgules)','text',Array.isArray(info.alias)?info.alias.join(', '):'');
+ inputs.alias.maxLength=2000;
  inputs.description=line(d,'DESCRIPTION','textarea',info.description||'');
  inputs.reseau=line(d,'RÉSEAU (0 À 12)','number',info.reseau??'');
  inputs.loyaute=line(d,'LOYAUTÉ (0 À 12)','number',info.loyaute??'');
@@ -55,6 +57,7 @@ async function openEditor(kind,existing,onSaved){
    }
    const infoNext={...info};
    for(const [key] of fields)infoNext[key]=inputs[key].value.trim();
+   infoNext.alias=[...new Set(inputs.alias.value.split(',').map(x=>x.trim()).filter(Boolean))];
    infoNext.description=inputs.description.value.trim();
    for(const key of ['reseau','loyaute'])infoNext[key]=inputs[key].value===''?null:Number(inputs[key].value);
    const payload={name:infoNext.nom,role:infoNext.role,info:infoNext,image_storage_path:imagePath};
