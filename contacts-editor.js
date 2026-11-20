@@ -28,7 +28,7 @@ async function openEditor(kind,existing,onSaved){
  if(!client){msg(d,'Connexion Supabase indisponible.',true);d.showModal();return}
  let owner;try{owner=await member()}catch(e){msg(d,e.message,true);d.showModal();return}
  if(!owner){await login(d);d.showModal();return}
- if(owner!==kind||(existing&&existing.kind!==owner)){msg(d,'Seul le propriétaire de ce carnet peut modifier ses contacts.',true);d.showModal();return}
+ if(!(owner===kind||(owner==='vesper'&&['team','common'].includes(kind)))||(existing&&existing.kind!==kind)){msg(d,'Seul le propriétaire de ce carnet peut modifier ses contacts.',true);d.showModal();return}
  const info=existing?.info||{},inputs={};
  for(const [key,label,required] of fields)inputs[key]=line(d,label,'text',info[key]|| (key==='nom'?existing?.name:key==='role'?existing?.role:'')||'',required);
  inputs.alias=line(d,'PSEUDONYMES / SURNOMS (séparés par des virgules)','text',Array.isArray(info.alias)?info.alias.join(', '):'');
@@ -46,7 +46,7 @@ async function openEditor(kind,existing,onSaved){
   if(file&&(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>5242880)){msg(d,'Portrait non accepté : JPEG, PNG ou WebP, maximum 5 Mo.',true);return}
   for(const k of ['reseau','loyaute'])if(inputs[k].value!==''&&(!Number.isInteger(Number(inputs[k].value))||Number(inputs[k].value)<0||Number(inputs[k].value)>12)){msg(d,k+' doit être compris entre 0 et 12.',true);return}
   save.disabled=true;
-  const id=existing?.metadataKey||'contact:'+crypto.randomUUID();
+  const id=existing?.metadataKey||(kind==='team'?'team:':kind==='common'?'common:':'contact:')+crypto.randomUUID();
   let imagePath=existing?.image_storage_path||null;
   try{
    if(file){
@@ -61,7 +61,7 @@ async function openEditor(kind,existing,onSaved){
    infoNext.description=inputs.description.value.trim();
    for(const key of ['reseau','loyaute'])infoNext[key]=inputs[key].value===''?null:Number(inputs[key].value);
    const payload={name:infoNext.nom,role:infoNext.role,info:infoNext,image_storage_path:imagePath};
-   const query=existing?client.from('characters').update(payload).eq('character_id',id):client.from('characters').insert({...payload,character_id:id,kind:owner,owner_member_id:owner,image:'images/JohnDoe.jpeg'});
+   const query=existing?client.from('characters').update(payload).eq('character_id',id):client.from('characters').insert({...payload,character_id:id,kind,owner_member_id:owner,image:'images/JohnDoe.jpeg'});
    const {error}=await query;if(error)throw error;
    d.close();onSaved();
   }catch(e){msg(d,'Enregistrement impossible : '+e.message,true);save.disabled=false}
