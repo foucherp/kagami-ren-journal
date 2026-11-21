@@ -87,7 +87,8 @@ async function edit(entry,onSaved){
  save.onclick=async()=>{
   const result={...existing};
   for(const [k,v] of Object.entries(fields))result[k]=v.value.trim();
-  if(!new RegExp('^'+prefix+'[0-9]{3,}&&!unlocked){status.textContent='Déverrouille la transcription avant d’enregistrer.';return}
+  if(!new RegExp('^'+prefix+'[0-9]{3,}$').test(result.id)||!result.title||!result.date){status.textContent='Identifiant '+prefix+'###, titre et date requis.';return}
+  if(encrypted&&!unlocked){status.textContent='Déverrouille la transcription avant d’enregistrer.';return}
   const lines=body.value.split(/\r?\n/).filter(x=>x.trim()).map(line=>line.startsWith('[stage]')?{type:'stage',text:line.slice(7).trim()}:{type:'speech',text:line.trim()});
   if(privateToggle.checked){
    if(!password.value||(!encrypted&&password.value!==passwordConfirm.value)){status.textContent='Saisis un mot de passe valide et sa confirmation.';return}
