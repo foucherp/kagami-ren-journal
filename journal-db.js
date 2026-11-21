@@ -46,7 +46,7 @@ async function encryptLines(lines,password){
  return {salt:bytes64(salt),iv:bytes64(iv),ciphertext:bytes64(cipher)};
 }
 const node=(tag,label,value)=>{const n=document.createElement(tag);if(label)n.textContent=label;if(value!==undefined)n.value=value;return n};
-async function edit(entry,onSaved){
+async function edit(entry,onSaved,access=null){
  if(!authorized||!available)return;
  const existing=entry||{},d=document.createElement('dialog');
  let suggested=prefix+'001';
@@ -66,18 +66,19 @@ async function edit(entry,onSaved){
  const passwordWrap=node('label',encrypted?'Mot de passe actuel pour déchiffrer':'Mot de passe de chiffrement');passwordWrap.style.cssText='display:block;margin:10px 0';
  const password=node('input','');password.type='password';password.autocomplete='new-password';password.placeholder=encrypted?'Mot de passe actuel':'Choisir un mot de passe';password.style.cssText='display:block;width:100%;padding:10px;background:#1d202a;color:white';passwordWrap.append(password);d.append(passwordWrap);
  const passwordConfirm=node('input','');passwordConfirm.type='password';passwordConfirm.autocomplete='new-password';passwordConfirm.placeholder='Confirmer le mot de passe';passwordConfirm.style.cssText='display:block;width:100%;padding:10px;background:#1d202a;color:white';d.append(passwordConfirm);
- const syncPrivate=()=>{passwordWrap.hidden=!privateToggle.checked;passwordConfirm.hidden=!privateToggle.checked||encrypted};privateToggle.addEventListener('change',syncPrivate);syncPrivate();
+ const syncPrivate=()=>{passwordWrap.hidden=!privateToggle.checked||(encrypted&&!!access?.lines);passwordConfirm.hidden=!privateToggle.checked||encrypted};privateToggle.addEventListener('change',syncPrivate);syncPrivate();
  const label=node('label','Transcription : une ligne par paragraphe ; préfixer les didascalies par [stage]');
  label.style.cssText='display:block;margin-top:14px;font-size:12px;color:#b9a4b0';
- const body=node('textarea','',encrypted?'':(existing.lines||[]).map(l=>(l.type==='stage'?'[stage] ':'')+l.text).join('\n'));
+ const body=node('textarea','',((access?.lines&&encrypted)?access.lines:(encrypted?[]:(existing.lines||[]))).map(l=>(l.type==='stage'?'[stage] ':'')+l.text).join('\n'));
  body.rows=12;body.style.cssText='display:block;width:100%;margin-top:8px;padding:12px;background:#1d202a;color:white;border:1px solid #64505c';
- if(encrypted){body.disabled=true;body.placeholder='Saisir le mot de passe actuel pour déverrouiller la transcription';}
+ if(encrypted&&!access?.lines){body.disabled=true;body.placeholder='Saisir le mot de passe actuel pour déverrouiller la transcription';}
  label.append(body);d.append(label);
  const status=node('p','');status.style.color='#dba1a9';d.append(status);
- let unlocked=!encrypted;
- if(encrypted){
+ let unlocked=!encrypted||!!access?.lines;
+ let cachedPassword=encrypted&&access?.lines?access.password:null;
+ if(encrypted&&!unlocked){
   const unlock=node('button','DÉVERROUILLER LA TRANSCRIPTION');unlock.type='button';unlock.style.cssText='padding:10px;margin-top:10px;background:#35232e;color:white;border:1px solid #986878';
-  unlock.onclick=async()=>{if(!password.value){status.textContent='Saisis le mot de passe actuel.';return}unlock.disabled=true;try{const lines=await decryptLines(existing,password.value);body.value=lines.map(l=>(l.type==='stage'?'[stage] ':'')+l.text).join('\n');body.disabled=false;unlocked=true;status.textContent='Transcription déverrouillée. Modifications possibles.';unlock.remove()}catch(e){status.textContent='Mot de passe incorrect ou déchiffrement impossible.';unlock.disabled=false}};
+  unlock.onclick=async()=>{if(!password.value){status.textContent='Saisis le mot de passe actuel.';return}unlock.disabled=true;try{const lines=await decryptLines(existing,password.value);body.value=lines.map(l=>(l.type==='stage'?'[stage] ':'')+l.text).join('\n');body.disabled=false;unlocked=true;cachedPassword=password.value;status.textContent='Transcription déverrouillée. Modifications possibles.';unlock.remove()}catch(e){status.textContent='Mot de passe incorrect ou déchiffrement impossible.';unlock.disabled=false}};
   d.append(unlock);
  }
  const actions=node('div');actions.style.cssText='display:flex;gap:12px;margin-top:18px';
@@ -91,8 +92,9 @@ async function edit(entry,onSaved){
   if(encrypted&&!unlocked){status.textContent='Déverrouille la transcription avant d’enregistrer.';return}
   const lines=body.value.split(/\r?\n/).filter(x=>x.trim()).map(line=>line.startsWith('[stage]')?{type:'stage',text:line.slice(7).trim()}:{type:'speech',text:line.trim()});
   if(privateToggle.checked){
-   if(!password.value||(!encrypted&&password.value!==passwordConfirm.value)){status.textContent='Saisis un mot de passe valide et sa confirmation.';return}
-   try{Object.assign(result,await encryptLines(lines,password.value));result.private=true;delete result.lines}
+   const secret=encrypted?cachedPassword:password.value;
+   if(!secret||(!encrypted&&password.value!==passwordConfirm.value)){status.textContent='Saisis un mot de passe valide et sa confirmation.';return}
+   try{Object.assign(result,await encryptLines(lines,secret));result.private=true;delete result.lines}
    catch(err){status.textContent='Chiffrement impossible : '+err.message;return}
   }else{result.private=false;result.lines=lines;delete result.salt;delete result.iv;delete result.ciphertext}
 
