@@ -26,13 +26,17 @@ const mountEditor=()=>{
 };
 function render(lines){
  transcript.replaceChildren();
- let speech=[];
- const flush=()=>{if(!speech.length)return;const p=document.createElement('p');p.className='speech';p.textContent=speech.join(' ');transcript.append(p);speech=[]};
  for(const line of lines||[]){
-  if(line.type==='stage'){flush();const p=document.createElement('p');p.className='stage';p.textContent='['+line.text+']';transcript.append(p)}
-  else speech.push(line.text);
+  const p=document.createElement('p');
+  if(line.type==='stage'){
+   p.className='stage';
+   p.textContent='['+line.text+']';
+  }else{
+   p.className='speech';
+   p.textContent=line.text||'\u00a0';
+  }
+  transcript.append(p);
  }
- flush();
 }
 if(!entry.private){render(entry.lines);mountEditor();return}
 document.querySelector('.video-still').hidden=true;
