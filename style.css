@@ -30,3 +30,6 @@
 
 /* Indicateur de page active dans le menu principal. */
 .top .top-links a[aria-current="page"]{color:#e28b9b;text-decoration:underline;text-decoration-color:#e28b9b;text-decoration-thickness:2px;text-underline-offset:6px}
+
+/* Séparation visuelle des paragraphes successifs dans les journaux. */
+#transcript p.speech + p.speech{margin-top:1em}
