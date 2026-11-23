@@ -108,9 +108,9 @@ async function edit(entry,onSaved,access=null){
    catch(err){status.textContent='Lecture de l’image impossible.';return}
   }else if(!entry&&!result.image){
    const all=await load();
-   const images=[...new Set(all.map(x=>x.image).filter(x=>typeof x==='string'&&(x.startsWith('data:image/')||x.startsWith('images/'))))];
    const defaults=owner==='hesperis'?['images/Hesperis_video1.jpeg']:['images/Vesper_video1.jpeg','images/Vesper_video2.jpeg','images/Vesper_video3.jpeg','images/Vesper_video4.jpeg','images/Vesper_video5.jpeg'];
-   result.image=(images.length?images:defaults)[Math.floor(Math.random()*(images.length||defaults.length))];
+   const images=[...new Set([...defaults,...all.map(x=>x.image).filter(x=>typeof x==='string'&&(x.startsWith('data:image/')||x.startsWith('images/')))])];
+   result.image=images[Math.floor(Math.random()*images.length)];
   }
 
   save.disabled=true;
