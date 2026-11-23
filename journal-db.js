@@ -60,6 +60,9 @@ async function edit(entry,onSaved,access=null){
   if(key==='id')input.readOnly=true;
   wrap.append(input);fields[key]=input;d.append(wrap);
  }
+ const imageWrap=node('label','IMAGE DE L’ENREGISTREMENT (JPEG, PNG OU WEBP, 300 Ko maximum)');imageWrap.style.cssText='display:block;margin:14px 0;font-size:12px;color:#b9a4b0';
+ const imageInput=document.createElement('input');imageInput.type='file';imageInput.accept='image/jpeg,image/png,image/webp';imageInput.style.cssText='display:block;margin-top:8px;max-width:100%';imageWrap.append(imageInput);d.append(imageWrap);
+ const currentImage=node('p',existing.image?'Image actuelle conservée si aucun nouveau fichier n’est choisi.':'Sans image : sélection automatique parmi les images du journal.');currentImage.style.cssText='font-size:12px;color:#b9a4b0';d.append(currentImage);
  const encrypted=!!existing.private;
  const privateWrap=node('label','🔒 Entrée privée (transcription chiffrée)');privateWrap.style.cssText='display:block;margin:14px 0';
  const privateToggle=document.createElement('input');privateToggle.type='checkbox';privateToggle.checked=encrypted;privateToggle.disabled=encrypted;privateWrap.prepend(privateToggle);d.append(privateWrap);
@@ -97,6 +100,18 @@ async function edit(entry,onSaved,access=null){
    try{Object.assign(result,await encryptLines(lines,secret));result.private=true;delete result.lines}
    catch(err){status.textContent='Chiffrement impossible : '+err.message;return}
   }else{result.private=false;result.lines=lines;delete result.salt;delete result.iv;delete result.ciphertext}
+
+  const file=imageInput.files[0];
+  if(file){
+   if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>300*1024){status.textContent='Image refusée : JPEG, PNG ou WebP, 300 Ko maximum.';return}
+   try{result.image=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(Error('Lecture impossible'));reader.readAsDataURL(file)})}
+   catch(err){status.textContent='Lecture de l’image impossible.';return}
+  }else if(!entry&&!result.image){
+   const all=await load();
+   const images=[...new Set(all.map(x=>x.image).filter(x=>typeof x==='string'&&(x.startsWith('data:image/')||x.startsWith('images/'))))];
+   const defaults=owner==='hesperis'?['images/Hesperis_video1.jpeg']:['images/Vesper_video1.jpeg','images/Vesper_video2.jpeg','images/Vesper_video3.jpeg','images/Vesper_video4.jpeg','images/Vesper_video5.jpeg'];
+   result.image=(images.length?images:defaults)[Math.floor(Math.random()*(images.length||defaults.length))];
+  }
 
   save.disabled=true;
   const {error}=entry
