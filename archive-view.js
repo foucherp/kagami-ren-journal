@@ -8,10 +8,9 @@ const transcript=document.getElementById('transcript');
 if(!entry){document.getElementById('title').textContent='ARCHIVE INTROUVABLE';return}
 const isHesperis=location.pathname.toLowerCase().includes('hesperis');
 const image=document.querySelector('.video-still img');
-if(!isHesperis){
- const stills={VESPER_001:'images/Vesper_video5.jpeg',VESPER_002:'images/Vesper_video2.jpeg',VESPER_003:'images/Vesper_video3.jpeg',VESPER_004:'images/Vesper_video4.jpeg'};
- image.src=stills[entry.id]||'images/Vesper_video1.jpeg';
-}
+const stills={VESPER_001:'images/Vesper_video5.jpeg',VESPER_002:'images/Vesper_video2.jpeg',VESPER_003:'images/Vesper_video3.jpeg',VESPER_004:'images/Vesper_video4.jpeg'};
+const fallback=isHesperis?'images/Hesperis_video1.jpeg':(stills[entry.id]||'images/Vesper_video1.jpeg');
+image.src=typeof entry.image==='string'&&(entry.image.startsWith('data:image/')||entry.image.startsWith('images/'))?entry.image:fallback;
 document.getElementById('title').textContent=entry.title;
 document.getElementById('meta').textContent=entry.date+' // '+(entry.location||'');
 document.getElementById('file-id').textContent=entry.id;
